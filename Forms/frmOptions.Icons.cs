@@ -49,7 +49,7 @@ namespace TrayUsage
 
         private void btnAddIcon_Click(object sender, EventArgs e)
         {
-            IconManager.AddIcon("New Icon", null);
+            IconManager.AddIcon("New Icon", "{iconname}", null);
             populateIconsList();
         }
 
@@ -98,6 +98,7 @@ namespace TrayUsage
         private void IconToForm()
         {
             txtIconName.Text = SelectedIcon.IconName;
+            txtRollover.Text = SelectedIcon.RolloverText;
             comboRenderType.Text = SelectedIcon.Renderer.Name;
             SetRenderInfo();
             listData.Items.Clear();
@@ -170,6 +171,12 @@ namespace TrayUsage
                 SelectedIcon.IconName = txtIconName.Text;
                 listIcons.Items[listIcons.SelectedIndex] = txtIconName.Text;
             }
+        }
+
+        private void txtRollover_TextChanged(object sender, EventArgs e)
+        {
+            if (listIcons.SelectedIndex == -1) { return; }
+            SelectedIcon.RolloverText = txtRollover.Text;
         }
 
         private void comboRenderType_SelectedIndexChanged(object sender, EventArgs e)

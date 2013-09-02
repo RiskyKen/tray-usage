@@ -96,7 +96,7 @@ namespace TrayUsage
         }
 
         //Add an icon into the TrayIcons array.
-        public static void AddIcon(string aDataName, DataLink[] aTargetData)
+        public static void AddIcon(string aDataName, String RolloverText, DataLink[] aTargetData)
         {
             if (InvokeControl.InvokeRequired)
             {
@@ -108,7 +108,7 @@ namespace TrayUsage
             {
                 Array.Resize(ref trayIcons, trayIcons.GetUpperBound(0) + 2);
             }
-            trayIcons[trayIcons.GetUpperBound(0)] = new TrayIcon(aDataName, aTargetData);
+            trayIcons[trayIcons.GetUpperBound(0)] = new TrayIcon(aDataName, RolloverText, aTargetData);
             CheckDummyIconVisibliy();
         }
 

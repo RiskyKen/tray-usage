@@ -30,7 +30,10 @@ namespace TrayUsage
     public partial class TrayIcon
     {
         //The name of this icon.
-        public string pIconName = null;
+        private string _iconName = null;
+
+        //The rollover text for the icon.
+        private String _rolloverText = "";
 
         //The notify icon that is seen in the system tray.
         private NotifyIcon trayIcon = null;
@@ -42,9 +45,10 @@ namespace TrayUsage
         public clsRenderer Renderer = null;
 
         //Constructor
-        public TrayIcon(string aIconName, DataLink[] aTargetData)
+        public TrayIcon(string aIconName, String aRolloverText, DataLink[] aTargetData)
         {
-            pIconName = aIconName;
+            _iconName = aIconName;
+            _rolloverText = aRolloverText;
             TargetData = aTargetData;
             Renderer = new clsRendererBasic();
             MakeTrayIcon();
@@ -54,7 +58,8 @@ namespace TrayUsage
         {
             trayIcon = new NotifyIcon();
             trayIcon.ContextMenu = IconManager.TrayMenu.Menu;
-            UpdateName();
+            //UpdateRolloverText();
+            //UpdateName();
             //TrayIcon.Text = IconName;
             RenderIcon(false);
             trayIcon.Visible = true;
@@ -74,6 +79,7 @@ namespace TrayUsage
                     { trayIcon.Icon = Renderer.RenderIcon(iconValues, sleeping); }
                 }
             }
+            UpdateRolloverText();
         }
 
         public void Hide()
@@ -103,7 +109,7 @@ namespace TrayUsage
                 Array.Resize(ref TargetData, TargetData.GetUpperBound(0) + 2);
             }
             TargetData[TargetData.GetUpperBound(0)] = aDataLink;
-            UpdateName();
+            //UpdateName();
             Renderer.ForceIconRedraw();
         }
 
@@ -130,7 +136,7 @@ namespace TrayUsage
                 }
             }
             TargetData = tempLink;
-            UpdateName();
+            //UpdateName();
             Renderer.ForceIconRedraw();
         }
 
@@ -152,19 +158,42 @@ namespace TrayUsage
 
         public string IconName
         {
-            get { return pIconName; }
+            get { return _iconName; }
             set {
-                pIconName = value;
-                    UpdateName(); 
+                    _iconName = value;
                 }
         }
 
-        private void UpdateName()
+        public string RolloverText
         {
-            if (TargetData == null)
-            { trayIcon.Text = IconName + " - No Data Link"; }
-            else
-            { trayIcon.Text = IconName; }
+            get { return _rolloverText; }
+            set
+            {
+                _rolloverText = value;
+                UpdateRolloverText();
+            }
+        }
+
+        private void UpdateRolloverText()
+        {
+            trayIcon.Text = ReplaceIconText(RolloverText);
+        }
+
+        private String ReplaceIconText(String text)
+        {
+            String newText;
+
+            newText = text.Replace("{iconname}", IconName);
+            newText = newText.Replace(@"\n", "\n");
+
+            newText = Program.dataManager.ReplaceIconText(newText);
+
+            if (newText.Length > 63)
+            {
+                newText = newText.Remove(newText.Length - (newText.Length - 60), newText.Length - 60) + "...";
+            }
+
+            return newText;
         }
 
         private void TrayIcon_DoubleClick(object sender, System.EventArgs e)

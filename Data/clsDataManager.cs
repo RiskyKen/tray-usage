@@ -59,6 +59,17 @@ namespace TrayUsage
             }
         }
 
+        public String ReplaceIconText(String text)
+        {
+            String newText = text;
+            if (DataClasses == null) { return text; }
+            for (Int32 i = 0; i <= DataClasses.GetUpperBound(0); i++)
+            {
+                newText = DataClasses[i].ReplaceIconText(newText);
+            }
+            return newText;
+        }
+
         public void UpdateValues()
         {
             for (Int32 i = 0; i <= DataClasses.GetUpperBound(0); i++)

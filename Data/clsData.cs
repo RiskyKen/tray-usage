@@ -50,6 +50,23 @@ namespace TrayUsage
             get {return pDataLabels;}
         }
 
+        public String ReplaceIconText(String text)
+        {
+            String newText = text;
+
+            if (newText.Contains(DataName + ":"))
+            {
+                for (Int32 i = 0; i <= pDataLabels.GetUpperBound(0); i++)
+                {
+                    if (newText.Contains(DataName + ":" + i.ToString()))
+                    { newText = newText.Replace("{" + DataName + ":" + i.ToString() + "}", CurrentValue[i].ToString()); }
+                }
+            }
+
+
+            return newText;
+        }
+
         public abstract void UpdateValues();
 
         public void Dispose()

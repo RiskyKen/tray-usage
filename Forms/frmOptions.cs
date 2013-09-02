@@ -131,6 +131,5 @@ namespace TrayUsage
             ApplySettings();
             this.DialogResult = DialogResult.OK;
         }
-
     }
 }

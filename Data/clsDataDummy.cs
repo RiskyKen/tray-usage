@@ -58,6 +58,5 @@ namespace TrayUsage
         {
             base.Dispose();
         }
-
     }
 }

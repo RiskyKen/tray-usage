@@ -75,7 +75,10 @@ namespace TrayUsage
                         switch (aName)
                         {
                             case "Name":
-                                pIconName = aR.Value;
+                                _iconName = aR.Value;
+                                break;
+                            case "Rollover":
+                                _rolloverText = aR.Value;
                                 break;
                         }
                         break;
@@ -152,7 +155,9 @@ namespace TrayUsage
 
         private void SaveGeneralSettings(XmlWriter aW)
         {
-            aW.WriteElementString("Name", pIconName);
+            aW.WriteElementString("Name", _iconName);
+            if (_rolloverText != "")
+            { aW.WriteElementString("Rollover", _rolloverText); }
         }
 
         private void SaveRenderXml(XmlWriter aW)
