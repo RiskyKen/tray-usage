@@ -25,7 +25,7 @@ using System.Xml;
 
 namespace TrayUsage
 {
-    public class clsRendererImage :clsRenderer 
+    public class RendererImage :Renderer 
     {
         private bool pHorizontal = false;
 
@@ -46,12 +46,12 @@ namespace TrayUsage
         }
 
         //Constructor
-        public clsRendererImage() : base(1,new Size(14,14))
+        public RendererImage() : base(1,new Size(14,14))
         {
             PostInt();
         }
 
-        public clsRendererImage(XmlReader aR) : base(aR, 1, new Size(14, 14))
+        public RendererImage(XmlReader aR) : base(aR, 1, new Size(14, 14))
         {
             PostInt();
         }

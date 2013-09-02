@@ -40,13 +40,13 @@ namespace TrayUsage
                     case XmlNodeType.Element:
                         if (aR.Name == "RendererBasic")
                         {
-                            Renderer = new clsRendererBasic(aR);
+                            renderer = new RendererBasic(aR);
                             MakeTrayIcon();
                             break;
                         }
                         if (aR.Name == "RendererImage")
                         {
-                            Renderer = new clsRendererImage(aR);
+                            renderer = new RendererImage(aR);
                             MakeTrayIcon();
                             break;
                         }
@@ -162,7 +162,7 @@ namespace TrayUsage
 
         private void SaveRenderXml(XmlWriter aW)
         {
-            if (Renderer != null) { Renderer.SaveRenderer(aW); }
+            if (renderer != null) { renderer.SaveRenderer(aW); }
         }
 
         private void SaveDataSourceXml(XmlWriter aW)

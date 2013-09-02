@@ -25,7 +25,7 @@ using System.Xml;
 
 namespace TrayUsage
 {
-    public abstract class clsRenderer 
+    public abstract class Renderer 
     {
         public UInt32 RenderCount = 0;
 
@@ -45,14 +45,14 @@ namespace TrayUsage
         public Boolean AlwaysRedraw = false;
 
         //Constructor
-        public clsRenderer(Int32 aMaxValues,Size aDrawingSize)
+        public Renderer(Int32 aMaxValues,Size aDrawingSize)
         {
             MaxValues = aMaxValues;
             LastValue = new Int32[MaxValues];
         }
 
         //TODO Move some xml reading in here.
-        public clsRenderer(XmlReader aR,Int32 aMaxValues, Size aDrawingSize)
+        public Renderer(XmlReader aR,Int32 aMaxValues, Size aDrawingSize)
         {
             MaxValues = aMaxValues;
             LastValue = new Int32[MaxValues];

@@ -99,7 +99,7 @@ namespace TrayUsage
         {
             txtIconName.Text = SelectedIcon.IconName;
             txtRollover.Text = SelectedIcon.RolloverText;
-            comboRenderType.Text = SelectedIcon.Renderer.Name;
+            comboRenderType.Text = SelectedIcon.renderer.Name;
             SetRenderInfo();
             listData.Items.Clear();
             if (SelectedIcon.TargetData != null)
@@ -132,7 +132,7 @@ namespace TrayUsage
         {
             if (listIcons.SelectedIndex == -1) { return; }
             if (SelectedIcon == null) { return; }
-            switch (SelectedIcon.Renderer.Name)
+            switch (SelectedIcon.renderer.Name)
             {
                 case "Basic":
                     frmRenderOptionsBasic RenderOptionsBasicForm = new frmRenderOptionsBasic(SelectedIcon);
@@ -182,14 +182,14 @@ namespace TrayUsage
         private void comboRenderType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listIcons.SelectedIndex == -1) { return; }
-            if (SelectedIcon.Renderer.Name != comboRenderType.Text)
+            if (SelectedIcon.renderer.Name != comboRenderType.Text)
             {
                 if (MessageBox.Show("This will clear the renderer settings.\n\nAre you sure?",
                   Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 { SelectedIcon.ChangeRenderer(comboRenderType.Text); }
                 else
                 {
-                    comboRenderType.Text = SelectedIcon.Renderer.Name;
+                    comboRenderType.Text = SelectedIcon.renderer.Name;
                 }
             }
             
@@ -204,10 +204,10 @@ namespace TrayUsage
                 return;
             }
 
-            lblRenderInfo.Text = "Discription: " + SelectedIcon.Renderer.Discription +
+            lblRenderInfo.Text = "Discription: " + SelectedIcon.renderer.Discription +
                 Environment.NewLine + Environment.NewLine + "Max Data Inputs: " +
-                SelectedIcon.Renderer.MaxValues.ToString() + Environment.NewLine + 
-                "Render Count:" + SelectedIcon.Renderer.RenderCount.ToString();
+                SelectedIcon.renderer.MaxValues.ToString() + Environment.NewLine + 
+                "Render Count:" + SelectedIcon.renderer.RenderCount.ToString();
         }
     }
 }

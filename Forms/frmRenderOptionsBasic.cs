@@ -30,7 +30,7 @@ namespace TrayUsage
     public partial class frmRenderOptionsBasic : Form
     {
         private TrayIcon TargetIcon = null;
-        private clsRendererBasic TargetRender = null;
+        private RendererBasic TargetRender = null;
 
         public frmRenderOptionsBasic(TrayIcon aTargetIcon)
         {
@@ -43,7 +43,7 @@ namespace TrayUsage
             }
 
             TargetIcon = aTargetIcon;
-            TargetRender = (clsRendererBasic)TargetIcon.Renderer;
+            TargetRender = (RendererBasic)TargetIcon.renderer;
             LoadColourPics();
             chkHorizontal.Checked = TargetRender.Horizontal;
         }

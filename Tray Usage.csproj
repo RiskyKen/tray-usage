@@ -119,8 +119,8 @@
     </Compile>
     <Compile Include="Icon\TrayIcon.IO.cs" />
     <Compile Include="Icon\DummyIcon.cs" />
-    <Compile Include="Renderer\clsRenderer.cs" />
-    <Compile Include="Renderer\clsRendererBasic.cs" />
+    <Compile Include="Renderer\Renderer.cs" />
+    <Compile Include="Renderer\RendererBasic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\frmAbout.resx">
@@ -150,7 +150,7 @@
     </Compile>
     <Compile Include="Icon\IconManager.cs" />
     <Compile Include="Icon\IconMenu.cs" />
-    <Compile Include="Renderer\clsRendererImage.cs" />
+    <Compile Include="Renderer\RendererImage.cs" />
     <Compile Include="Forms\frmUpdate.cs">
       <SubType>Form</SubType>
     </Compile>

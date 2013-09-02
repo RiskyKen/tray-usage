@@ -30,13 +30,13 @@ namespace TrayUsage
     public partial class frmRenderOptionsImage : Form
     {
         private TrayIcon TargetIcon = null;
-        private clsRendererImage TargetRender = null;
+        private RendererImage TargetRender = null;
 
         public frmRenderOptionsImage(TrayIcon aTargetIcon)
         {
             InitializeComponent();
             TargetIcon = aTargetIcon;
-            TargetRender = (clsRendererImage)TargetIcon.Renderer;
+            TargetRender = (RendererImage)TargetIcon.renderer;
         }
     }
 }

@@ -42,7 +42,7 @@ namespace TrayUsage
         public DataLink[] TargetData = null;
 
         //The renderer that this icon will use.
-        public clsRenderer Renderer = null;
+        public Renderer renderer = null;
 
         //Constructor
         public TrayIcon(string aIconName, String aRolloverText, DataLink[] aTargetData)
@@ -50,7 +50,7 @@ namespace TrayUsage
             _iconName = aIconName;
             _rolloverText = aRolloverText;
             TargetData = aTargetData;
-            Renderer = new clsRendererBasic();
+            renderer = new RendererBasic();
             MakeTrayIcon();
         }
 
@@ -68,15 +68,15 @@ namespace TrayUsage
 
         public void RenderIcon(Boolean sleeping)
         {
-            Int32[] iconValues = Renderer.ConvertToIconValues(TargetData);
-            if (Renderer.NeedRedraw(iconValues, sleeping))
+            Int32[] iconValues = renderer.ConvertToIconValues(TargetData);
+            if (renderer.NeedRedraw(iconValues, sleeping))
             {
-                if (!Renderer.isSleeping)
-                { trayIcon.Icon = Renderer.RenderIcon(iconValues, sleeping); }
+                if (!renderer.isSleeping)
+                { trayIcon.Icon = renderer.RenderIcon(iconValues, sleeping); }
                 else
                 {
                     if (!sleeping)
-                    { trayIcon.Icon = Renderer.RenderIcon(iconValues, sleeping); }
+                    { trayIcon.Icon = renderer.RenderIcon(iconValues, sleeping); }
                 }
             }
             UpdateRolloverText();
@@ -90,7 +90,7 @@ namespace TrayUsage
 
         public void Reload()
         {
-            Renderer.Reload();
+            renderer.Reload();
         }
 
         public void ShowBalloonPopup(String title, String text, ToolTipIcon icon)
@@ -110,7 +110,7 @@ namespace TrayUsage
             }
             TargetData[TargetData.GetUpperBound(0)] = aDataLink;
             //UpdateName();
-            Renderer.ForceIconRedraw();
+            renderer.ForceIconRedraw();
         }
 
         public void RemoveDataSource(Int32 aIndex)
@@ -137,7 +137,7 @@ namespace TrayUsage
             }
             TargetData = tempLink;
             //UpdateName();
-            Renderer.ForceIconRedraw();
+            renderer.ForceIconRedraw();
         }
 
         public void ChangeRenderer(string NewRenderer)
@@ -145,13 +145,13 @@ namespace TrayUsage
             switch (NewRenderer)
             {
                 case "Basic":
-                    Renderer.Dispose();
-                    Renderer = new clsRendererBasic();
+                    renderer.Dispose();
+                    renderer = new RendererBasic();
                     break;
 
                 case "Image":
-                    Renderer.Dispose();
-                    Renderer = new clsRendererImage();
+                    renderer.Dispose();
+                    renderer = new RendererImage();
                     break;
             }
         }

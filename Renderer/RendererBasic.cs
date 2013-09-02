@@ -25,7 +25,7 @@ using System.Xml;
 
 namespace TrayUsage
 {
-    public class clsRendererBasic : clsRenderer
+    public class RendererBasic : Renderer
     {
         private Boolean pHorizontal = false;
 
@@ -89,12 +89,12 @@ namespace TrayUsage
         }
 
         //Constructor
-        public clsRendererBasic() : base(5,new Size(14,14))
+        public RendererBasic() : base(5,new Size(14,14))
         {
             PostInt();
         }
 
-        public clsRendererBasic(XmlReader aR) : base(aR, 5, new Size(14, 14))
+        public RendererBasic(XmlReader aR) : base(aR, 5, new Size(14, 14))
         {
             PostInt();
         }
