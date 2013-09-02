@@ -42,14 +42,8 @@ namespace TrayUsage
         //A class to handle updating and update checking.
         public static UpdateHelper updateHelper = null;
 
-        //The options form.
-        public static frmOptions optionsForm = null;
-
-        //The update form.
-        public static frmUpdate updateForm = null;
-
-        //The about form.
-        public static frmAbout aboutForm = null;
+        //Helps with opening program forms.
+        public static FormHelper formHelper = null;
 
         //Is the main update loop running?
         public static Boolean updateLoopRunning = false;
@@ -82,6 +76,7 @@ namespace TrayUsage
 
         private static void LoadClasses()
         {
+            formHelper = new FormHelper();
             dataManager = new clsDataManager();
             settingsClass = new Settings();
             updateHelper = new UpdateHelper(Application.StartupPath, Globals.FileDownloadPath, new Version(Application.ProductVersion));
@@ -96,6 +91,7 @@ namespace TrayUsage
             IconManager.Dispose();
             dataManager.Dispose();
             settingsClass.Dispose();
+            formHelper.Dispose();
         }
 
         //Starts the main update loop.

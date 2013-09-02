@@ -51,7 +51,7 @@ namespace TrayUsage
 
         public void TrayIcon_DoubleClick()
         {
-            OpenOptionsForm();
+            Program.formHelper.OpenOptionsForm();
         }
 
         private void Exit_Clicked(object sender, System.EventArgs e)
@@ -61,73 +61,22 @@ namespace TrayUsage
 
         private void Options_Clicked(object sender, System.EventArgs e)
         {
-            OpenOptionsForm();
+            Program.formHelper.OpenOptionsForm();
         }
 
         private void Update_Clicked(object sender, System.EventArgs e)
         {
-            OpenUpdateForm();
+            Program.formHelper.OpenUpdateForm();
         }
 
         private void About_Clicked(object sender, System.EventArgs e)
         {
-            OpenAboutForm();
+            Program.formHelper.OpenAboutForm();
         }
 
         public void Dispose()
         {
             Menu.Dispose();
-        }
-
-        private void OpenOptionsForm()
-        {
-            if (Program.optionsForm == null)
-            {
-                Program.optionsForm = new frmOptions();
-                if (Program.optionsForm.ShowDialog() == DialogResult.OK)
-                {
-                    //Program.Settings.Save();
-                }
-                Program.optionsForm.Dispose();
-                Program.optionsForm = null;
-            }
-            else
-            {
-                Program.optionsForm.Activate();
-            }
-        }
-
-        private void OpenUpdateForm()
-        {
-            if (Program.updateForm == null)
-            {
-                Program.updateForm = new frmUpdate();
-                if (Program.updateForm.ShowDialog() == DialogResult.OK)
-                {
-                    //Program.Settings.Save();
-                }
-                Program.updateForm.Dispose();
-                Program.updateForm = null;
-            }
-            else
-            {
-                Program.updateForm.Activate();
-            }
-        }
-
-        private void OpenAboutForm()
-        {
-            if (Program.aboutForm == null)
-            {
-                Program.aboutForm = new frmAbout();
-                Program.aboutForm.ShowDialog();
-                Program.aboutForm.Dispose();
-                Program.aboutForm = null;
-            }
-            else
-            {
-                Program.aboutForm.Activate();
-            }
         }
     }
 }
