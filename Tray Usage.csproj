@@ -71,10 +71,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\clsDataNic.cs" />
-    <Compile Include="frmAbout.cs">
+    <Compile Include="Forms\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAbout.Designer.cs">
+    <Compile Include="Forms\frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
     <Compile Include="FullScreenCheck.cs" />
@@ -87,33 +87,33 @@
     <Compile Include="Data\clsDataDiskSpace.cs" />
     <Compile Include="Data\clsDataDiskAccess.cs" />
     <Compile Include="Data\clsDataBattery.cs" />
-    <Compile Include="frmDataLink.cs">
+    <Compile Include="Forms\frmDataLink.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDataLink.Designer.cs">
+    <Compile Include="Forms\frmDataLink.Designer.cs">
       <DependentUpon>frmDataLink.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOptions.Icons.cs">
+    <Compile Include="Forms\frmOptions.Icons.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRenderOptionsBasic.cs">
+    <Compile Include="Forms\frmRenderOptionsBasic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRenderOptionsBasic.Designer.cs">
+    <Compile Include="Forms\frmRenderOptionsBasic.Designer.cs">
       <DependentUpon>frmRenderOptionsBasic.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRenderOptionsImage.cs">
+    <Compile Include="Forms\frmRenderOptionsImage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRenderOptionsImage.Designer.cs">
+    <Compile Include="Forms\frmRenderOptionsImage.Designer.cs">
       <DependentUpon>frmRenderOptionsImage.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Icon\TrayIcon.cs" />
-    <Compile Include="frmOptions.cs">
+    <Compile Include="Forms\frmOptions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOptions.Designer.cs">
+    <Compile Include="Forms\frmOptions.Designer.cs">
       <DependentUpon>frmOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="Icon\TrayIcon.IO.cs" />
@@ -122,19 +122,19 @@
     <Compile Include="Renderer\clsRendererBasic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAbout.resx">
+    <EmbeddedResource Include="Forms\frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDataLink.resx">
+    <EmbeddedResource Include="Forms\frmDataLink.resx">
       <DependentUpon>frmDataLink.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOptions.resx">
+    <EmbeddedResource Include="Forms\frmOptions.resx">
       <DependentUpon>frmOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRenderOptionsBasic.resx">
+    <EmbeddedResource Include="Forms\frmRenderOptionsBasic.resx">
       <DependentUpon>frmRenderOptionsBasic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUpdate.resx">
+    <EmbeddedResource Include="Forms\frmUpdate.resx">
       <DependentUpon>frmUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -150,10 +150,10 @@
     <Compile Include="Icon\IconManager.cs" />
     <Compile Include="Icon\IconMenu.cs" />
     <Compile Include="Renderer\clsRendererImage.cs" />
-    <Compile Include="frmUpdate.cs">
+    <Compile Include="Forms\frmUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUpdate.Designer.cs">
+    <Compile Include="Forms\frmUpdate.Designer.cs">
       <DependentUpon>frmUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Updater.cs" />

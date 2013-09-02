@@ -6,8 +6,6 @@ Make a data class sleep, if it's not in use.
 
 Make update progress show in the update form.
 
-About form.
-
 Image renderer.
 
 History renderer.
