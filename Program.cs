@@ -40,7 +40,7 @@ namespace TrayUsage
         public static FullScreenCheck fullScreenCheck = null;
 
         //A class to handle updating and update checking.
-        public static Updater updater = null;
+        public static UpdateHelper updateHelper = null;
 
         //The options form.
         public static frmOptions optionsForm = null;
@@ -60,9 +60,6 @@ namespace TrayUsage
         //Class for loading and saving settings.
         public static Settings settingsClass = null;
 
-        //The tick of when we last checked for an update.
-        private static Int64 _lastUpdateCheckTick = Int64.MinValue;
-
         //Are we restarting the program for an update?
         public static Boolean updateRestart = false;
 
@@ -76,17 +73,15 @@ namespace TrayUsage
             Globals.LoadPresetColors();
             dataManager = new clsDataManager();
             settingsClass = new Settings();
-            updater = new Updater(Application.StartupPath, Globals.FileDownloadPath,new Version(Application.ProductVersion));
+            updateHelper = new UpdateHelper(Application.StartupPath, Globals.FileDownloadPath, new Version(Application.ProductVersion));
             fullScreenCheck = new FullScreenCheck();
             IconManager.LoadIcons();
             LoadSettingFile();
-            
-            //UpdateCheck();
 
             StartUpdateLoop();
             Application.Run();
 
-            updater.Dispose();
+            updateHelper.Dispose();
             fullScreenCheck.Dispose();
             settingsClass.Save();
             IconManager.Dispose();
@@ -115,60 +110,12 @@ namespace TrayUsage
                 if (Globals.FullscreenSleep) { sleeping = fullScreenCheck.FullScreenProgramRunning; }
                 dataManager.UpdateValues();
                 IconManager.UpdateIcons(sleeping);
-                CheckForUpdates();
+                updateHelper.CheckForUpdates();
                 if (sleeping) { Thread.Sleep(Globals.SleepTime); }
                 else { Thread.Sleep(Globals.IconUpdateRate); }
                 
             }
             Application.Exit();
-        }
-
-        //Checks if we need to check for updates.
-        private static void CheckForUpdates()
-        {
-            if (Globals.UpdateCheckTime == 0) { return; }
-            if (_lastUpdateCheckTick + Globals.UpdateCheckTime < Environment.TickCount)
-            { UpdateCheck(); }
-        }
-
-        //Checks for updates.
-        private static void UpdateCheck()
-        {
-            _lastUpdateCheckTick = Environment.TickCount;
-            updater.UpdateCheckFinished += UpdateCheckReturn;
-            updater.CheckForUpdatesAsync(Globals.UpdateUrlMain);
-        }
-
-        //Fires when an update check has finished.
-        private static void UpdateCheckReturn(Updater.UpdateCheckResult result)
-        {
-            updater.UpdateCheckFinished -= UpdateCheckReturn;
-            if (!result.UpdateAvailable) { return; }
-
-            if (Globals.AutoUpdate)
-            {
-                IconManager.ShowBalloonPopup(Application.ProductName, "Downloading update: " + result.LatestVersion.ToString(), ToolTipIcon.Info);
-                DownloadUpdate(result.UpdateFileListUrl);
-            }
-            else
-            { IconManager.ShowBalloonPopup(Application.ProductName, "Update available: " + result.LatestVersion.ToString(), ToolTipIcon.Info); }
-        }
-
-        //Start downloading an update
-        private static void DownloadUpdate(String updateFileListUrl)
-        {
-            updater.DownloadUpdateFinished += DownloadUpdateReturn;
-            updater.DownloadUpdateAsync(updateFileListUrl);
-        }
-
-        //Fired when the update download is finished.
-        private static void DownloadUpdateReturn(Updater.DownloadUpdateResult result)
-        {
-            updater.DownloadUpdateFinished -= DownloadUpdateReturn;
-            if (result.Success)
-            { updateRestart = true; updateLoopRunning = false; }
-            else
-            { IconManager.ShowBalloonPopup(Application.ProductName, result.Message, ToolTipIcon.Info);  }
         }
 
         //Loaded the settings file if it exists.

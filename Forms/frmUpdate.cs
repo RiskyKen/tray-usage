@@ -43,8 +43,8 @@ namespace TrayUsage
         {
             lblRemoteVer.Text = "Remote version: Checking...";
             proBar.Style = ProgressBarStyle.Marquee;
-            Program.updater.UpdateCheckFinished += UpdateCheckReturn;
-            Program.updater.CheckForUpdatesAsync(Globals.UpdateUrlMain);
+            Program.updateHelper.updater.UpdateCheckFinished += UpdateCheckReturn;
+            Program.updateHelper.updater.CheckForUpdatesAsync(Globals.UpdateUrlMain);
         }
 
         //Fires when an update check has finished.
@@ -56,7 +56,7 @@ namespace TrayUsage
                 Updater.UpdateCheckFinishedHandler updateFormInvoker = new Updater.UpdateCheckFinishedHandler(UpdateCheckReturn);
                 this.Invoke(updateFormInvoker, result);
             }
-            Program.updater.UpdateCheckFinished -= UpdateCheckReturn;
+            Program.updateHelper.updater.UpdateCheckFinished -= UpdateCheckReturn;
             proBar.Style = ProgressBarStyle.Continuous;
             lblRemoteVer.Text = "Remote version: " + result.LatestVersion.ToString();
             if (result.UpdateAvailable)
@@ -70,14 +70,14 @@ namespace TrayUsage
         //Start downloading an update
         private void DownloadUpdate()
         {
-            Program.updater.DownloadUpdateFinished += DownloadUpdateReturn;
-            Program.updater.DownloadUpdateAsync(updateFileListUrl);
+            Program.updateHelper.updater.DownloadUpdateFinished += DownloadUpdateReturn;
+            Program.updateHelper.updater.DownloadUpdateAsync(updateFileListUrl);
         }
 
         //Fired when the update download is finished.
         private void DownloadUpdateReturn(Updater.DownloadUpdateResult result)
         {
-            Program.updater.DownloadUpdateFinished -= DownloadUpdateReturn;
+            Program.updateHelper.updater.DownloadUpdateFinished -= DownloadUpdateReturn;
             if (result.Success)
             { Program.updateRestart = true; Program.updateLoopRunning = false; }
             else
