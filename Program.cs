@@ -54,6 +54,9 @@ namespace TrayUsage
         //Class for loading and saving settings.
         public static Settings settingsClass = null;
 
+        //The tick that the program started on.
+        public static Int32 startTick = 0;
+
         //Are we restarting the program for an update?
         public static Boolean updateRestart = false;
 
@@ -100,6 +103,7 @@ namespace TrayUsage
             updateLoopRunning = true;
             updateThread = new Thread(UpdateLoop);
             updateThread.Priority = Globals.UpdateThreadPriority;
+            startTick = Environment.TickCount;
             updateThread.Start();
         }
 

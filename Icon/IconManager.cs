@@ -31,12 +31,16 @@ namespace TrayUsage
     public static class IconManager
     {
         public static IconMenu TrayMenu = null;
+
         public static TrayIcon[] trayIcons = null;
 
         private static Control InvokeControl = null;
 
         //Dummy icon that is shown if no other icons are active.
         private static DummyIcon dummyIcon = null;
+
+        //Has the missing icon fix been run?
+        private static Boolean _missingIconFixRun = false;
 
         //Constructor
         static IconManager()
@@ -238,13 +242,28 @@ namespace TrayUsage
             return false;
         }
 
+        //Render the icons.
         public static void UpdateIcons(Boolean sleeping)
         {
             if (trayIcons == null) { return; }
-
+            if (Globals.MissingIconFix)
+            {
+                if (!_missingIconFixRun) { MissingIconFixCheck(); }
+            }
             for (Int32 i = 0; i <= trayIcons.GetUpperBound(0); i++)
             {
                 trayIcons[i].RenderIcon(sleeping);
+            }
+        }
+
+        //Checks if the fix for missing icons needs to be run.
+        private static void MissingIconFixCheck()
+        {
+            if (Program.startTick + Globals.missingIconFixTime <= Environment.TickCount)
+            {
+                Debug.WriteLine("Running missing icon fix.");
+                _missingIconFixRun = true;
+                ReshowIcons();
             }
         }
 

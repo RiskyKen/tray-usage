@@ -72,6 +72,9 @@ namespace TrayUsage
         //How long the program will sleep for before checking if it needs to wake in ms. Default 2 secs.
         public static Int32 SleepTime = 1000 * 2;
 
+        //How long untel icons are reshown for the missing icon fix. Default 6 secs.
+        public static Int32 missingIconFixTime = 1000 * 6;
+
         public static ThreadPriority UpdateThreadPriority
         {
             get { return updateThreadPriority; }
