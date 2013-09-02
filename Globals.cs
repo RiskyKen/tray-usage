@@ -78,7 +78,7 @@ namespace TrayUsage
             set
             {
                 updateThreadPriority = value;
-                Program.UpdateThread.Priority = value;
+                Program.updateThread.Priority = value;
             }
         }
 

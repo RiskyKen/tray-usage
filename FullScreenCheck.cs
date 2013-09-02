@@ -28,11 +28,11 @@ namespace TrayUsage
 {
     public class FullScreenCheck
     {
-        public Boolean FullscreenProgramRunning
+        public Boolean FullScreenProgramRunning
         {
             get
             {
-                checkFullScreen();
+                CheckFullScreen();
                 //fullScreenRunning = true;
                 return fullScreenRunning;
             }
@@ -62,7 +62,7 @@ namespace TrayUsage
         private IntPtr desktopHandle;
         private IntPtr shellHandle;
 
-        private void checkFullScreen()
+        private void CheckFullScreen()
         {
             fullScreenRunning = false;
 
@@ -82,7 +82,6 @@ namespace TrayUsage
                 {
                     GetWindowRect(foregroundWindow, ref appBounds);
                     //determine if window is fullscreen
-                    //screenBounds = Screen.FromHandle(foregroundWindow).Bounds
                     if ((appBounds.Bottom - appBounds.Top) == screenBounds.Height && (appBounds.Right - appBounds.Left) == screenBounds.Width)
                     {
                         fullScreenRunning = true;
@@ -91,6 +90,7 @@ namespace TrayUsage
             }
         }
 
+        //Checks if the window has a child.
         private IntPtr WindowHasChild(IntPtr hWnd)
         {
             IntPtr temphWnd = FindWindowExW(hWnd, System.IntPtr.Zero, null, null);

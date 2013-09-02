@@ -79,7 +79,7 @@ namespace TrayUsage
         {
             Program.updater.DownloadUpdateFinished -= DownloadUpdateReturn;
             if (result.Success)
-            { Program.updateRestart = true; Program.UpdateLoopRunning = false; }
+            { Program.updateRestart = true; Program.updateLoopRunning = false; }
             else
             { MessageBox.Show(result.Message, Application.ProductName); }
         }

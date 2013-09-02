@@ -34,7 +34,7 @@ namespace TrayUsage
         /// </summary>
         
         //A class handling all data collection.
-        public static clsDataManager DataManager = null;
+        public static clsDataManager dataManager = null;
 
         //A class that checks if a fullscreen application is running.
         public static FullScreenCheck fullScreenCheck = null;
@@ -43,22 +43,22 @@ namespace TrayUsage
         public static Updater updater = null;
 
         //The options form.
-        public static frmOptions OptionsForm = null;
+        public static frmOptions optionsForm = null;
 
         //The update form.
-        public static frmUpdate UpdateForm = null;
+        public static frmUpdate updateForm = null;
 
         //Is the main update loop running?
-        public static Boolean UpdateLoopRunning = false;
+        public static Boolean updateLoopRunning = false;
 
         //The thread that the main update loop runs on.
-        public static Thread UpdateThread = null;
+        public static Thread updateThread = null;
 
         //Class for loading and saving settings.
-        public static Settings SettingsClass = null;
+        public static Settings settingsClass = null;
 
         //The tick of when we last checked for an update.
-        private static Int64 lastUpdateCheckTick = Int64.MinValue;
+        private static Int64 _lastUpdateCheckTick = Int64.MinValue;
 
         //Are we restarting the program for an update?
         public static Boolean updateRestart = false;
@@ -71,8 +71,8 @@ namespace TrayUsage
             Application.SetCompatibleTextRenderingDefault(false);
 
             Globals.LoadPresetColors();
-            DataManager = new clsDataManager();
-            SettingsClass = new Settings();
+            dataManager = new clsDataManager();
+            settingsClass = new Settings();
             updater = new Updater(Application.StartupPath, Globals.FileDownloadPath,new Version(Application.ProductVersion));
             fullScreenCheck = new FullScreenCheck();
             IconManager.LoadIcons();
@@ -85,10 +85,10 @@ namespace TrayUsage
 
             updater.Dispose();
             fullScreenCheck.Dispose();
-            SettingsClass.Save();
+            settingsClass.Save();
             IconManager.Dispose();
-            DataManager.Dispose();
-            SettingsClass.Dispose();
+            dataManager.Dispose();
+            settingsClass.Dispose();
 
             if (updateRestart)
             { System.Diagnostics.Process.Start(Application.ExecutablePath, "-update"); }
@@ -97,20 +97,20 @@ namespace TrayUsage
         //Starts the main update loop.
         private static void StartUpdateLoop()
         {
-            UpdateLoopRunning = true;
-            UpdateThread = new Thread(UpdateLoop);
-            UpdateThread.Priority = Globals.UpdateThreadPriority;
-            UpdateThread.Start();
+            updateLoopRunning = true;
+            updateThread = new Thread(UpdateLoop);
+            updateThread.Priority = Globals.UpdateThreadPriority;
+            updateThread.Start();
         }
 
         //Main update loop.
         private static void UpdateLoop()
         {
-            while (UpdateLoopRunning)
+            while (updateLoopRunning)
             {
                 Boolean sleeping = false;
-                if (Globals.FullscreenSleep) { sleeping = fullScreenCheck.FullscreenProgramRunning; }
-                DataManager.UpdateValues();
+                if (Globals.FullscreenSleep) { sleeping = fullScreenCheck.FullScreenProgramRunning; }
+                dataManager.UpdateValues();
                 IconManager.UpdateIcons(sleeping);
                 CheckForUpdates();
                 if (sleeping) { Thread.Sleep(Globals.SleepTime); }
@@ -124,14 +124,14 @@ namespace TrayUsage
         private static void CheckForUpdates()
         {
             if (Globals.UpdateCheckTime == 0) { return; }
-            if (lastUpdateCheckTick + Globals.UpdateCheckTime < Environment.TickCount)
+            if (_lastUpdateCheckTick + Globals.UpdateCheckTime < Environment.TickCount)
             { UpdateCheck(); }
         }
 
         //Checks for updates.
         private static void UpdateCheck()
         {
-            lastUpdateCheckTick = Environment.TickCount;
+            _lastUpdateCheckTick = Environment.TickCount;
             updater.UpdateCheckFinished += UpdateCheckReturn;
             updater.CheckForUpdatesAsync(Globals.UpdateUrlMain);
         }
@@ -163,7 +163,7 @@ namespace TrayUsage
         {
             updater.DownloadUpdateFinished -= DownloadUpdateReturn;
             if (result.Success)
-            { updateRestart = true; UpdateLoopRunning = false; }
+            { updateRestart = true; updateLoopRunning = false; }
             else
             { IconManager.ShowBalloonPopup(Application.ProductName, result.Message, ToolTipIcon.Info);  }
         }
@@ -173,13 +173,8 @@ namespace TrayUsage
         {
             if (System.IO.File.Exists(Globals.SettingsFilePath))
             {
-                SettingsClass.Load(Globals.SettingsFilePath);
+                settingsClass.Load(Globals.SettingsFilePath);
             }
-        }
-
-        public static void SaveSettings()
-        {
-            SettingsClass.Save(Globals.SettingsFilePath);
         }
     }
 }

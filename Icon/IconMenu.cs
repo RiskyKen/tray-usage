@@ -41,10 +41,6 @@ namespace TrayUsage
             Menu = new ContextMenu();
             Menu.MenuItems.Add(Properties.Resources.StringOptions + "...", Options_Clicked);
             Menu.MenuItems.Add("-");
-            #if DEBUG
-                Menu.MenuItems.Add("Debug Save Test", Debug_Save_Clicked);
-                Menu.MenuItems.Add("-");
-            #endif
             Menu.MenuItems.Add(Properties.Resources.StringUpdate + "...", Update_Clicked);
             Menu.MenuItems.Add(Properties.Resources.StringAbout + "...", About_Clicked);
 
@@ -60,7 +56,7 @@ namespace TrayUsage
 
         private void Exit_Clicked(object sender, System.EventArgs e)
         {
-            Program.UpdateLoopRunning = false;
+            Program.updateLoopRunning = false;
         }
 
         private void Options_Clicked(object sender, System.EventArgs e)
@@ -78,13 +74,6 @@ namespace TrayUsage
             //OpenAboutForm();
         }
 
-        #if DEBUG
-            private void Debug_Save_Clicked(object sender, System.EventArgs e)
-            {
-                Program.SaveSettings();
-            }
-        #endif
-
         public void Dispose()
         {
             Menu.Dispose();
@@ -92,37 +81,37 @@ namespace TrayUsage
 
         private void OpenOptionsForm()
         {
-            if (Program.OptionsForm == null)
+            if (Program.optionsForm == null)
             {
-                Program.OptionsForm = new frmOptions();
-                if (Program.OptionsForm.ShowDialog() == DialogResult.OK)
+                Program.optionsForm = new frmOptions();
+                if (Program.optionsForm.ShowDialog() == DialogResult.OK)
                 {
                     //Program.Settings.Save();
                 }
-                Program.OptionsForm.Dispose();
-                Program.OptionsForm = null;
+                Program.optionsForm.Dispose();
+                Program.optionsForm = null;
             }
             else
             {
-                Program.OptionsForm.Activate();
+                Program.optionsForm.Activate();
             }
         }
 
         private void OpenUpdateForm()
         {
-            if (Program.UpdateForm == null)
+            if (Program.updateForm == null)
             {
-                Program.UpdateForm = new frmUpdate();
-                if (Program.UpdateForm.ShowDialog() == DialogResult.OK)
+                Program.updateForm = new frmUpdate();
+                if (Program.updateForm.ShowDialog() == DialogResult.OK)
                 {
                     //Program.Settings.Save();
                 }
-                Program.UpdateForm.Dispose();
-                Program.UpdateForm = null;
+                Program.updateForm.Dispose();
+                Program.updateForm = null;
             }
             else
             {
-                Program.UpdateForm.Activate();
+                Program.updateForm.Activate();
             }
         }
     }

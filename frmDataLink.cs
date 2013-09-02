@@ -25,7 +25,7 @@ namespace TrayUsage
 
         private void PopulateSourceDataTree()
         {
-            clsDataManager.DataListItem[] tempList = Program.DataManager.GetDataNodesList();
+            clsDataManager.DataListItem[] tempList = Program.dataManager.GetDataNodesList();
             for (Int32 i = 0; i <= tempList.GetUpperBound(0); i++)
             {
                 TreeNode tempNode1 = new TreeNode(tempList[i].Name);
@@ -71,7 +71,7 @@ namespace TrayUsage
         private void AddDataSource(string DataText,string DataLabelText)
         {
             DataLink tempLink = new DataLink();
-            tempLink.DataClassRef = Program.DataManager.GetDataClassRef(DataText);
+            tempLink.DataClassRef = Program.dataManager.GetDataClassRef(DataText);
             for (Int32 i = 0; i <= tempLink.DataClassRef.DataLabels.GetUpperBound(0); i++)
             {
                 if (tempLink.DataClassRef.DataLabels[i] == DataLabelText)
