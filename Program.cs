@@ -48,6 +48,9 @@ namespace TrayUsage
         //The update form.
         public static frmUpdate updateForm = null;
 
+        //The about form.
+        public static frmAbout aboutForm = null;
+
         //Is the main update loop running?
         public static Boolean updateLoopRunning = false;
 

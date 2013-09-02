@@ -71,7 +71,7 @@ namespace TrayUsage
 
         private void About_Clicked(object sender, System.EventArgs e)
         {
-            //OpenAboutForm();
+            OpenAboutForm();
         }
 
         public void Dispose()
@@ -112,6 +112,21 @@ namespace TrayUsage
             else
             {
                 Program.updateForm.Activate();
+            }
+        }
+
+        private void OpenAboutForm()
+        {
+            if (Program.aboutForm == null)
+            {
+                Program.aboutForm = new frmAbout();
+                Program.aboutForm.ShowDialog();
+                Program.aboutForm.Dispose();
+                Program.aboutForm = null;
+            }
+            else
+            {
+                Program.aboutForm.Activate();
             }
         }
     }
