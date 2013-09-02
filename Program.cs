@@ -69,27 +69,33 @@ namespace TrayUsage
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             Globals.LoadPresetColors();
+            LoadClasses();
+            LoadSettingFile();
+            StartUpdateLoop();
+            Application.Run();
+            settingsClass.Save();
+            DisposeClasses();
+            if (updateRestart)
+            { System.Diagnostics.Process.Start(Application.ExecutablePath, "-update"); }
+        }
+
+        private static void LoadClasses()
+        {
             dataManager = new clsDataManager();
             settingsClass = new Settings();
             updateHelper = new UpdateHelper(Application.StartupPath, Globals.FileDownloadPath, new Version(Application.ProductVersion));
             fullScreenCheck = new FullScreenCheck();
             IconManager.LoadIcons();
-            LoadSettingFile();
+        }
 
-            StartUpdateLoop();
-            Application.Run();
-
+        private static void DisposeClasses()
+        {
             updateHelper.Dispose();
             fullScreenCheck.Dispose();
-            settingsClass.Save();
             IconManager.Dispose();
             dataManager.Dispose();
             settingsClass.Dispose();
-
-            if (updateRestart)
-            { System.Diagnostics.Process.Start(Application.ExecutablePath, "-update"); }
         }
 
         //Starts the main update loop.
@@ -118,7 +124,7 @@ namespace TrayUsage
             Application.Exit();
         }
 
-        //Loaded the settings file if it exists.
+        //Loads the settings file if it exists.
         private static void LoadSettingFile()
         {
             if (System.IO.File.Exists(Globals.SettingsFilePath))
