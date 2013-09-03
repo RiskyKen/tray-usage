@@ -55,9 +55,11 @@ namespace TrayUsage
                             pDataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
                             _nics[nicCount] = nics[i];
 
-                            Int64 thisDown = _nics[(nicCount )].GetIPv4Statistics().BytesReceived;
-                            Int64 thisUp = _nics[(nicCount )].GetIPv4Statistics().BytesSent;
+                            Int64 thisDown = _nics[(nicCount)].GetIPv4Statistics().BytesReceived;
+                            Int64 thisUp = _nics[(nicCount)].GetIPv4Statistics().BytesSent;
                             Int64 thisTotal = thisDown + thisUp;
+
+
 
                             _lastValue[(nicCount * 3)] = thisDown;
                             _lastValue[(nicCount * 3) + 1] = thisUp;
@@ -67,6 +69,7 @@ namespace TrayUsage
                     }
                 }
             }
+            SetMaxValues(1);
         }
 
         public override void UpdateValues()
