@@ -48,19 +48,22 @@ namespace TrayUsage
                 {
                     if (nics[i].SupportsMulticast)
                     {
-                        pDataLabels[(nicCount * 3)] = nics[i].Name + " - Down";
-                        pDataLabels[(nicCount * 3) + 1] = nics[i].Name + " - Up";
-                        pDataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
-                        _nics[nicCount] = nics[i];
+                        if (nics[i] != null)
+                        {
+                            pDataLabels[(nicCount * 3)] = nics[i].Name + " - Down";
+                            pDataLabels[(nicCount * 3) + 1] = nics[i].Name + " - Up";
+                            pDataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
+                            _nics[nicCount] = nics[i];
 
-                        Int64 thisDown = _nics[(nicCount * 3)].GetIPv4Statistics().BytesReceived;
-                        Int64 thisUp = _nics[(nicCount * 3)].GetIPv4Statistics().BytesSent;
-                        Int64 thisTotal = thisDown + thisUp;
+                            Int64 thisDown = _nics[(nicCount )].GetIPv4Statistics().BytesReceived;
+                            Int64 thisUp = _nics[(nicCount )].GetIPv4Statistics().BytesSent;
+                            Int64 thisTotal = thisDown + thisUp;
 
-                        _lastValue[(nicCount * 3)] = thisDown;
-                        _lastValue[(nicCount * 3) + 1] = thisUp;
-                        _lastValue[(nicCount * 3) + 2] = thisTotal;
-                        nicCount++;
+                            _lastValue[(nicCount * 3)] = thisDown;
+                            _lastValue[(nicCount * 3) + 1] = thisUp;
+                            _lastValue[(nicCount * 3) + 2] = thisTotal;
+                            nicCount++;
+                        }
                     }
                 }
             }
