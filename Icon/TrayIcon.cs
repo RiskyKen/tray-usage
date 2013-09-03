@@ -140,6 +140,20 @@ namespace TrayUsage
             renderer.ForceIconRedraw();
         }
 
+        public void MoveDataSourceUp(Int32 index)
+        {
+            DataLink tempDataLink = TargetData[index];
+            TargetData[index] = TargetData[index - 1];
+            TargetData[index - 1] = tempDataLink;
+        }
+
+        public void MoveDataSourceDown(Int32 index)
+        {
+            DataLink tempDataLink = TargetData[index];
+            TargetData[index] = TargetData[index + 1];
+            TargetData[index + 1] = tempDataLink;
+        }
+
         public void ChangeRenderer(string NewRenderer)
         {
             switch (NewRenderer)

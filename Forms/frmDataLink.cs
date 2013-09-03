@@ -125,5 +125,21 @@ namespace TrayUsage
             TargetIcon.RemoveDataSource(listDataTarget.SelectedIndex);
             PopulateTargetDataList();
         }
+
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+            if (listDataTarget.SelectedIndex == -1) { return; }
+            if (listDataTarget.SelectedIndex == 0) { return; }
+            TargetIcon.MoveDataSourceUp(listDataTarget.SelectedIndex);
+            PopulateTargetDataList();
+        }
+
+        private void btnMoveDown_Click(object sender, EventArgs e)
+        {
+            if (listDataTarget.SelectedIndex == -1) { return; }
+            if (listDataTarget.SelectedIndex == listDataTarget.Items.Count - 1) { return; }
+            TargetIcon.MoveDataSourceDown(listDataTarget.SelectedIndex);
+            PopulateTargetDataList();
+        }
     }
 }
