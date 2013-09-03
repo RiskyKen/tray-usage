@@ -46,6 +46,7 @@ namespace TrayUsage
             TargetRender = (RendererBasic)TargetIcon.renderer;
             LoadColourPics();
             chkHorizontal.Checked = TargetRender.Horizontal;
+            chkUseAlpha.Checked = TargetRender.UseAlpha;
         }
 
         private void LoadColourPics()
@@ -96,6 +97,11 @@ namespace TrayUsage
             TargetRender.BackgroundColour = Globals.colorPresets[colorPer.SelectedIndex].BackgroundColor;
             TargetRender.ForegroundColour = Globals.colorPresets[colorPer.SelectedIndex].ForegroundColor;
             LoadColourPics();
+        }
+
+        private void chkUseAlpha_CheckedChanged(object sender, EventArgs e)
+        {
+            TargetRender.UseAlpha = chkUseAlpha.Checked;
         }
     }
 }

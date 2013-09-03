@@ -30,13 +30,14 @@
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.colorPer = new TrayUsage.ColorPresetPicker();
             this.picFGColour = new System.Windows.Forms.PictureBox();
             this.picBGColour = new System.Windows.Forms.PictureBox();
             this.btnColourFG = new System.Windows.Forms.Button();
             this.btnColourBG = new System.Windows.Forms.Button();
             this.chkHorizontal = new System.Windows.Forms.CheckBox();
-            this.colorPer = new TrayUsage.ColorPresetPicker();
-            this.label1 = new System.Windows.Forms.Label();
+            this.chkUseAlpha = new System.Windows.Forms.CheckBox();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFGColour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBGColour)).BeginInit();
@@ -67,6 +68,25 @@
             this.GroupBox1.TabIndex = 11;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Colour";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Preset Colours:";
+            // 
+            // colorPer
+            // 
+            this.colorPer.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.colorPer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.colorPer.Location = new System.Drawing.Point(6, 70);
+            this.colorPer.Name = "colorPer";
+            this.colorPer.Size = new System.Drawing.Size(104, 21);
+            this.colorPer.TabIndex = 13;
+            this.colorPer.SelectedIndexChanged += new System.EventHandler(this.colorPer_SelectedIndexChanged);
             // 
             // picFGColour
             // 
@@ -117,30 +137,23 @@
             this.chkHorizontal.UseVisualStyleBackColor = true;
             this.chkHorizontal.CheckedChanged += new System.EventHandler(this.chkHorizontal_CheckedChanged);
             // 
-            // colorPer
+            // chkUseAlpha
             // 
-            this.colorPer.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.colorPer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.colorPer.Location = new System.Drawing.Point(6, 70);
-            this.colorPer.Name = "colorPer";
-            this.colorPer.Size = new System.Drawing.Size(104, 21);
-            this.colorPer.TabIndex = 13;
-            this.colorPer.SelectedIndexChanged += new System.EventHandler(this.colorPer_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Preset Colours:";
+            this.chkUseAlpha.AutoSize = true;
+            this.chkUseAlpha.Location = new System.Drawing.Point(12, 143);
+            this.chkUseAlpha.Name = "chkUseAlpha";
+            this.chkUseAlpha.Size = new System.Drawing.Size(75, 17);
+            this.chkUseAlpha.TabIndex = 13;
+            this.chkUseAlpha.Text = "Use Alpha";
+            this.chkUseAlpha.UseVisualStyleBackColor = true;
+            this.chkUseAlpha.CheckedChanged += new System.EventHandler(this.chkUseAlpha_CheckedChanged);
             // 
             // frmRenderOptionsBasic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(268, 211);
+            this.Controls.Add(this.chkUseAlpha);
             this.Controls.Add(this.chkHorizontal);
             this.Controls.Add(this.GroupBox1);
             this.Controls.Add(this.btnClose);
@@ -171,5 +184,6 @@
         private System.Windows.Forms.CheckBox chkHorizontal;
         private ColorPresetPicker colorPer;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkUseAlpha;
     }
 }

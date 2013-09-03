@@ -39,6 +39,8 @@ namespace TrayUsage
 
         protected Boolean pShowBorder = true;
 
+        private Boolean _useAlpha = false;
+
         public bool Horizontal
         {
             get { return pHorizontal; }
@@ -72,9 +74,17 @@ namespace TrayUsage
             set
             {
                 pShowBorder = value;
-                if (pShowBorder)
-                { DrawingSize = new Size(14, 14); }
-                else { DrawingSize = new Size(16, 16); }
+                PostInt();
+            }
+        }
+
+        public Boolean UseAlpha
+        {
+            get { return _useAlpha; }
+            set
+            {
+                _useAlpha = value;
+                PostInt();
             }
         }
 
@@ -111,6 +121,9 @@ namespace TrayUsage
                 case "Horizontal":
                     pHorizontal = Boolean.Parse(aValue);
                     break;
+                case "UseAlpha":
+                    _useAlpha = Boolean.Parse(aValue);
+                    break;
                 case "BackgroundColour":
                     pBackgroundColour = StringToColour(aValue);
                     break;
@@ -127,6 +140,17 @@ namespace TrayUsage
             SleepingImage = (Bitmap)BackgroundImage.Clone();
             Graphics.FromImage(SleepingImage).DrawLine(new Pen(pForegroundColour,1), 1, 1, 14, 14);
             Graphics.FromImage(SleepingImage).DrawLine(new Pen(pForegroundColour, 1), 14, 1, 1, 14);
+            if (pShowBorder)
+            {
+                DrawingSize = new Rectangle(1, 1, 14, 14);
+                valueScale = 14;
+            }
+            else
+            {
+                DrawingSize = new Rectangle(0,0,16, 16);
+                valueScale = 16;
+            }
+            if (_useAlpha) { valueScale *= 256; }
         }
 
         //Creates a blank background image.
@@ -257,11 +281,30 @@ namespace TrayUsage
         {
             if (aHorizontal)
             {
-                Graphics.FromImage(aBitmap).FillRectangle(aBrush,1, 1 + aPos, aValue,aWidth );
+                if (!UseAlpha)
+                { Graphics.FromImage(aBitmap).FillRectangle(aBrush, 1, 1 + aPos, aValue, aWidth); }
+                else
+                {
+                    Int32 normalDrawAmount = (Int32)Math.Floor((Double)(aValue / 256));
+                    Int32 alphaDrawAmount = aValue - (normalDrawAmount * 256);
+                    Graphics.FromImage(aBitmap).FillRectangle(aBrush, 1, 1 + aPos, normalDrawAmount, aWidth);
+                    SolidBrush tempBrush = new SolidBrush(Color.FromArgb(alphaDrawAmount, ForegroundColour.R, ForegroundColour.G, ForegroundColour.B));
+                    Graphics.FromImage(aBitmap).FillRectangle(tempBrush, 1 + normalDrawAmount, 1 + aPos, 1, aWidth); tempBrush.Dispose();
+                }
             }
             else
             {
-                Graphics.FromImage(aBitmap).FillRectangle(aBrush, 1 + aPos, 15 - aValue, aWidth, aValue);
+                if (!UseAlpha)
+                { Graphics.FromImage(aBitmap).FillRectangle(aBrush, 1 + aPos, 15 - aValue, aWidth, aValue); }
+                else
+                {
+                    Int32 normalDrawAmount = (Int32)Math.Floor((Double)(aValue / 256));
+                    Int32 alphaDrawAmount = aValue - (normalDrawAmount * 256);
+                    Graphics.FromImage(aBitmap).FillRectangle(aBrush, 1 + aPos, 15 - normalDrawAmount, aWidth, normalDrawAmount);
+                    SolidBrush tempBrush = new SolidBrush(Color.FromArgb(alphaDrawAmount,ForegroundColour.R, ForegroundColour.G, ForegroundColour.B));
+                    Graphics.FromImage(aBitmap).FillRectangle(tempBrush, 1 + aPos, 15 - normalDrawAmount - 1, aWidth, 1);
+                    tempBrush.Dispose();
+                }
             }
         }
 
@@ -269,6 +312,7 @@ namespace TrayUsage
         {
             aXmlW.WriteStartElement("Renderer" + Name);
             aXmlW.WriteElementString("Horizontal", Horizontal.ToString());
+            aXmlW.WriteElementString("UseAlpha", UseAlpha.ToString());
             aXmlW.WriteElementString("BackgroundColour", ColourToString(pBackgroundColour));
             aXmlW.WriteElementString("ForegroundColour", ColourToString(pForegroundColour));
             aXmlW.WriteEndElement();

@@ -31,11 +31,13 @@ namespace TrayUsage
 
         public Int32 MaxValues = 0;
 
-        protected Size DrawingSize;
+        protected Rectangle DrawingSize;
 
         protected Int32[] LastValue = null;
 
         public Boolean isSleeping = false;
+
+        protected Int32 valueScale;
 
         public abstract string Name { get; }
 
@@ -153,7 +155,7 @@ namespace TrayUsage
                     if (aValues[i].DataClassRef == null) { return null; }
                     if (aValues[i].DataIndex >= 0 && aValues[i].DataIndex <= aValues[i].DataClassRef.CurrentValue.Length - 1)
                     {
-                        iconValues[i] = (Int32)ToPer(aValues[i].DataClassRef.CurrentValue[aValues[i].DataIndex], aValues[i].DataClassRef.MaxValue[aValues[i].DataIndex], 14);
+                        iconValues[i] = (Int32)ToPer(aValues[i].DataClassRef.CurrentValue[aValues[i].DataIndex], aValues[i].DataClassRef.MaxValue[aValues[i].DataIndex], valueScale);
                     }
                 }
             }
