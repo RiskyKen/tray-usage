@@ -198,7 +198,7 @@ namespace TrayUsage
 
     public struct DataLink
     {
-        public clsData DataClassRef;
+        public Data DataClassRef;
         public Int32 DataIndex;
     }
 

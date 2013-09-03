@@ -70,7 +70,7 @@
     <Compile Include="ColorPresetPicker.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Data\clsDataNic.cs" />
+    <Compile Include="Data\DataNic.cs" />
     <Compile Include="FormHelper.cs" />
     <Compile Include="Forms\frmAbout.cs">
       <SubType>Form</SubType>
@@ -80,14 +80,14 @@
     </Compile>
     <Compile Include="FullScreenCheck.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Data\clsData.cs" />
-    <Compile Include="Data\clsDataCpu.cs" />
-    <Compile Include="Data\clsDataDummy.cs" />
-    <Compile Include="Data\clsDataManager.cs" />
-    <Compile Include="Data\clsDataRam.cs" />
-    <Compile Include="Data\clsDataDiskSpace.cs" />
-    <Compile Include="Data\clsDataDiskAccess.cs" />
-    <Compile Include="Data\clsDataBattery.cs" />
+    <Compile Include="Data\Data.cs" />
+    <Compile Include="Data\DataCpu.cs" />
+    <Compile Include="Data\DataDummy.cs" />
+    <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Data\DataRam.cs" />
+    <Compile Include="Data\DataDiskSpace.cs" />
+    <Compile Include="Data\DataDiskAccess.cs" />
+    <Compile Include="Data\DataBattery.cs" />
     <Compile Include="Forms\frmDataLink.cs">
       <SubType>Form</SubType>
     </Compile>

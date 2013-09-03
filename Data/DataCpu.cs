@@ -24,7 +24,7 @@ using System.Diagnostics;
 
 namespace TrayUsage
 {
-    public class clsDataCpu : clsData
+    public class DataCpu : Data
     {
         private PerformanceCounter[] proCounter = null;
 
@@ -33,7 +33,7 @@ namespace TrayUsage
             get { return "CPU"; }
         }
 
-        internal clsDataCpu() : base(Environment.ProcessorCount + 1)
+        internal DataCpu() : base(Environment.ProcessorCount + 1)
         {
             proCounter = new PerformanceCounter[Environment.ProcessorCount];
 

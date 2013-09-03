@@ -34,7 +34,7 @@ namespace TrayUsage
         /// </summary>
         
         //A class handling all data collection.
-        public static clsDataManager dataManager = null;
+        public static DataManager dataManager = null;
 
         //A class that checks if a fullscreen application is running.
         public static FullScreenCheck fullScreenCheck = null;
@@ -80,7 +80,7 @@ namespace TrayUsage
         private static void LoadClasses()
         {
             formHelper = new FormHelper();
-            dataManager = new clsDataManager();
+            dataManager = new DataManager();
             settingsClass = new Settings();
             updateHelper = new UpdateHelper(Application.StartupPath, Globals.FileDownloadPath, new Version(Application.ProductVersion));
             fullScreenCheck = new FullScreenCheck();

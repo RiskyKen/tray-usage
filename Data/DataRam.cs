@@ -24,7 +24,7 @@ using System.Diagnostics;
 
 namespace TrayUsage
 {
-    public class clsDataRam : clsData 
+    public class DataRam : Data 
     {
         private PerformanceCounter proCounter = null;
         public override string DataName
@@ -32,7 +32,7 @@ namespace TrayUsage
             get { return "RAM"; }
         }
 
-        internal clsDataRam() : base(1)
+        internal DataRam() : base(1)
         {
             proCounter = new System.Diagnostics.PerformanceCounter();
             proCounter.CategoryName = "Memory";

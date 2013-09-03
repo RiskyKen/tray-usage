@@ -24,7 +24,7 @@ using System.Diagnostics;
 
 namespace TrayUsage
 {
-    public class clsDataDiskAccess : clsData
+    public class DataDiskAccess : Data
     {
         private PerformanceCounter[] proCounter = null;
 
@@ -33,7 +33,7 @@ namespace TrayUsage
             get { return "Disk Access"; }
         }
 
-        public clsDataDiskAccess() : base(GetHardDriveCount() + 1)
+        public DataDiskAccess() : base(GetHardDriveCount() + 1)
         {
             proCounter = new PerformanceCounter[GetHardDriveCount() + 1];
 

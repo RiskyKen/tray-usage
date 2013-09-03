@@ -24,14 +24,14 @@ using System.Net.NetworkInformation;
 
 namespace TrayUsage
 {
-    public class clsDataNic : clsData
+    public class DataNic : Data
     {
         public override string DataName
         {
             get { return "Network Interface"; }
         }
 
-        internal clsDataNic(String nicName) : base(3)
+        internal DataNic(String nicName) : base(3)
         {
             NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
             Int32 nicCount = 0;

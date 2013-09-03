@@ -25,7 +25,7 @@ using System.Drawing;
 
 namespace TrayUsage
 {
-    public abstract class clsData
+    public abstract class Data
     {
         protected Int32[] pCurrentValue;
 
@@ -34,7 +34,7 @@ namespace TrayUsage
 
         public abstract string DataName { get; }
 
-        public clsData(Int32 aNumberOfValues)
+        public Data(Int32 aNumberOfValues)
         {
             pCurrentValue = new Int32[aNumberOfValues];
             pDataLabels = new string[aNumberOfValues];

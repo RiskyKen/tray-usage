@@ -23,7 +23,7 @@ using System.Text;
 
 namespace TrayUsage
 {
-    public class clsDataDummy : clsData
+    public class DataDummy : Data
     {
         private Random ranNum = null;
         private Int32 upCount = 0;
@@ -34,7 +34,7 @@ namespace TrayUsage
             get { return "Dummy"; }
         }
 
-        public clsDataDummy() : base(3)
+        public DataDummy() : base(3)
         {
             ranNum = new Random();
 

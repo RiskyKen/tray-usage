@@ -43,7 +43,7 @@ namespace TrayUsage
 
         private void PopulateSourceDataTree()
         {
-            clsDataManager.DataListItem[] tempList = Program.dataManager.GetDataNodesList();
+            DataManager.DataListItem[] tempList = Program.dataManager.GetDataNodesList();
             for (Int32 i = 0; i <= tempList.GetUpperBound(0); i++)
             {
                 TreeNode tempNode1 = new TreeNode(tempList[i].Name);

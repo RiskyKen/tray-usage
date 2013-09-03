@@ -25,9 +25,9 @@ using System.Windows.Forms;
 namespace TrayUsage
 {
     //Temp class, will handle loading and unloading of data classes.
-    public class clsDataManager
+    public class DataManager
     {
-        public clsData[] DataClasses = null;
+        public Data[] DataClasses = null;
 
         //CPU
         //Memory Physical
@@ -38,16 +38,16 @@ namespace TrayUsage
         //Battery
         //Dummy
 
-        public clsDataManager()
+        public DataManager()
         {
-            DataClasses = new clsData[6];
-            DataClasses[0] = new clsDataCpu();
-            DataClasses[1] = new clsDataRam();
-            DataClasses[2] = new clsDataDummy();
-            DataClasses[3] = new clsDataDiskSpace();
-            DataClasses[4] = new clsDataDiskAccess();
-            //DataClasses[5] = new clsDataNic();
-            DataClasses[5] = new clsDataBattery();
+            DataClasses = new Data[6];
+            DataClasses[0] = new DataCpu();
+            DataClasses[1] = new DataRam();
+            DataClasses[2] = new DataDummy();
+            DataClasses[3] = new DataDiskSpace();
+            DataClasses[4] = new DataDiskAccess();
+            //DataClasses[5] = new DataNic();
+            DataClasses[5] = new DataBattery();
         }
                 
         public void Dispose()
@@ -78,7 +78,7 @@ namespace TrayUsage
             }
         }
 
-        public clsData GetDataClassRef(string aName)
+        public Data GetDataClassRef(string aName)
         {
             for (Int32 i = 0; i <= DataClasses.GetUpperBound(0); i++)
             {

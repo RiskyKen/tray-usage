@@ -20,39 +20,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-
+using System.Windows.Forms;
 
 namespace TrayUsage
 {
-    public class clsDataDiskSpace : clsData
+    public class DataBattery : Data
     {
-        private System.IO.DriveInfo[] Drives = null;
 
         public override string DataName
         {
-            get { return "Disk Space"; }
+            get { return "Battery"; }
         }
 
-        public clsDataDiskSpace() : base(System.IO.DriveInfo.GetDrives().Length)
+        public DataBattery() : base(1)
         {
-            Drives = System.IO.DriveInfo.GetDrives();
-
-            for (Int32 i = 0; i <= Drives.GetUpperBound(0); i++)
-            {
-                pDataLabels[i] = Drives[i].Name + " - " + Drives[i].IsReady.ToString();
-            }
+            pDataLabels[0] = "% Battery Life";
         }
 
         public override void UpdateValues()
         {
-            for (Int32 i = 0; i <= Drives.GetUpperBound(0); i++)
-            {
-                Int32 thisSpace = 0;
-                if (Drives[i].IsReady)
-                { thisSpace = (Int32)(((Drives[i].TotalSize - Drives[i].TotalFreeSpace) * 100) / Drives[i].TotalSize); }
-                pCurrentValue[i] = thisSpace;
-            }
+            pCurrentValue[0] = Convert.ToInt32(SystemInformation.PowerStatus.BatteryLifePercent * 100) ;
         }
 
         new internal void Dispose()
