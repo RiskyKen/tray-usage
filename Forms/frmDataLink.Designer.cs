@@ -39,27 +39,28 @@
             // 
             this.treeDataSources.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.treeDataSources.Location = new System.Drawing.Point(212, 12);
+            this.treeDataSources.Location = new System.Drawing.Point(368, 12);
             this.treeDataSources.Name = "treeDataSources";
-            this.treeDataSources.Size = new System.Drawing.Size(215, 315);
+            this.treeDataSources.Size = new System.Drawing.Size(259, 315);
             this.treeDataSources.TabIndex = 0;
             this.treeDataSources.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeDataSources_NodeMouseDoubleClick);
             // 
             // listDataTarget
             // 
-            this.listDataTarget.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.listDataTarget.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.listDataTarget.FormattingEnabled = true;
             this.listDataTarget.IntegralHeight = false;
             this.listDataTarget.Location = new System.Drawing.Point(12, 12);
             this.listDataTarget.Name = "listDataTarget";
-            this.listDataTarget.Size = new System.Drawing.Size(165, 315);
+            this.listDataTarget.Size = new System.Drawing.Size(321, 315);
             this.listDataTarget.TabIndex = 1;
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(352, 333);
+            this.btnClose.Location = new System.Drawing.Point(552, 333);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 3;
@@ -69,8 +70,9 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Image = global::TrayUsage.Properties.Resources.add;
-            this.btnAdd.Location = new System.Drawing.Point(183, 12);
+            this.btnAdd.Location = new System.Drawing.Point(339, 12);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 23);
             this.btnAdd.TabIndex = 4;
@@ -79,8 +81,9 @@
             // 
             // btnRemove
             // 
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.Image = global::TrayUsage.Properties.Resources.delete;
-            this.btnRemove.Location = new System.Drawing.Point(183, 41);
+            this.btnRemove.Location = new System.Drawing.Point(339, 41);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(23, 23);
             this.btnRemove.TabIndex = 4;
@@ -91,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 368);
+            this.ClientSize = new System.Drawing.Size(639, 368);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnClose);
