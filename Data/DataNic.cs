@@ -53,9 +53,13 @@ namespace TrayUsage
                         pDataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
                         _nics[nicCount] = nics[i];
 
-                        _lastValue[(nicCount * 3)] = _nics[(nicCount * 3)].GetIPv4Statistics().BytesReceived;
-                        _lastValue[(nicCount * 3) + 1] = _nics[(nicCount * 3)].GetIPv4Statistics().BytesSent;
-                        _lastValue[(nicCount * 3) + 2] = _lastValue[(nicCount * 3)] + _lastValue[(nicCount * 3) + 1];
+                        Int64 thisDown = _nics[(nicCount * 3)].GetIPv4Statistics().BytesReceived;
+                        Int64 thisUp = _nics[(nicCount * 3)].GetIPv4Statistics().BytesSent;
+                        Int64 thisTotal = thisDown + thisUp;
+
+                        _lastValue[(nicCount * 3)] = thisDown;
+                        _lastValue[(nicCount * 3) + 1] = thisUp;
+                        _lastValue[(nicCount * 3) + 2] = thisTotal;
                         nicCount++;
                     }
                 }
@@ -67,10 +71,17 @@ namespace TrayUsage
             //TODO Finish network update values.
             for (Int32 i = 0; i <= _nics.GetUpperBound(0); i++)
             {
-                pCurrentValue[(i * 3)] = _nics[i].GetIPv4Statistics().BytesReceived - _lastValue[(i * 3)];
+                Int64 thisDown = _nics[i].GetIPv4Statistics().BytesReceived;
+                Int64 thisUp = _nics[i].GetIPv4Statistics().BytesSent;
+                Int64 thisTotal = thisDown + thisUp;
 
-                pCurrentValue[(i * 3) + 1] = _nics[i].GetIPv4Statistics().BytesSent;
-                pCurrentValue[(i * 3) + 2] = pCurrentValue[(i * 3)] + pCurrentValue[(i * 3) + 1];
+                pCurrentValue[(i * 3)] = thisDown - _lastValue[(i * 3)];
+                pCurrentValue[(i * 3) + 1] = thisUp - _lastValue[(i * 3) + 1];
+                pCurrentValue[(i * 3) + 2] = thisTotal - _lastValue[(i * 3) + 2];
+
+                _lastValue[(i * 3)] = thisDown;
+                _lastValue[(i * 3) + 1] = thisUp;
+                _lastValue[(i * 3) + 2] = thisTotal;
             }
             UpdateMaxValues();
         }
