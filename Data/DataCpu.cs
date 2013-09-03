@@ -50,11 +50,12 @@ namespace TrayUsage
             {
                 pDataLabels[i] = "Core " + i.ToString();
             }
+            SetMaxValues(100);
         }
 
         public override void UpdateValues()
         {
-            Int32 totalUsage = 0;
+            Int64 totalUsage = 0;
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
                 pCurrentValue[i + 1] = (Int32)proCounter[i].NextValue();

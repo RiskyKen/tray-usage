@@ -50,7 +50,7 @@ namespace TrayUsage
                 proCounter[i].InstanceName = diskLabels[i];
 
             }
-
+            SetMaxValues(100);
         }
 
         public override void UpdateValues()

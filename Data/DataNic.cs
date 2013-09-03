@@ -26,13 +26,20 @@ namespace TrayUsage
 {
     public class DataNic : Data
     {
+        private NetworkInterface[] _nics = null;
+
+        private Int64[] _lastValue;
+
         public override string DataName
         {
             get { return "Network Interface"; }
         }
 
-        internal DataNic(String nicName) : base(3)
+        internal DataNic() : base(GetNumberOfNics() * 3)
         {
+
+            _nics = new NetworkInterface[GetNumberOfNics()];
+            _lastValue = new Int64[(_nics.GetUpperBound(0) + 1) * 3];
             NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
             Int32 nicCount = 0;
             for (Int32 i = 0; i <= nics.GetUpperBound(0); i++)
@@ -41,7 +48,14 @@ namespace TrayUsage
                 {
                     if (nics[i].SupportsMulticast)
                     {
-                        pDataLabels[nicCount] = nics[i].Name + " - Up";
+                        pDataLabels[(nicCount * 3)] = nics[i].Name + " - Down";
+                        pDataLabels[(nicCount * 3) + 1] = nics[i].Name + " - Up";
+                        pDataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
+                        _nics[nicCount] = nics[i];
+
+                        _lastValue[(nicCount * 3)] = _nics[(nicCount * 3)].GetIPv4Statistics().BytesReceived;
+                        _lastValue[(nicCount * 3) + 1] = _nics[(nicCount * 3)].GetIPv4Statistics().BytesSent;
+                        _lastValue[(nicCount * 3) + 2] = _lastValue[(nicCount * 3)] + _lastValue[(nicCount * 3) + 1];
                         nicCount++;
                     }
                 }
@@ -50,7 +64,15 @@ namespace TrayUsage
 
         public override void UpdateValues()
         {
-            pCurrentValue[0] = 0;
+            //TODO Finish network update values.
+            for (Int32 i = 0; i <= _nics.GetUpperBound(0); i++)
+            {
+                pCurrentValue[(i * 3)] = _nics[i].GetIPv4Statistics().BytesReceived - _lastValue[(i * 3)];
+
+                pCurrentValue[(i * 3) + 1] = _nics[i].GetIPv4Statistics().BytesSent;
+                pCurrentValue[(i * 3) + 2] = pCurrentValue[(i * 3)] + pCurrentValue[(i * 3) + 1];
+            }
+            UpdateMaxValues();
         }
 
         private static Int32 GetNumberOfNics()

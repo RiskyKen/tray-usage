@@ -42,6 +42,7 @@ namespace TrayUsage
             {
                 pDataLabels[i] = Drives[i].Name + " - " + Drives[i].IsReady.ToString();
             }
+            SetMaxValues(100);
         }
 
         public override void UpdateValues()

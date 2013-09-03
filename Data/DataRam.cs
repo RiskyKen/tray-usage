@@ -39,6 +39,7 @@ namespace TrayUsage
             proCounter.CounterName = "% Committed Bytes In Use";
 
             pDataLabels[0] = "% Of Bytes In Use";
+            SetMaxValues(100);
         }
 
         public override void UpdateValues()

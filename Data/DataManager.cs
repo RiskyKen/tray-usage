@@ -40,14 +40,14 @@ namespace TrayUsage
 
         public DataManager()
         {
-            DataClasses = new Data[6];
+            DataClasses = new Data[7];
             DataClasses[0] = new DataCpu();
             DataClasses[1] = new DataRam();
             DataClasses[2] = new DataDummy();
             DataClasses[3] = new DataDiskSpace();
             DataClasses[4] = new DataDiskAccess();
-            //DataClasses[5] = new DataNic();
             DataClasses[5] = new DataBattery();
+            DataClasses[6] = new DataNic();
         }
                 
         public void Dispose()

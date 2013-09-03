@@ -35,6 +35,7 @@ namespace TrayUsage
         public DataBattery() : base(1)
         {
             pDataLabels[0] = "% Battery Life";
+            SetMaxValues(100);
         }
 
         public override void UpdateValues()

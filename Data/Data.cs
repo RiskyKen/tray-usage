@@ -27,7 +27,9 @@ namespace TrayUsage
 {
     public abstract class Data
     {
-        protected Int32[] pCurrentValue;
+        protected Int64[] pCurrentValue;
+
+        protected Int64[] pMaxValue;
 
         //Labels for data in pCurrentValue.
         protected string[] pDataLabels = null;
@@ -36,13 +38,36 @@ namespace TrayUsage
 
         public Data(Int32 aNumberOfValues)
         {
-            pCurrentValue = new Int32[aNumberOfValues];
+            pCurrentValue = new Int64[aNumberOfValues];
+            pMaxValue = new Int64[aNumberOfValues];
             pDataLabels = new string[aNumberOfValues];
         }
 
-        public Int32[] CurrentValue
+        protected void UpdateMaxValues()
+        {
+            for (Int32 i = 0; i <= pCurrentValue.GetUpperBound(0); i++)
+            {
+                if (pCurrentValue[i] > pMaxValue[i])
+                { pMaxValue[i] = pCurrentValue[i]; }
+            }
+        }
+
+        protected void SetMaxValues(Int64 value)
+        {
+            for (Int32 i = 0; i <= pCurrentValue.GetUpperBound(0); i++)
+            {
+                pMaxValue[i] = value;
+            }
+        }
+
+        public Int64[] CurrentValue
         {
             get {return pCurrentValue;}
+        }
+
+        public Int64[] MaxValue
+        {
+            get { return pMaxValue; }
         }
 
         public string[] DataLabels
@@ -74,10 +99,10 @@ namespace TrayUsage
         }
     }
 
-    public struct DataNode
-    {
-        public string Name;
-        public Int32 Value;
-        public Int32 Max;
-    }
+    //public struct DataNode
+    //{
+    //    public string Name;
+    //    public Int64 Value;
+    //    public Int64 Max;
+    //}
 }

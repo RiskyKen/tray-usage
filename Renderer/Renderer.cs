@@ -150,9 +150,10 @@ namespace TrayUsage
                 iconValues = new Int32[aValues.GetUpperBound(0) + 1];
                 for (Int32 i = 0; i <= aValues.GetUpperBound(0); i++)
                 {
+                    if (aValues[i].DataClassRef == null) { return null; }
                     if (aValues[i].DataIndex >= 0 && aValues[i].DataIndex <= aValues[i].DataClassRef.CurrentValue.Length - 1)
                     {
-                        iconValues[i] = (Int32)ToPer(aValues[i].DataClassRef.CurrentValue[aValues[i].DataIndex], 100, 14);
+                        iconValues[i] = (Int32)ToPer(aValues[i].DataClassRef.CurrentValue[aValues[i].DataIndex], aValues[i].DataClassRef.MaxValue[aValues[i].DataIndex], 14);
                     }
                 }
             }

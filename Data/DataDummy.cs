@@ -41,6 +41,7 @@ namespace TrayUsage
             pDataLabels[0] = "Random Data";
             pDataLabels[1] = "Count Up";
             pDataLabels[2] = "Count Down";
+            SetMaxValues(100);
         }
 
         public override void UpdateValues()
