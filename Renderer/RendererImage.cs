@@ -45,13 +45,18 @@ namespace TrayUsage
             get { return "Image rendered."; }
         }
 
+        public override Int32 MaxValues
+        {
+            get { return 1; }
+        }
+
         //Constructor
-        public RendererImage() : base(1)
+        public RendererImage()
         {
             PostInt();
         }
 
-        public RendererImage(XmlReader aR) : base(aR, 1)
+        public RendererImage(XmlReader aR) : base(aR)
         {
             PostInt();
         }

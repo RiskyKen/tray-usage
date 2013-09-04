@@ -98,13 +98,18 @@ namespace TrayUsage
             get { return "Basic bar renderer. Can have one foreground and one background colour."; }
         }
 
+        public override Int32 MaxValues
+        {
+            get { return 5; }
+        }
+
         //Constructor
-        public RendererBasic() : base(5)
+        public RendererBasic()
         {
             PostInt();
         }
 
-        public RendererBasic(XmlReader aR) : base(aR, 5)
+        public RendererBasic(XmlReader aR) : base(aR)
         {
             PostInt();
         }

@@ -29,7 +29,7 @@ namespace TrayUsage
     {
         public UInt32 RenderCount = 0;
 
-        public Int32 MaxValues = 0;
+        public abstract Int32 MaxValues { get; }
 
         protected Rectangle DrawingSize;
 
@@ -47,16 +47,14 @@ namespace TrayUsage
         public Boolean AlwaysRedraw = false;
 
         //Constructor
-        public Renderer(Int32 aMaxValues)
+        public Renderer()
         {
-            MaxValues = aMaxValues;
             LastValue = new Int32[MaxValues];
         }
 
         //TODO Move some xml reading in here.
-        public Renderer(XmlReader aR,Int32 aMaxValues)
+        public Renderer(XmlReader aR)
         {
-            MaxValues = aMaxValues;
             LastValue = new Int32[MaxValues];
 
             while (aR.Read())
