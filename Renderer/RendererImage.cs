@@ -25,7 +25,7 @@ using System.Xml;
 
 namespace TrayUsage
 {
-    public class RendererImage :Renderer 
+    public class RendererImage : Renderer 
     {
         private bool pHorizontal = false;
 
@@ -46,12 +46,12 @@ namespace TrayUsage
         }
 
         //Constructor
-        public RendererImage() : base(1,new Size(14,14))
+        public RendererImage() : base(1)
         {
             PostInt();
         }
 
-        public RendererImage(XmlReader aR) : base(aR, 1, new Size(14, 14))
+        public RendererImage(XmlReader aR) : base(aR, 1)
         {
             PostInt();
         }
@@ -76,7 +76,7 @@ namespace TrayUsage
             aXmlW.WriteEndElement();
         }
 
-        private void PostInt()
+        protected override void PostInt()
         {
             for (Int32 i = 0; i <= MaxValues - 1; i++)
             { LastValue[i] = -1; }

@@ -99,12 +99,12 @@ namespace TrayUsage
         }
 
         //Constructor
-        public RendererBasic() : base(5,new Size(14,14))
+        public RendererBasic() : base(5)
         {
             PostInt();
         }
 
-        public RendererBasic(XmlReader aR) : base(aR, 5, new Size(14, 14))
+        public RendererBasic(XmlReader aR) : base(aR, 5)
         {
             PostInt();
         }
@@ -133,7 +133,7 @@ namespace TrayUsage
             }
         }
 
-        private void PostInt()
+        protected override void PostInt()
         {
             ForceIconRedraw();
             BackgroundImage = MakeBackgroundImage(pBackgroundColour);

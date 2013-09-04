@@ -47,14 +47,14 @@ namespace TrayUsage
         public Boolean AlwaysRedraw = false;
 
         //Constructor
-        public Renderer(Int32 aMaxValues,Size aDrawingSize)
+        public Renderer(Int32 aMaxValues)
         {
             MaxValues = aMaxValues;
             LastValue = new Int32[MaxValues];
         }
 
         //TODO Move some xml reading in here.
-        public Renderer(XmlReader aR,Int32 aMaxValues, Size aDrawingSize)
+        public Renderer(XmlReader aR,Int32 aMaxValues)
         {
             MaxValues = aMaxValues;
             LastValue = new Int32[MaxValues];
@@ -80,6 +80,8 @@ namespace TrayUsage
         }
 
         public abstract void Reload();
+
+        protected abstract void PostInt();
 
         private void ReadXmlElement(XmlReader aR, string aName)
         {
