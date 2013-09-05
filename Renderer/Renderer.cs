@@ -27,21 +27,28 @@ namespace TrayUsage
 {
     public abstract class Renderer 
     {
+        ///<summary>Number of times this icon has rendered.</summary>
         public UInt32 RenderCount = 0;
 
+        ///<summary>Number of times this icon has rendered.</summary>
         public abstract Int32 MaxValues { get; }
 
+        ///<summary>The drawing rectangle within the icon.</summary>
         protected Rectangle DrawingSize;
 
         protected Int32[] LastValue = null;
 
+        ///<summary>True if the icon is sleeping.</summary>
         public Boolean isSleeping = false;
 
+        ///<summary>Range of values the icon can display from one data input.</summary>
         protected Int32 valueScale;
 
         public abstract string Name { get; }
 
         public abstract string Discription { get; }
+
+        protected Bitmap SleepingImage = null;
 
         //Should the icon be redrawn, even if the input value is the same? 
         public Boolean AlwaysRedraw = false;
@@ -126,7 +133,7 @@ namespace TrayUsage
         }
 
         //Do we need to redraw this icon.
-        public Boolean NeedRedraw(Int32[] aValues, Boolean sleeping)
+        public virtual Boolean NeedRedraw(Int32[] aValues, Boolean sleeping)
         {
             if (Globals.AlwaysRedrawIcons) { return true; }
             if (AlwaysRedraw) { return true; }

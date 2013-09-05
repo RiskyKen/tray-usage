@@ -50,6 +50,12 @@ namespace TrayUsage
                             MakeTrayIcon();
                             break;
                         }
+                        if (aR.Name == "RendererHistory")
+                        {
+                            renderer = new RendererHistory(aR);
+                            MakeTrayIcon();
+                            break;
+                        }
                         if (aR.Name == "DataSources")
                         {
                             ReadDataLinks(aR);

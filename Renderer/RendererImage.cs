@@ -50,12 +50,13 @@ namespace TrayUsage
             get { return 1; }
         }
 
-        //Constructor
+        ///<summary>Constructor</summary>
         public RendererImage()
         {
             PostInt();
         }
 
+        ///<summary>Constructor using Xml</summary>
         public RendererImage(XmlReader aR) : base(aR)
         {
             PostInt();
@@ -63,7 +64,7 @@ namespace TrayUsage
 
         public override void Reload()
         {
-            throw new NotImplementedException();
+            PostInt();
         }
 
         public override void LoadXmlElement(string aName, string aValue)
@@ -83,10 +84,7 @@ namespace TrayUsage
 
         protected override void PostInt()
         {
-            for (Int32 i = 0; i <= MaxValues - 1; i++)
-            { LastValue[i] = -1; }
-            
-            //MakeBackgroundImage(pBackgroundColour);
+            ForceIconRedraw();
         }
 
         public override Icon RenderIcon(Int32[] aValue, Boolean sleeping)

@@ -146,6 +146,12 @@ namespace TrayUsage
                     RenderOptionsImageForm.Dispose();
                     RenderOptionsImageForm = null;
                     break;
+                case "History":
+                    frmRenderOptionsHistory RenderOptionsHistoryForm = new frmRenderOptionsHistory(SelectedIcon);
+                    RenderOptionsHistoryForm.ShowDialog();
+                    RenderOptionsHistoryForm.Dispose();
+                    RenderOptionsHistoryForm = null;
+                    break;
             }
 
         }

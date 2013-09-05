@@ -352,12 +352,10 @@
             // comboRenderType
             // 
             this.comboRenderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboRenderType.Enabled = false;
             this.comboRenderType.FormattingEnabled = true;
             this.comboRenderType.Items.AddRange(new object[] {
             "Basic",
-            "History",
-            "Image"});
+            "History"});
             this.comboRenderType.Location = new System.Drawing.Point(6, 123);
             this.comboRenderType.Name = "comboRenderType";
             this.comboRenderType.Size = new System.Drawing.Size(172, 21);

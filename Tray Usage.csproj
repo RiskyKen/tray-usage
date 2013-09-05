@@ -78,7 +78,14 @@
     <Compile Include="Forms\frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmRenderOptionsHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRenderOptionsHistory.Designer.cs">
+      <DependentUpon>frmRenderOptionsHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="FullScreenCheck.cs" />
+    <Compile Include="Renderer\RendererHistory.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Data\DataCpu.cs" />

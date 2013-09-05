@@ -163,6 +163,11 @@ namespace TrayUsage
                     renderer = new RendererBasic();
                     break;
 
+                case "History":
+                    renderer.Dispose();
+                    renderer = new RendererHistory();
+                    break;
+
                 case "Image":
                     renderer.Dispose();
                     renderer = new RendererImage();

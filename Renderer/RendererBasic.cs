@@ -31,8 +31,6 @@ namespace TrayUsage
 
         private Bitmap BackgroundImage = null;
 
-        private Bitmap SleepingImage = null;
-
         protected Color pBackgroundColour = Color.Black;
 
         protected Color pForegroundColour = Color.White;
