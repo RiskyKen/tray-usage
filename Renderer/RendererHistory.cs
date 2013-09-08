@@ -25,7 +25,7 @@ using System.Drawing;
 
 namespace TrayUsage
 {
-    class RendererHistory : Renderer
+    partial class RendererHistory : Renderer
     {
         private Boolean _horizontal = false;
 
@@ -38,6 +38,10 @@ namespace TrayUsage
         protected Boolean _showBorder = true;
 
         private Boolean _useAlpha = false;
+
+        private Int32[] _history = null;
+
+        private Int32 _historyIndex = 0;
 
         public override string Name
         {
@@ -58,6 +62,7 @@ namespace TrayUsage
         public RendererHistory()
         {
             PostInt();
+
         }
 
         ///<summary>Constructor using Xml</summary>
@@ -88,6 +93,8 @@ namespace TrayUsage
                 DrawingSize = new Rectangle(0, 0, 16, 16);
                 valueScale = 16;
             }
+            _history = new Int32[DrawingSize.Width];
+            ResetHistory();
             if (_useAlpha) { valueScale *= 256; }
         }
 
@@ -140,9 +147,21 @@ namespace TrayUsage
             if (sleeping) { return true; }
             if (isSleeping) { return true; }
 
-            //TODO check if we need to render.
+            Int32 tempHistory = _history[0];
+            for (Int32 i = 1; i <= _history.GetUpperBound(0); i++)
+            {
+                if (tempHistory != _history[i]) { return true; }
+            }
+
+            if (tempHistory != aValues[0]) { return true; }
 
             return false;
+        }
+
+        private void ResetHistory()
+        {
+            for (Int32 i = 0; i <= _history.GetUpperBound(0); i++)
+            { _history[i] = -1; }
         }
 
         public override void LoadXmlElement(string aName, string aValue)
@@ -170,15 +189,23 @@ namespace TrayUsage
             if (sleeping) { return bmpToIcon(RenderSleeping()); }
             isSleeping = false;
             Bitmap tempBitmap = (Bitmap)_backgroundImage.Clone();
+            if (aValue == null) { return bmpToIcon(tempBitmap); }
 
-            if (aValue != null)
+            _history[_historyIndex] = aValue[0];
+
+            SolidBrush tempBrush = new SolidBrush(_foregroundColour);
+            for (Int32 i = 0; i <= DrawingSize.Width - 1; i++)
             {
-                SolidBrush tempBrush = new SolidBrush(_foregroundColour);
-                RenderBar(tempBitmap, tempBrush, 14, aValue[0], 0, _horizontal);
-                tempBrush.Dispose();
-                LastValue[0] = aValue[0];
+                Int32 thisPlace = _historyIndex - i;
+                if (thisPlace < 0) { thisPlace += _history.GetUpperBound(0) + 1; }
+                if (_history[thisPlace] != -1)
+                { RenderBar(tempBitmap, tempBrush, 1, _history[thisPlace], 13 - i, _horizontal); }
             }
+            tempBrush.Dispose();
+            LastValue[0] = aValue[0];
 
+            _historyIndex++;
+            if (_historyIndex >= DrawingSize.Width) { _historyIndex = 0; }
 
             //throw new NotImplementedException();
             return bmpToIcon(tempBitmap);
