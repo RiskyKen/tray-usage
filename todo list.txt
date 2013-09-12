@@ -6,8 +6,6 @@ Make update progress show in the update form.
 
 Image renderer.
 
-History renderer.
-
 Show message if the program is started with -update.
 
 Return any files that need to be run from the update class.
