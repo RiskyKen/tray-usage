@@ -27,52 +27,52 @@ namespace TrayUsage
 {
     public abstract class Data
     {
-        protected Int64[] pCurrentValue;
+        protected Int64[] _currentValue;
 
-        protected Int64[] pMaxValue;
+        protected Int64[] _maxValue;
 
-        //Labels for data in pCurrentValue.
-        protected string[] pDataLabels = null;
+        //Labels for data in _currentValue.
+        protected string[] _dataLabels = null;
 
         public abstract string DataName { get; }
 
         public Data(Int32 aNumberOfValues)
         {
-            pCurrentValue = new Int64[aNumberOfValues];
-            pMaxValue = new Int64[aNumberOfValues];
-            pDataLabels = new string[aNumberOfValues];
+            _currentValue = new Int64[aNumberOfValues];
+            _maxValue = new Int64[aNumberOfValues];
+            _dataLabels = new string[aNumberOfValues];
         }
 
         protected void UpdateMaxValues()
         {
-            for (Int32 i = 0; i <= pCurrentValue.GetUpperBound(0); i++)
+            for (Int32 i = 0; i <= _currentValue.GetUpperBound(0); i++)
             {
-                if (pCurrentValue[i] > pMaxValue[i])
-                { pMaxValue[i] = pCurrentValue[i]; }
+                if (_currentValue[i] > _maxValue[i])
+                { _maxValue[i] = _currentValue[i]; }
             }
         }
 
         protected void SetMaxValues(Int64 value)
         {
-            for (Int32 i = 0; i <= pCurrentValue.GetUpperBound(0); i++)
+            for (Int32 i = 0; i <= _currentValue.GetUpperBound(0); i++)
             {
-                pMaxValue[i] = value;
+                _maxValue[i] = value;
             }
         }
 
         public Int64[] CurrentValue
         {
-            get {return pCurrentValue;}
+            get {return _currentValue;}
         }
 
         public Int64[] MaxValue
         {
-            get { return pMaxValue; }
+            get { return _maxValue; }
         }
 
         public string[] DataLabels
         {
-            get {return pDataLabels;}
+            get {return _dataLabels;}
         }
 
         public String ReplaceIconText(String text)
@@ -81,7 +81,7 @@ namespace TrayUsage
 
             if (newText.Contains(DataName + ":"))
             {
-                for (Int32 i = 0; i <= pDataLabels.GetUpperBound(0); i++)
+                for (Int32 i = 0; i <= _dataLabels.GetUpperBound(0); i++)
                 {
                     if (newText.Contains(DataName + ":" + i.ToString()))
                     { newText = newText.Replace("{" + DataName + ":" + i.ToString() + "}", CurrentValue[i].ToString()); }

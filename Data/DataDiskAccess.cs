@@ -37,13 +37,13 @@ namespace TrayUsage
         {
             proCounter = new PerformanceCounter[GetHardDriveCount() + 1];
 
-            pDataLabels = GetHardDriveLabels();
+            _dataLabels = GetHardDriveLabels();
 
             string[] diskLabels = new PerformanceCounterCategory("PhysicalDisk").GetInstanceNames();
 
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
-                string thisDataLabel = pDataLabels[i].Remove(pDataLabels[i].Length - 1);
+                string thisDataLabel = _dataLabels[i].Remove(_dataLabels[i].Length - 1);
                 proCounter[i] = new PerformanceCounter();
                 proCounter[i].CategoryName = "PhysicalDisk";
                 proCounter[i].CounterName = "% Disk Time";
@@ -57,8 +57,8 @@ namespace TrayUsage
         {
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
-                pCurrentValue[i] = (Int32)proCounter[i].NextValue();
-                if (pCurrentValue[i] > 100) { pCurrentValue[i] = 100; }
+                _currentValue[i] = (Int32)proCounter[i].NextValue();
+                if (_currentValue[i] > 100) { _currentValue[i] = 100; }
             }
         }
 

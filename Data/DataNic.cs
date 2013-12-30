@@ -50,9 +50,9 @@ namespace TrayUsage
                     {
                         if (nics[i] != null)
                         {
-                            pDataLabels[(nicCount * 3)] = nics[i].Name + " - Down";
-                            pDataLabels[(nicCount * 3) + 1] = nics[i].Name + " - Up";
-                            pDataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
+                            _dataLabels[(nicCount * 3)] = nics[i].Name + " - Down";
+                            _dataLabels[(nicCount * 3) + 1] = nics[i].Name + " - Up";
+                            _dataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
                             _nics[nicCount] = nics[i];
 
                             Int64 thisDown = _nics[(nicCount)].GetIPv4Statistics().BytesReceived;
@@ -81,9 +81,9 @@ namespace TrayUsage
                 Int64 thisUp = _nics[i].GetIPv4Statistics().BytesSent;
                 Int64 thisTotal = thisDown + thisUp;
 
-                pCurrentValue[(i * 3)] = thisDown - _lastValue[(i * 3)];
-                pCurrentValue[(i * 3) + 1] = thisUp - _lastValue[(i * 3) + 1];
-                pCurrentValue[(i * 3) + 2] = thisTotal - _lastValue[(i * 3) + 2];
+                _currentValue[(i * 3)] = thisDown - _lastValue[(i * 3)];
+                _currentValue[(i * 3) + 1] = thisUp - _lastValue[(i * 3) + 1];
+                _currentValue[(i * 3) + 2] = thisTotal - _lastValue[(i * 3) + 2];
 
                 _lastValue[(i * 3)] = thisDown;
                 _lastValue[(i * 3) + 1] = thisUp;

@@ -40,7 +40,7 @@ namespace TrayUsage
 
             for (Int32 i = 0; i <= Drives.GetUpperBound(0); i++)
             {
-                pDataLabels[i] = Drives[i].Name + " - " + Drives[i].IsReady.ToString();
+                _dataLabels[i] = Drives[i].Name + " - " + Drives[i].IsReady.ToString();
             }
             SetMaxValues(100);
         }
@@ -52,7 +52,7 @@ namespace TrayUsage
                 Int32 thisSpace = 0;
                 if (Drives[i].IsReady)
                 { thisSpace = (Int32)(((Drives[i].TotalSize - Drives[i].TotalFreeSpace) * 100) / Drives[i].TotalSize); }
-                pCurrentValue[i] = thisSpace;
+                _currentValue[i] = thisSpace;
             }
         }
 

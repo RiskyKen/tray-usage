@@ -34,13 +34,13 @@ namespace TrayUsage
 
         public DataBattery() : base(1)
         {
-            pDataLabels[0] = "% Battery Life";
+            _dataLabels[0] = "% Battery Life";
             SetMaxValues(100);
         }
 
         public override void UpdateValues()
         {
-            pCurrentValue[0] = Convert.ToInt32(SystemInformation.PowerStatus.BatteryLifePercent * 100) ;
+            _currentValue[0] = Convert.ToInt32(SystemInformation.PowerStatus.BatteryLifePercent * 100) ;
         }
 
         new internal void Dispose()

@@ -38,13 +38,13 @@ namespace TrayUsage
             proCounter.CategoryName = "Memory";
             proCounter.CounterName = "% Committed Bytes In Use";
 
-            pDataLabels[0] = "% Of Bytes In Use";
+            _dataLabels[0] = "% Of Bytes In Use";
             SetMaxValues(100);
         }
 
         public override void UpdateValues()
         {
-            pCurrentValue[0] = (Int32)proCounter.NextValue();
+            _currentValue[0] = (Int32)proCounter.NextValue();
         }
 
         new internal void Dispose()

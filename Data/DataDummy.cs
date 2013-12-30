@@ -38,9 +38,9 @@ namespace TrayUsage
         {
             ranNum = new Random();
 
-            pDataLabels[0] = "Random Data";
-            pDataLabels[1] = "Count Up";
-            pDataLabels[2] = "Count Down";
+            _dataLabels[0] = "Random Data";
+            _dataLabels[1] = "Count Up";
+            _dataLabels[2] = "Count Down";
             SetMaxValues(100);
         }
 
@@ -50,9 +50,9 @@ namespace TrayUsage
             if (upCount > 100) { upCount = 0; }
             downCount--;
             if (downCount < 0) { downCount = 100; }
-            pCurrentValue[0] = ranNum.Next(0, 100);
-            pCurrentValue[1] = upCount;
-            pCurrentValue[2] = downCount;
+            _currentValue[0] = ranNum.Next(0, 100);
+            _currentValue[1] = upCount;
+            _currentValue[2] = downCount;
         }
 
         new internal void Dispose()

@@ -45,10 +45,10 @@ namespace TrayUsage
                 proCounter[i].InstanceName = i.ToString();
             }
 
-            pDataLabels[0] = "Total";
-            for (Int32 i = 1; i <= pDataLabels.GetUpperBound(0); i++)
+            _dataLabels[0] = "Total";
+            for (Int32 i = 1; i <= _dataLabels.GetUpperBound(0); i++)
             {
-                pDataLabels[i] = "Core " + i.ToString();
+                _dataLabels[i] = "Core " + i.ToString();
             }
             SetMaxValues(100);
         }
@@ -58,10 +58,10 @@ namespace TrayUsage
             Int64 totalUsage = 0;
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
-                pCurrentValue[i + 1] = (Int32)proCounter[i].NextValue();
-                totalUsage += pCurrentValue[i];
+                _currentValue[i + 1] = (Int32)proCounter[i].NextValue();
+                totalUsage += _currentValue[i];
             }
-            pCurrentValue[0] = totalUsage / Environment.ProcessorCount;
+            _currentValue[0] = totalUsage / Environment.ProcessorCount;
         }
 
         new internal void Dispose()
