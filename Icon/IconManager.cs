@@ -80,6 +80,15 @@ namespace TrayUsage
             }
         }
 
+        public static void MakeDefaultIcons()
+        {
+            DataLink tempLink = new DataLink();
+            tempLink.DataIndex = 0;
+            tempLink.DataClassRef = DataManager.GetDataClassRef("CPU");
+            tempLink.DataClassRef.Wake();
+            AddIcon("CPU", "{iconname} - Total: {CPU:0}%", new DataLink[] { tempLink });
+        }
+
         //Unload the tray manager and all icons.
         public static void Dispose()
         {

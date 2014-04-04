@@ -51,6 +51,8 @@ namespace TrayUsage
             _rolloverText = aRolloverText;
             TargetData = aTargetData;
             renderer = new RendererBasic();
+            ((RendererBasic)renderer).BackgroundColour = Globals.colorPresets[12].BackgroundColor;
+            ((RendererBasic)renderer).ForegroundColour = Globals.colorPresets[12].ForegroundColor;
             MakeTrayIcon();
         }
 

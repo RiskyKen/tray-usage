@@ -45,6 +45,7 @@ namespace TrayUsage
         {
             public Boolean Success;
             public String Message;
+            public String[] RunFiles;
         }
 
         public delegate void DownloadChangeLogFinishedHandler(DownloadChangeLogResult result);
@@ -178,6 +179,22 @@ namespace TrayUsage
             { result.Message = "Download hash check failed."; e.Result = result; return; }
 
             InstallDownloadedFiles(filesList, filesToDownload);
+
+            foreach (DownloadFileInfo fileInfo in filesList)
+            {
+                if (fileInfo.Action == "Run")
+                {
+                    if (result.RunFiles == null)
+                    {
+                        result.RunFiles = new String[1];
+                    }
+                    else
+                    {
+                        Array.Resize(ref result.RunFiles, result.RunFiles.GetUpperBound(0) + 2);
+                    }
+                    result.RunFiles[result.RunFiles.GetUpperBound(0)] = fileInfo.Path + fileInfo.Name;
+                }
+            }
 
             result.Success = true;
             result.Message = "Download finished!";

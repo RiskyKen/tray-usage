@@ -57,6 +57,9 @@ namespace TrayUsage
         //Are we restarting the program for an update?
         public static Boolean updateRestart = false;
 
+        //What file should be run for the restart?
+        public static string[] updateRunFileList = null;
+
         //Program starts here! :)
         [STAThread]
         static void Main(String[] args)
@@ -71,7 +74,20 @@ namespace TrayUsage
             settingsClass.Save();
             DisposeClasses();
             if (updateRestart)
-            { System.Diagnostics.Process.Start(Application.ExecutablePath, "-update"); }
+            {
+                if (updateRunFileList != null)
+                {
+                    foreach (string file in updateRunFileList)
+                    {
+                        System.Diagnostics.Process.Start(Application.StartupPath + file, "-update");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No run list found.\nRunning normal program.", Application.ProductName);
+                    System.Diagnostics.Process.Start(Application.ExecutablePath, "-update");
+                }
+            }
         }
 
         private static void LoadClasses()
@@ -128,6 +144,10 @@ namespace TrayUsage
             if (System.IO.File.Exists(Globals.SettingsFilePath))
             {
                 settingsClass.Load(Globals.SettingsFilePath);
+            }
+            else
+            {
+                IconManager.MakeDefaultIcons();
             }
         }
     }

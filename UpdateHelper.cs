@@ -85,9 +85,15 @@ namespace TrayUsage
         {
             updater.DownloadUpdateFinished -= DownloadUpdateReturn;
             if (result.Success)
-            { Program.updateRestart = true; Program.updateLoopRunning = false; }
+            {
+                Program.updateRunFileList = result.RunFiles;
+                Program.updateRestart = true;
+                Program.updateLoopRunning = false;
+            }
             else
-            { IconManager.ShowBalloonPopup(Application.ProductName, result.Message, ToolTipIcon.Info); }
+            {
+                IconManager.ShowBalloonPopup(Application.ProductName, result.Message, ToolTipIcon.Info);
+            }
         }
     }
 }

@@ -77,11 +77,24 @@ namespace TrayUsage
         //Fired when the update download is finished.
         private void DownloadUpdateReturn(Updater.DownloadUpdateResult result)
         {
+            if (this.InvokeRequired)
+            {
+                Debug.WriteLine("Invoking download update result on update form.");
+                Updater.DownloadUpdateFinishedHandler updateFormInvoker = new Updater.DownloadUpdateFinishedHandler(DownloadUpdateReturn);
+                this.Invoke(updateFormInvoker, result);
+            }
             Program.updateHelper.updater.DownloadUpdateFinished -= DownloadUpdateReturn;
+            proBar.Style = ProgressBarStyle.Continuous;
+            btnUpdate.Enabled = true;
             if (result.Success)
-            { Program.updateRestart = true; Program.updateLoopRunning = false; }
+            {
+                Program.updateRunFileList = result.RunFiles;
+                Program.updateRestart = true;
+                Program.updateLoopRunning = false; }
             else
-            { MessageBox.Show(result.Message, Application.ProductName); }
+            {
+                MessageBox.Show(result.Message, Application.ProductName);
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
