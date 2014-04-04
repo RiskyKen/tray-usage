@@ -21,13 +21,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using Microsoft.VisualBasic.Devices;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class DataRam : Data 
     {
-        private PerformanceCounter proCounter = null;
-
+        private ComputerInfo computerInfo = null;
         public override string DataName
         {
             get { return "RAM"; }
@@ -42,19 +42,19 @@ namespace TrayUsage
         public override void UpdateValues()
         {
             if (!_isAwake) { throw new Exception("Data class is sleeping."); }
-            _currentValue[0] = (Int32)proCounter.NextValue();
+            _currentValue[0] = (UInt64)computerInfo.TotalPhysicalMemory - computerInfo.AvailablePhysicalMemory;
+            _maxValue[0] = (UInt64)computerInfo.TotalPhysicalMemory;
+            //UpdateMaxValues();
         }
 
         public override void Load()
         {
-            proCounter = new System.Diagnostics.PerformanceCounter();
-            proCounter.CategoryName = "Memory";
-            proCounter.CounterName = "% Committed Bytes In Use";
+            computerInfo = new ComputerInfo();
         }
 
         public override void Unload()
         {
-            proCounter.Dispose();
+            computerInfo = null;
         }
     }
 }

@@ -26,7 +26,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public partial class frmUpdate : Form
     {

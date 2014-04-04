@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class DataCpu : Data
     {
@@ -48,13 +48,13 @@ namespace TrayUsage
         public override void UpdateValues()
         {
             if (!_isAwake) { throw new Exception("Data class is sleeping."); }
-            Int64 totalUsage = 0;
+            UInt64 totalUsage = 0;
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
-                _currentValue[i + 1] = (Int32)proCounter[i].NextValue();
+                _currentValue[i + 1] = (UInt64)proCounter[i].NextValue();
                 totalUsage += _currentValue[i];
             }
-            _currentValue[0] = totalUsage / Environment.ProcessorCount;
+            _currentValue[0] = (totalUsage / (UInt64)Environment.ProcessorCount);
         }
 
         public override void Load()

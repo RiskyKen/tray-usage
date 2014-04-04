@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     partial class RendererHistory
     {

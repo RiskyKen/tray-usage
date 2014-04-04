@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RiskyKen")]
 [assembly: AssemblyProduct("Tray Usage")]
-[assembly: AssemblyCopyright("Copyright © RiskyKen 2013")]
+[assembly: AssemblyCopyright("Copyright © RiskyKen 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

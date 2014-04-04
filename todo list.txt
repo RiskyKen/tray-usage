@@ -1,11 +1,5 @@
 ﻿Option to add preset icons.
 
-Make a data class sleep, if it's not in use.
-
 Make update progress show in the update form.
 
 Image renderer.
-
-Show message if the program is started with -update.
-
-Return any files that need to be run from the update class.

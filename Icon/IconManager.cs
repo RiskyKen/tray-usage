@@ -25,7 +25,7 @@ using System.Drawing;
 using System.Xml;
 using System.Diagnostics;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     //Temp class, will handle loading and unloading of tray icons.
     public static class IconManager
@@ -82,11 +82,21 @@ namespace TrayUsage
 
         public static void MakeDefaultIcons()
         {
-            DataLink tempLink = new DataLink();
-            tempLink.DataIndex = 0;
-            tempLink.DataClassRef = DataManager.GetDataClassRef("CPU");
-            tempLink.DataClassRef.Wake();
-            AddIcon("CPU", "{iconname} - Total: {CPU:0}%", new DataLink[] { tempLink });
+            DataLink tempLinkCPU = new DataLink();
+            tempLinkCPU.DataIndex = 0;
+            tempLinkCPU.DataClassRef = DataManager.GetDataClassRef("CPU");
+            tempLinkCPU.DataClassRef.Wake();
+            AddIcon("CPU", "{iconname} - {CPU%0}%", new DataLink[] { tempLinkCPU },
+                Globals.colorPresets[12].BackgroundColor, Globals.colorPresets[12].ForegroundColor);
+
+
+            DataLink tempLinkRAM = new DataLink();
+            tempLinkRAM.DataIndex = 0;
+            tempLinkRAM.DataClassRef = DataManager.GetDataClassRef("RAM");
+            tempLinkRAM.DataClassRef.Wake();
+
+            AddIcon("RAM", "{iconname} - {RAM%0}%\n\n{RAM#!0} - {RAM*!0}", new DataLink[] { tempLinkRAM },
+                Globals.colorPresets[11].BackgroundColor, Globals.colorPresets[11].ForegroundColor);
         }
 
         //Unload the tray manager and all icons.
@@ -109,7 +119,7 @@ namespace TrayUsage
         }
 
         //Add an icon into the TrayIcons array.
-        public static void AddIcon(string aDataName, String RolloverText, DataLink[] aTargetData)
+        public static void AddIcon(string aDataName, String RolloverText, DataLink[] aTargetData, Color BackgroundColor, Color ForegroundColor)
         {
             lock (_iconLock)
             {
@@ -123,7 +133,7 @@ namespace TrayUsage
                 {
                     Array.Resize(ref trayIcons, trayIcons.GetUpperBound(0) + 2);
                 }
-                trayIcons[trayIcons.GetUpperBound(0)] = new TrayIcon(aDataName, RolloverText, aTargetData);
+                trayIcons[trayIcons.GetUpperBound(0)] = new TrayIcon(aDataName, RolloverText, aTargetData, BackgroundColor, ForegroundColor);
                 CheckDummyIconVisibliy();
             }
         }

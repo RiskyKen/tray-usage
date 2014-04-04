@@ -24,7 +24,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class FullScreenCheck
     {

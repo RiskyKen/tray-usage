@@ -24,7 +24,7 @@ using System.Xml;
 using System.Windows.Forms;
 using System.IO;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class Settings
     {

@@ -25,7 +25,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Diagnostics;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class Updater
     {

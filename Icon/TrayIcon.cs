@@ -25,7 +25,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public partial class TrayIcon
     {
@@ -45,14 +45,14 @@ namespace TrayUsage
         public Renderer renderer = null;
 
         //Constructor
-        public TrayIcon(string aIconName, String aRolloverText, DataLink[] aTargetData)
+        public TrayIcon(string aIconName, String aRolloverText, DataLink[] aTargetData, Color BackgroundColor, Color ForegroundColor)
         {
             _iconName = aIconName;
             _rolloverText = aRolloverText;
             TargetData = aTargetData;
             renderer = new RendererBasic();
-            ((RendererBasic)renderer).BackgroundColour = Globals.colorPresets[12].BackgroundColor;
-            ((RendererBasic)renderer).ForegroundColour = Globals.colorPresets[12].ForegroundColor;
+            ((RendererBasic)renderer).BackgroundColour = BackgroundColor;
+            ((RendererBasic)renderer).ForegroundColour = ForegroundColor;
             MakeTrayIcon();
         }
 

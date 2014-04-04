@@ -26,8 +26,9 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Threading;
+using RiskyKen.TrayUsage.Utils;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public partial class frmOptions : Form
     {
@@ -44,41 +45,9 @@ namespace TrayUsage
             LoadAdvancedSettings();
         }
 
-        public Boolean GetRunningOnStartup()
-        {
-            if (Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", Application.ProductName, null) == null)
-            { return false; }
-            return true;
-        }
-
-        public void SetRunningOnStartup(Boolean RunOnStartup)
-        {
-            if (!RunOnStartup)
-            {
-                if (GetRunningOnStartup())
-                {
-                    string keyName = @"Software\Microsoft\Windows\CurrentVersion\Run";
-                    using (RegistryKey key = Registry.CurrentUser.OpenSubKey(keyName, true))
-                    {
-                        if (key != null)
-                        {
-                            key.DeleteValue(Application.ProductName);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (!GetRunningOnStartup())
-                {
-                    Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run", Application.ProductName, Application.ExecutablePath);
-                }
-            }
-        }
-
         private void LoadGeneralSettings()
         {
-            chkRunOnStartup.Checked = GetRunningOnStartup();
+            chkRunOnStartup.Checked = Common.GetRunningOnStartup();
             chkFullScreenSleep.Checked = Globals.FullscreenSleep;
             chkMissingIconFix.Checked = Globals.MissingIconFix;
 
@@ -88,7 +57,7 @@ namespace TrayUsage
 
         private void ApplyGeneralSettings()
         {
-            SetRunningOnStartup(chkRunOnStartup.Checked);
+            Common.SetRunningOnStartup(chkRunOnStartup.Checked);
             Globals.FullscreenSleep = chkFullScreenSleep.Checked;
             Globals.MissingIconFix = chkMissingIconFix.Checked;
 

@@ -21,7 +21,7 @@ using System.IO;
 using System.Xml;
 using System.Drawing;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     partial class TrayIcon
     {

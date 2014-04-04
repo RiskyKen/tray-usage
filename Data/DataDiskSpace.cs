@@ -21,9 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
-
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class DataDiskSpace : Data
     {
@@ -53,7 +51,7 @@ namespace TrayUsage
                 Int32 thisSpace = 0;
                 if (Drives[i].IsReady)
                 { thisSpace = (Int32)(((Drives[i].TotalSize - Drives[i].TotalFreeSpace) * 100) / Drives[i].TotalSize); }
-                _currentValue[i] = thisSpace;
+                _currentValue[i] = (UInt64)thisSpace;
             }
         }
 

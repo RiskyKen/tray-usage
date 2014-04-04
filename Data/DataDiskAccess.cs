@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class DataDiskAccess : Data
     {
@@ -47,7 +47,7 @@ namespace TrayUsage
             if (!_isAwake) { throw new Exception("Data class is sleeping."); }
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
-                _currentValue[i] = (Int32)proCounter[i].NextValue();
+                _currentValue[i] = (UInt64)proCounter[i].NextValue();
                 if (_currentValue[i] > 100) { _currentValue[i] = 100; }
             }
         }

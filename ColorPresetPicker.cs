@@ -23,7 +23,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     class ColorPresetPicker : ComboBox
     {

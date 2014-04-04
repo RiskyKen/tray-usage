@@ -21,8 +21,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
-namespace TrayUsage
+using RiskyKen.TrayUsage.Utils;
+namespace RiskyKen.TrayUsage
 {
     public class UpdateHelper
     {
@@ -31,6 +31,9 @@ namespace TrayUsage
 
         //The tick of when we last checked for an update.
         private static Int64 _lastUpdateCheckTick = Int64.MinValue;
+
+        //Has an update just been run?
+        public static bool afterUpdate = false;
 
         public UpdateHelper(String ApplcationDirectory, String DownloadDirectory, Version ApplcationVersion)
         {
@@ -45,6 +48,16 @@ namespace TrayUsage
         //Checks if we need to check for updates.
         public void CheckForUpdatesIfNeeded()
         {
+            if (afterUpdate)
+            {
+                IconManager.ShowBalloonPopup(Application.ProductName, "Successfully updated to version " + Application.ProductVersion + ".", ToolTipIcon.Info);
+                afterUpdate = false;
+                if (Common.GetRunningOnStartup())
+                {
+                    Common.SetRunningOnStartup(false);
+                    Common.SetRunningOnStartup(true);
+                }
+            }
             if (Globals.UpdateCheckTime == 0) { return; }
             if (_lastUpdateCheckTick + Globals.UpdateCheckTime < Environment.TickCount)
             { UpdateCheck(); }

@@ -26,12 +26,13 @@ using System.Xml;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
-    class Globals
+    static class Globals
     {
         //The url that is used to look for updates.
         //"https://dl.dropbox.com/u/9733425/app_update/tray_usage/update.txt"
+        //"http://bit.ly/1mQwo4Z"
         public static string UpdateUrlMain = "https://dl.dropbox.com/u/9733425/app_update/tray_usage/update.txt";
 
         //Backup url that is used to look for updates, if the main one is down.
@@ -51,7 +52,7 @@ namespace TrayUsage
         public static Int32 UpdateCheckTime = 14400000;
 
         //The colour bit depth that the tray icons use.
-        protected static PixelFormat colorBitDepth = PixelFormat.Format24bppRgb;
+        public static PixelFormat colorBitDepth = PixelFormat.Format24bppRgb;
 
         //Auto update?
         public static Boolean AutoUpdate = true;
@@ -60,7 +61,7 @@ namespace TrayUsage
         public static Boolean MissingIconFix = true;
 
         //The thread priority of the main update loop.
-        protected static ThreadPriority updateThreadPriority = ThreadPriority.Lowest;
+        public static ThreadPriority updateThreadPriority = ThreadPriority.Lowest;
 
         //Should the program sleep when a fullscreen application is running?
         public static Boolean FullscreenSleep = true;
@@ -176,7 +177,7 @@ namespace TrayUsage
 
             AddColorPreset(Color.FromArgb(128, 64, 0), Color.FromArgb(255, 128, 0));
             AddColorPreset(Color.FromArgb(0, 128, 64), Color.FromArgb(0, 255, 128));
-            AddColorPreset(Color.FromArgb(64, 0, 128), Color.FromArgb(128, 0, 255));
+            AddColorPreset(Color.FromArgb(64, 0, 128), Color.FromArgb(192, 0, 255));
 
             AddColorPreset(Color.FromArgb(0, 0, 64), Color.FromArgb(65, 105, 225));
             AddColorPreset(Color.FromArgb(0, 64, 0), Color.FromArgb(105, 225, 65));

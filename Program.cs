@@ -25,7 +25,7 @@ using System.Threading;
 using System.Xml;
 using System.Diagnostics;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public static class Program
     {
@@ -62,8 +62,9 @@ namespace TrayUsage
 
         //Program starts here! :)
         [STAThread]
-        static void Main(String[] args)
+        public static void Main(String[] args)
         {
+            ParseArguments(args);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Globals.LoadPresetColors();
@@ -136,6 +137,19 @@ namespace TrayUsage
                 
             }
             Application.Exit();
+        }
+
+        private static void ParseArguments(String[] args)
+        {
+            foreach (string arg in args)
+            {
+                switch (arg)
+                {
+                    case "-update":
+                        UpdateHelper.afterUpdate = true;
+                        break;
+                }
+            }
         }
 
         //Loads the settings file if it exists.

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class DataDummy : Data
     {
@@ -49,9 +49,9 @@ namespace TrayUsage
             if (upCount > 100) { upCount = 0; }
             downCount--;
             if (downCount < 0) { downCount = 100; }
-            _currentValue[0] = ranNum.Next(0, 100);
-            _currentValue[1] = upCount;
-            _currentValue[2] = downCount;
+            _currentValue[0] = (UInt64)ranNum.Next(0, 100);
+            _currentValue[1] = (UInt64)upCount;
+            _currentValue[2] = (UInt64)downCount;
         }
 
         public override void Load()

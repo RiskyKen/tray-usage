@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public partial class frmRenderOptionsImage : Form
     {

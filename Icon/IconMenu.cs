@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     //Handles the tray right click menu.
     public class IconMenu

@@ -1,4 +1,4 @@
-﻿namespace TrayUsage
+﻿namespace RiskyKen.TrayUsage
 {
     partial class frmOptions
     {
@@ -233,7 +233,7 @@
             // btnMoveIconUp
             // 
             this.btnMoveIconUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMoveIconUp.Image = global::TrayUsage.Properties.Resources.arrow_up;
+            this.btnMoveIconUp.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_up;
             this.btnMoveIconUp.Location = new System.Drawing.Point(42, 337);
             this.btnMoveIconUp.Name = "btnMoveIconUp";
             this.btnMoveIconUp.Size = new System.Drawing.Size(23, 23);
@@ -245,7 +245,7 @@
             // btnMoveIconDown
             // 
             this.btnMoveIconDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMoveIconDown.Image = global::TrayUsage.Properties.Resources.arrow_down;
+            this.btnMoveIconDown.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_down;
             this.btnMoveIconDown.Location = new System.Drawing.Point(71, 337);
             this.btnMoveIconDown.Name = "btnMoveIconDown";
             this.btnMoveIconDown.Size = new System.Drawing.Size(23, 23);
@@ -405,7 +405,7 @@
             // btnAddIcon
             // 
             this.btnAddIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddIcon.Image = global::TrayUsage.Properties.Resources.add;
+            this.btnAddIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.add;
             this.btnAddIcon.Location = new System.Drawing.Point(100, 337);
             this.btnAddIcon.Name = "btnAddIcon";
             this.btnAddIcon.Size = new System.Drawing.Size(23, 23);
@@ -417,7 +417,7 @@
             // btnRemoveIcon
             // 
             this.btnRemoveIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemoveIcon.Image = global::TrayUsage.Properties.Resources.delete;
+            this.btnRemoveIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.delete;
             this.btnRemoveIcon.Location = new System.Drawing.Point(13, 337);
             this.btnRemoveIcon.Name = "btnRemoveIcon";
             this.btnRemoveIcon.Size = new System.Drawing.Size(23, 23);

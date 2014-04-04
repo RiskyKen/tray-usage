@@ -1,4 +1,4 @@
-﻿namespace TrayUsage
+﻿namespace RiskyKen.TrayUsage
 {
     partial class frmDataLink
     {
@@ -73,7 +73,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Image = global::TrayUsage.Properties.Resources.add;
+            this.btnAdd.Image = global::RiskyKen.TrayUsage.Properties.Resources.add;
             this.btnAdd.Location = new System.Drawing.Point(339, 12);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 23);
@@ -84,7 +84,7 @@
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemove.Image = global::TrayUsage.Properties.Resources.delete;
+            this.btnRemove.Image = global::RiskyKen.TrayUsage.Properties.Resources.delete;
             this.btnRemove.Location = new System.Drawing.Point(339, 41);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(23, 23);
@@ -95,7 +95,7 @@
             // btnMoveUp
             // 
             this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveUp.Image = global::TrayUsage.Properties.Resources.arrow_up;
+            this.btnMoveUp.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_up;
             this.btnMoveUp.Location = new System.Drawing.Point(339, 70);
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(23, 23);
@@ -106,7 +106,7 @@
             // btnMoveDown
             // 
             this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveDown.Image = global::TrayUsage.Properties.Resources.arrow_down;
+            this.btnMoveDown.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_down;
             this.btnMoveDown.Location = new System.Drawing.Point(339, 99);
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size(23, 23);

@@ -23,7 +23,7 @@ using System.Text;
 using System.Drawing;
 using System.Xml;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class RendererImage : Renderer 
     {

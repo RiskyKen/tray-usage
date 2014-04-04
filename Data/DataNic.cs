@@ -22,13 +22,13 @@ using System.Linq;
 using System.Text;
 using System.Net.NetworkInformation;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class DataNic : Data
     {
         private NetworkInterface[] _nics = null;
 
-        private Int64[] _lastValue;
+        private UInt64[] _lastValue;
 
         public override string DataName
         {
@@ -38,7 +38,7 @@ namespace TrayUsage
         public DataNic() : base(GetNumberOfNics() * 3)
         {
             _nics = new NetworkInterface[GetNumberOfNics()];
-            _lastValue = new Int64[(_nics.GetUpperBound(0) + 1) * 3];
+            _lastValue = new UInt64[(_nics.GetUpperBound(0) + 1) * 3];
 
             NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
             Int32 nicCount = 0;
@@ -67,9 +67,9 @@ namespace TrayUsage
             //TODO Finish network update values.
             for (Int32 i = 0; i <= _nics.GetUpperBound(0); i++)
             {
-                Int64 thisDown = _nics[i].GetIPv4Statistics().BytesReceived;
-                Int64 thisUp = _nics[i].GetIPv4Statistics().BytesSent;
-                Int64 thisTotal = thisDown + thisUp;
+                UInt64 thisDown = (UInt64)_nics[i].GetIPv4Statistics().BytesReceived;
+                UInt64 thisUp = (UInt64)_nics[i].GetIPv4Statistics().BytesSent;
+                UInt64 thisTotal = thisDown + thisUp;
 
                 _currentValue[(i * 3)] = thisDown - _lastValue[(i * 3)];
                 _currentValue[(i * 3) + 1] = thisUp - _lastValue[(i * 3) + 1];
@@ -109,16 +109,11 @@ namespace TrayUsage
                     {
                         if (nics[i] != null)
                         {
-                            _dataLabels[(nicCount * 3)] = nics[i].Name + " - Down";
-                            _dataLabels[(nicCount * 3) + 1] = nics[i].Name + " - Up";
-                            _dataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
                             _nics[nicCount] = nics[i];
 
-                            Int64 thisDown = _nics[(nicCount)].GetIPv4Statistics().BytesReceived;
-                            Int64 thisUp = _nics[(nicCount)].GetIPv4Statistics().BytesSent;
-                            Int64 thisTotal = thisDown + thisUp;
-
-
+                            UInt64 thisDown = (UInt64)_nics[(nicCount)].GetIPv4Statistics().BytesReceived;
+                            UInt64 thisUp = (UInt64)_nics[(nicCount)].GetIPv4Statistics().BytesSent;
+                            UInt64 thisTotal = thisDown + thisUp;
 
                             _lastValue[(nicCount * 3)] = thisDown;
                             _lastValue[(nicCount * 3) + 1] = thisUp;

@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     //Temp class, will handle loading and unloading of data classes.
     public static class DataManager

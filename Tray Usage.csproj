@@ -8,11 +8,12 @@
     <ProjectGuid>{9EA9AEC3-C002-4C25-A162-C5989E21CA63}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TrayUsage</RootNamespace>
+    <RootNamespace>RiskyKen.TrayUsage</RootNamespace>
     <AssemblyName>TrayUsage</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <StartupObject>TrayUsage.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -50,6 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -170,6 +172,7 @@
     </Compile>
     <Compile Include="UpdateHelper.cs" />
     <Compile Include="Updater.cs" />
+    <Compile Include="Utils\Common.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

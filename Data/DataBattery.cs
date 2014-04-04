@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class DataBattery : Data
     {
@@ -41,8 +41,8 @@ namespace TrayUsage
         public override void UpdateValues()
         {
             if (!_isAwake) { throw new Exception("Data class is sleeping."); }
-            
-            _currentValue[0] = Convert.ToInt32(SystemInformation.PowerStatus.BatteryLifePercent * 100);
+
+            _currentValue[0] = Convert.ToUInt64(SystemInformation.PowerStatus.BatteryLifePercent * 100);
         }
 
         public override void Load()

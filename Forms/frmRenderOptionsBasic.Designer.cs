@@ -1,4 +1,4 @@
-﻿namespace TrayUsage
+﻿namespace RiskyKen.TrayUsage
 {
     partial class frmRenderOptionsBasic
     {

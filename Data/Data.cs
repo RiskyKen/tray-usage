@@ -20,16 +20,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Drawing;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public abstract class Data
     {
-        protected Int64[] _currentValue;
+        protected UInt64[] _currentValue;
 
-        protected Int64[] _maxValue;
+        protected UInt64[] _maxValue;
 
         //Labels for data in _currentValue.
         protected string[] _dataLabels = null;
@@ -42,8 +41,8 @@ namespace TrayUsage
 
         public Data(Int32 aNumberOfValues)
         {
-            _currentValue = new Int64[aNumberOfValues];
-            _maxValue = new Int64[aNumberOfValues];
+            _currentValue = new UInt64[aNumberOfValues];
+            _maxValue = new UInt64[aNumberOfValues];
             _dataLabels = new string[aNumberOfValues];
             _isAwake = false;
             _useCount = 0;
@@ -58,7 +57,7 @@ namespace TrayUsage
             }
         }
 
-        protected void SetMaxValues(Int64 value)
+        protected void SetMaxValues(UInt64 value)
         {
             for (Int32 i = 0; i <= _currentValue.GetUpperBound(0); i++)
             {
@@ -66,14 +65,19 @@ namespace TrayUsage
             }
         }
 
-        public Int64[] CurrentValue
+        public UInt64[] CurrentValue
         {
             get {return _currentValue;}
         }
 
-        public Int64[] MaxValue
+        public UInt64[] MaxValue
         {
             get { return _maxValue; }
+        }
+
+        public byte PercentageValue(Int32 index)
+        {
+            return Convert.ToByte((_currentValue[index] * 100) / _maxValue[index]);
         }
 
         public string[] DataLabels
@@ -85,12 +89,48 @@ namespace TrayUsage
         {
             String newText = text;
 
-            if (newText.Contains(DataName + ":"))
+            if (newText.Contains(DataName + "#"))
             {
                 for (Int32 i = 0; i <= _dataLabels.GetUpperBound(0); i++)
                 {
-                    if (newText.Contains(DataName + ":" + i.ToString()))
-                    { newText = newText.Replace("{" + DataName + ":" + i.ToString() + "}", CurrentValue[i].ToString()); }
+                    if (newText.Contains(DataName + "#" + i.ToString()))
+                    { newText = newText.Replace("{" + DataName + "#" + i.ToString() + "}", CurrentValue[i].ToString()); }
+                }
+            }
+
+            if (newText.Contains(DataName + "%"))
+            {
+                for (Int32 i = 0; i <= _dataLabels.GetUpperBound(0); i++)
+                {
+                    if (newText.Contains(DataName + "%" + i.ToString()))
+                    { newText = newText.Replace("{" + DataName + "%" + i.ToString() + "}", PercentageValue(i).ToString()); }
+                }
+            }
+
+            if (newText.Contains(DataName + "*"))
+            {
+                for (Int32 i = 0; i <= _dataLabels.GetUpperBound(0); i++)
+                {
+                    if (newText.Contains(DataName + "*" + i.ToString()))
+                    { newText = newText.Replace("{" + DataName + "*" + i.ToString() + "}", MaxValue[i].ToString()); }
+                }
+            }
+
+            if (newText.Contains(DataName + "#!"))
+            {
+                for (Int32 i = 0; i <= _dataLabels.GetUpperBound(0); i++)
+                {
+                    if (newText.Contains(DataName + "#!" + i.ToString()))
+                    { newText = newText.Replace("{" + DataName + "#!" + i.ToString() + "}", Utils.Common.SetSizeLabel(CurrentValue[i])); }
+                }
+            }
+
+            if (newText.Contains(DataName + "*!"))
+            {
+                for (Int32 i = 0; i <= _dataLabels.GetUpperBound(0); i++)
+                {
+                    if (newText.Contains(DataName + "*!" + i.ToString()))
+                    { newText = newText.Replace("{" + DataName + "*!" + i.ToString() + "}", Utils.Common.SetSizeLabel(MaxValue[i])); }
                 }
             }
 

@@ -24,7 +24,7 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public partial class frmOptions
     {
@@ -49,7 +49,7 @@ namespace TrayUsage
 
         private void btnAddIcon_Click(object sender, EventArgs e)
         {
-            IconManager.AddIcon("New Icon", "{iconname}", null);
+            IconManager.AddIcon("New Icon", "{iconname}", null, Color.Black, Color.White);
             populateIconsList();
         }
 

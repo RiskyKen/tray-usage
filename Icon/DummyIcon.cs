@@ -25,7 +25,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing;
 
-namespace TrayUsage
+namespace RiskyKen.TrayUsage
 {
     public class DummyIcon
     {
