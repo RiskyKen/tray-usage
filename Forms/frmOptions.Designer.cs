@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblLoaded = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkMissingIconFix = new System.Windows.Forms.CheckBox();
             this.chkFullScreenSleep = new System.Windows.Forms.CheckBox();
@@ -69,6 +70,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -97,6 +99,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lblLoaded);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -106,6 +109,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lblLoaded
+            // 
+            this.lblLoaded.AutoSize = true;
+            this.lblLoaded.Location = new System.Drawing.Point(15, 354);
+            this.lblLoaded.Name = "lblLoaded";
+            this.lblLoaded.Size = new System.Drawing.Size(111, 13);
+            this.lblLoaded.TabIndex = 3;
+            this.lblLoaded.Text = "Loaded Data Classes:";
             // 
             // groupBox4
             // 
@@ -548,6 +560,11 @@
             this.toolTip1.InitialDelay = 500;
             this.toolTip1.ReshowDelay = 100;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -565,6 +582,7 @@
             this.Text = "Tray Usage - Options";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -623,6 +641,8 @@
         private System.Windows.Forms.Button btnMoveIconDown;
         private System.Windows.Forms.TextBox txtRollover;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblLoaded;
+        private System.Windows.Forms.Timer timer1;
 
     }
 }

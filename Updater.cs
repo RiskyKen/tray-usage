@@ -370,6 +370,5 @@ namespace TrayUsage
             }
             return sb.ToString().ToLower();
         }
-
     }
 }

@@ -35,11 +35,11 @@ namespace TrayUsage
             get { return "Network Interface"; }
         }
 
-        internal DataNic() : base(GetNumberOfNics() * 3)
+        public DataNic() : base(GetNumberOfNics() * 3)
         {
-
             _nics = new NetworkInterface[GetNumberOfNics()];
             _lastValue = new Int64[(_nics.GetUpperBound(0) + 1) * 3];
+
             NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
             Int32 nicCount = 0;
             for (Int32 i = 0; i <= nics.GetUpperBound(0); i++)
@@ -53,27 +53,17 @@ namespace TrayUsage
                             _dataLabels[(nicCount * 3)] = nics[i].Name + " - Down";
                             _dataLabels[(nicCount * 3) + 1] = nics[i].Name + " - Up";
                             _dataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
-                            _nics[nicCount] = nics[i];
-
-                            Int64 thisDown = _nics[(nicCount)].GetIPv4Statistics().BytesReceived;
-                            Int64 thisUp = _nics[(nicCount)].GetIPv4Statistics().BytesSent;
-                            Int64 thisTotal = thisDown + thisUp;
-
-
-
-                            _lastValue[(nicCount * 3)] = thisDown;
-                            _lastValue[(nicCount * 3) + 1] = thisUp;
-                            _lastValue[(nicCount * 3) + 2] = thisTotal;
-                            nicCount++;
                         }
                     }
                 }
             }
+
             SetMaxValues(1);
         }
 
         public override void UpdateValues()
         {
+            if (!_isAwake) { throw new Exception("Data class is sleeping."); }
             //TODO Finish network update values.
             for (Int32 i = 0; i <= _nics.GetUpperBound(0); i++)
             {
@@ -107,9 +97,42 @@ namespace TrayUsage
             return nicCount;
         }
 
-        new internal void Dispose()
+        public override void Load()
         {
-            base.Dispose();
+            NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
+            Int32 nicCount = 0;
+            for (Int32 i = 0; i <= nics.GetUpperBound(0); i++)
+            {
+                if (nics[i].NetworkInterfaceType != NetworkInterfaceType.Loopback)
+                {
+                    if (nics[i].SupportsMulticast)
+                    {
+                        if (nics[i] != null)
+                        {
+                            _dataLabels[(nicCount * 3)] = nics[i].Name + " - Down";
+                            _dataLabels[(nicCount * 3) + 1] = nics[i].Name + " - Up";
+                            _dataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
+                            _nics[nicCount] = nics[i];
+
+                            Int64 thisDown = _nics[(nicCount)].GetIPv4Statistics().BytesReceived;
+                            Int64 thisUp = _nics[(nicCount)].GetIPv4Statistics().BytesSent;
+                            Int64 thisTotal = thisDown + thisUp;
+
+
+
+                            _lastValue[(nicCount * 3)] = thisDown;
+                            _lastValue[(nicCount * 3) + 1] = thisUp;
+                            _lastValue[(nicCount * 3) + 2] = thisTotal;
+                            nicCount++;
+                        }
+                    }
+                }
+            }
+        }
+
+        public override void Unload()
+        {
+            //TODO Unload nics
         }
     }
 }

@@ -43,7 +43,7 @@ namespace TrayUsage
         }
 
         //Checks if we need to check for updates.
-        public void CheckForUpdates()
+        public void CheckForUpdatesIfNeeded()
         {
             if (Globals.UpdateCheckTime == 0) { return; }
             if (_lastUpdateCheckTick + Globals.UpdateCheckTime < Environment.TickCount)

@@ -36,11 +36,17 @@ namespace TrayUsage
 
         public abstract string DataName { get; }
 
+        protected bool _isAwake;
+
+        protected int _useCount;
+
         public Data(Int32 aNumberOfValues)
         {
             _currentValue = new Int64[aNumberOfValues];
             _maxValue = new Int64[aNumberOfValues];
             _dataLabels = new string[aNumberOfValues];
+            _isAwake = false;
+            _useCount = 0;
         }
 
         protected void UpdateMaxValues()
@@ -88,21 +94,43 @@ namespace TrayUsage
                 }
             }
 
-
             return newText;
         }
 
+        public bool IsAwake
+        {
+            get { return _isAwake; }
+        }
+
+        public void Wake()
+        {
+            if (_useCount == 0)
+            {
+                Load();
+                _isAwake = true;
+            }
+            _useCount++;
+        }
+
+        public void Sleep()
+        {
+            _useCount--;
+            if (_useCount < 1)
+            {
+                Unload();
+                _isAwake = false;
+            }
+        }
+
+        public abstract void Load();
+
+        public abstract void Unload();
+
         public abstract void UpdateValues();
 
-        public void Dispose()
+        public virtual void Dispose()
         {
+            if (IsAwake) { Sleep(); }
         }
     }
-
-    //public struct DataNode
-    //{
-    //    public string Name;
-    //    public Int64 Value;
-    //    public Int64 Max;
-    //}
 }

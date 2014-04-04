@@ -109,6 +109,7 @@ namespace TrayUsage
                 Array.Resize(ref TargetData, TargetData.GetUpperBound(0) + 2);
             }
             TargetData[TargetData.GetUpperBound(0)] = aDataLink;
+            aDataLink.DataClassRef.Wake();
             //UpdateName();
             renderer.ForceIconRedraw();
         }
@@ -116,6 +117,9 @@ namespace TrayUsage
         public void RemoveDataSource(Int32 aIndex)
         {
             if (TargetData == null) { return; }
+
+            TargetData[aIndex].DataClassRef.Sleep();
+
             if (TargetData.GetUpperBound(0) == 0)
             {
                 TargetData = null;
@@ -138,6 +142,16 @@ namespace TrayUsage
             TargetData = tempLink;
             //UpdateName();
             renderer.ForceIconRedraw();
+        }
+
+        private void RemoveAllDataSources()
+        {
+            if (TargetData == null) { return; }
+
+            for (int i = 0; i <= TargetData.GetUpperBound(0); i++)
+            {
+                TargetData[i].DataClassRef.Sleep();
+            }
         }
 
         public void MoveDataSourceUp(Int32 index)
@@ -205,7 +219,7 @@ namespace TrayUsage
             newText = text.Replace("{iconname}", IconName);
             newText = newText.Replace(@"\n", "\n");
 
-            newText = Program.dataManager.ReplaceIconText(newText);
+            newText = DataManager.ReplaceIconText(newText);
 
             if (newText.Length > 63)
             {
@@ -225,6 +239,7 @@ namespace TrayUsage
 
         public void Dispose()
         {
+            RemoveAllDataSources();
             trayIcon.DoubleClick -= TrayIcon_DoubleClick;
             trayIcon.Visible = false;
             trayIcon.Dispose();

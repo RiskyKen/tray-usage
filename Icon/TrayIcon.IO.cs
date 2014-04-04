@@ -129,7 +129,7 @@ namespace TrayUsage
                     case XmlNodeType.Text:
                         if (thisNode == "Name")
                         {
-                            tempLink.DataClassRef = Program.dataManager.GetDataClassRef(aR.Value);
+                            tempLink.DataClassRef = DataManager.GetDataClassRef(aR.Value);
                             break;
                         }
                         if (thisNode == "Index")

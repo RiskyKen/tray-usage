@@ -37,14 +37,6 @@ namespace TrayUsage
         {
             proCounter = new PerformanceCounter[Environment.ProcessorCount];
 
-            for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
-            {
-                proCounter[i] = new PerformanceCounter();
-                proCounter[i].CategoryName = "Processor";
-                proCounter[i].CounterName = "% Processor Time";
-                proCounter[i].InstanceName = i.ToString();
-            }
-
             _dataLabels[0] = "Total";
             for (Int32 i = 1; i <= _dataLabels.GetUpperBound(0); i++)
             {
@@ -55,6 +47,7 @@ namespace TrayUsage
 
         public override void UpdateValues()
         {
+            if (!_isAwake) { throw new Exception("Data class is sleeping."); }
             Int64 totalUsage = 0;
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
@@ -64,13 +57,23 @@ namespace TrayUsage
             _currentValue[0] = totalUsage / Environment.ProcessorCount;
         }
 
-        new internal void Dispose()
+        public override void Load()
+        {
+            for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
+            {
+                proCounter[i] = new PerformanceCounter();
+                proCounter[i].CategoryName = "Processor";
+                proCounter[i].CounterName = "% Processor Time";
+                proCounter[i].InstanceName = i.ToString();
+            }
+        }
+
+        public override void Unload()
         {
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
                 proCounter[i].Dispose();
             }
-            base.Dispose();
         }
     }
 }

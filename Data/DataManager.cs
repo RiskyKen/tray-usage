@@ -25,9 +25,9 @@ using System.Windows.Forms;
 namespace TrayUsage
 {
     //Temp class, will handle loading and unloading of data classes.
-    public class DataManager
+    public static class DataManager
     {
-        public Data[] DataClasses = null;
+        public static Data[] DataClasses = null;
 
         //CPU
         //Memory Physical
@@ -38,7 +38,7 @@ namespace TrayUsage
         //Battery
         //Dummy
 
-        public DataManager()
+        public static void Init()
         {
             DataClasses = new Data[7];
             DataClasses[0] = new DataCpu();
@@ -49,8 +49,8 @@ namespace TrayUsage
             DataClasses[5] = new DataBattery();
             DataClasses[6] = new DataNic();
         }
-                
-        public void Dispose()
+
+        public static void Dispose()
         {
             for (Int32 i = 0; i <= DataClasses.GetUpperBound(0); i++)
             {
@@ -59,7 +59,7 @@ namespace TrayUsage
             }
         }
 
-        public String ReplaceIconText(String text)
+        public static String ReplaceIconText(String text)
         {
             String newText = text;
             if (DataClasses == null) { return text; }
@@ -70,15 +70,18 @@ namespace TrayUsage
             return newText;
         }
 
-        public void UpdateValues()
+        public static void UpdateValues()
         {
             for (Int32 i = 0; i <= DataClasses.GetUpperBound(0); i++)
             {
-                DataClasses[i].UpdateValues();
+                if (DataClasses[i].IsAwake)
+                {
+                    DataClasses[i].UpdateValues();
+                }
             }
         }
 
-        public Data GetDataClassRef(string aName)
+        public static Data GetDataClassRef(string aName)
         {
             for (Int32 i = 0; i <= DataClasses.GetUpperBound(0); i++)
             {
@@ -87,7 +90,41 @@ namespace TrayUsage
             return null;
         }
 
-        public DataListItem[] GetDataNodesList()
+        public static void WakeupDataClass(string name)
+        {
+            for (Int32 i = 0; i <= DataClasses.GetUpperBound(0); i++)
+            {
+                if (DataClasses[i].DataName == name)
+                {
+                    DataClasses[i].Wake();
+                    return;
+                }
+            }
+        }
+
+        public static void SleepDataClass(string name)
+        {
+            for (Int32 i = 0; i <= DataClasses.GetUpperBound(0); i++)
+            {
+                if (DataClasses[i].DataName == name)
+                {
+                    DataClasses[i].Sleep();
+                    return;
+                }
+            }
+        }
+
+        public static int GetNumberOfLoadedDataClasses()
+        {
+            int result = 0;
+            for (Int32 i = 0; i <= DataClasses.GetUpperBound(0); i++)
+            {
+                if (DataClasses[i].IsAwake) { result++; }
+            }
+            return result;
+        }
+
+        public static DataListItem[] GetDataNodesList()
         {
             if (DataClasses == null) { return null; }
             DataListItem[] templist;

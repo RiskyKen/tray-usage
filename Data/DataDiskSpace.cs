@@ -47,6 +47,7 @@ namespace TrayUsage
 
         public override void UpdateValues()
         {
+            if (!_isAwake) { throw new Exception("Data class is sleeping."); }
             for (Int32 i = 0; i <= Drives.GetUpperBound(0); i++)
             {
                 Int32 thisSpace = 0;
@@ -56,9 +57,12 @@ namespace TrayUsage
             }
         }
 
-        new internal void Dispose()
+        public override void Load()
         {
-            base.Dispose();
+        }
+
+        public override void Unload()
+        {
         }
     }
 }

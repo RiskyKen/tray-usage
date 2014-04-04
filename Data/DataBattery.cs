@@ -40,12 +40,17 @@ namespace TrayUsage
 
         public override void UpdateValues()
         {
-            _currentValue[0] = Convert.ToInt32(SystemInformation.PowerStatus.BatteryLifePercent * 100) ;
+            if (!_isAwake) { throw new Exception("Data class is sleeping."); }
+            
+            _currentValue[0] = Convert.ToInt32(SystemInformation.PowerStatus.BatteryLifePercent * 100);
         }
 
-        new internal void Dispose()
+        public override void Load()
         {
-            base.Dispose();
+        }
+
+        public override void Unload()
+        {
         }
     }
 }

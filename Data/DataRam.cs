@@ -27,30 +27,34 @@ namespace TrayUsage
     public class DataRam : Data 
     {
         private PerformanceCounter proCounter = null;
+
         public override string DataName
         {
             get { return "RAM"; }
         }
 
-        internal DataRam() : base(1)
+        public DataRam() : base(1)
         {
-            proCounter = new System.Diagnostics.PerformanceCounter();
-            proCounter.CategoryName = "Memory";
-            proCounter.CounterName = "% Committed Bytes In Use";
-
             _dataLabels[0] = "% Of Bytes In Use";
             SetMaxValues(100);
         }
 
         public override void UpdateValues()
         {
+            if (!_isAwake) { throw new Exception("Data class is sleeping."); }
             _currentValue[0] = (Int32)proCounter.NextValue();
         }
 
-        new internal void Dispose()
+        public override void Load()
+        {
+            proCounter = new System.Diagnostics.PerformanceCounter();
+            proCounter.CategoryName = "Memory";
+            proCounter.CounterName = "% Committed Bytes In Use";
+        }
+
+        public override void Unload()
         {
             proCounter.Dispose();
-            base.Dispose();
         }
     }
 }

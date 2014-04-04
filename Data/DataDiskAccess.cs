@@ -39,22 +39,12 @@ namespace TrayUsage
 
             _dataLabels = GetHardDriveLabels();
 
-            string[] diskLabels = new PerformanceCounterCategory("PhysicalDisk").GetInstanceNames();
-
-            for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
-            {
-                string thisDataLabel = _dataLabels[i].Remove(_dataLabels[i].Length - 1);
-                proCounter[i] = new PerformanceCounter();
-                proCounter[i].CategoryName = "PhysicalDisk";
-                proCounter[i].CounterName = "% Disk Time";
-                proCounter[i].InstanceName = diskLabels[i];
-
-            }
             SetMaxValues(100);
         }
 
         public override void UpdateValues()
         {
+            if (!_isAwake) { throw new Exception("Data class is sleeping."); }
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
                 _currentValue[i] = (Int32)proCounter[i].NextValue();
@@ -74,13 +64,26 @@ namespace TrayUsage
             return DriveLabels;
         }
 
-        new internal void Dispose()
+        public override void Load()
+        {
+            string[] diskLabels = new PerformanceCounterCategory("PhysicalDisk").GetInstanceNames();
+            for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
+            {
+                string thisDataLabel = _dataLabels[i].Remove(_dataLabels[i].Length - 1);
+                proCounter[i] = new PerformanceCounter();
+                proCounter[i].CategoryName = "PhysicalDisk";
+                proCounter[i].CounterName = "% Disk Time";
+                proCounter[i].InstanceName = diskLabels[i];
+
+            }
+        }
+
+        public override void Unload()
         {
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
                 proCounter[i].Dispose();
             }
-            base.Dispose();
         }
     }
 }

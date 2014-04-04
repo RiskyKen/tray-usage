@@ -42,12 +42,16 @@ namespace TrayUsage
         //Has the missing icon fix been run?
         private static Boolean _missingIconFixRun = false;
 
+        //Lock object for the icons.
+        private static object _iconLock;
+
         //Constructor
-        static IconManager()
+        public static void Init()
         {
             TrayMenu = new IconMenu();
             InvokeControl = new Control();
             InvokeControl.CreateControl();
+            _iconLock = new object();
         }
 
         public static void LoadIcons()
@@ -98,86 +102,101 @@ namespace TrayUsage
         //Add an icon into the TrayIcons array.
         public static void AddIcon(string aDataName, String RolloverText, DataLink[] aTargetData)
         {
-            if (InvokeControl.InvokeRequired)
+            lock (_iconLock)
             {
-                MessageBox.Show("Failed to invoke when adding icon.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw new Exception("Failed to invoke when adding icon.");
+                if (InvokeControl.InvokeRequired)
+                {
+                    MessageBox.Show("Failed to invoke when adding icon.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new Exception("Failed to invoke when adding icon.");
+                }
+                if (trayIcons == null) { trayIcons = new TrayIcon[1]; }
+                else
+                {
+                    Array.Resize(ref trayIcons, trayIcons.GetUpperBound(0) + 2);
+                }
+                trayIcons[trayIcons.GetUpperBound(0)] = new TrayIcon(aDataName, RolloverText, aTargetData);
+                CheckDummyIconVisibliy();
             }
-            if (trayIcons == null) { trayIcons = new TrayIcon[1]; }
-            else
-            {
-                Array.Resize(ref trayIcons, trayIcons.GetUpperBound(0) + 2);
-            }
-            trayIcons[trayIcons.GetUpperBound(0)] = new TrayIcon(aDataName, RolloverText, aTargetData);
-            CheckDummyIconVisibliy();
         }
 
         public static void AddIcon(XmlReader r)
         {
-            if (InvokeControl.InvokeRequired)
+            lock (_iconLock)
             {
-                MessageBox.Show("Failed to invoke when adding icon.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw new Exception("Failed to invoke when adding icon.");
+                if (InvokeControl.InvokeRequired)
+                {
+                    MessageBox.Show("Failed to invoke when adding icon.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new Exception("Failed to invoke when adding icon.");
+                }
+                if (trayIcons == null) { trayIcons = new TrayIcon[1]; }
+                else
+                {
+                    Array.Resize(ref trayIcons, trayIcons.GetUpperBound(0) + 2);
+                }
+                trayIcons[trayIcons.GetUpperBound(0)] = new TrayIcon(r);
+                CheckDummyIconVisibliy();
             }
-            if (trayIcons == null) { trayIcons = new TrayIcon[1]; }
-            else
-            {
-                Array.Resize(ref trayIcons, trayIcons.GetUpperBound(0) + 2);
-            }
-            trayIcons[trayIcons.GetUpperBound(0)] = new TrayIcon(r);
-            CheckDummyIconVisibliy();
         }
 
 
         //Remove an icon from the TrayIcons array.
         public static void RemoveIcon(Int32 aIconIndex)
         {
-            if (trayIcons == null) { return; }
+            lock (_iconLock)
+            {
+                if (trayIcons == null) { return; }
 
-            if (trayIcons.GetUpperBound(0) == 0)
-            {
-                trayIcons[0].Dispose();
-                trayIcons = null;
-            }
-            else
-            {
-                TrayIcon[] NewIcons = new TrayIcon[trayIcons.GetUpperBound(0)];
-                Int32 OffsetCount = 0;
-                for (Int32 i = 0; i <= trayIcons.GetUpperBound(0); i++)
+                if (trayIcons.GetUpperBound(0) == 0)
                 {
-                    if (i != aIconIndex)
-                    {
-                        NewIcons[OffsetCount] = trayIcons[i];
-                        OffsetCount++;
-                    }
-                    else
-                    {
-                        trayIcons[i].Dispose();
-                        trayIcons[i] = null;
-                    }
+                    trayIcons[0].Dispose();
+                    trayIcons = null;
                 }
-                trayIcons = NewIcons;
+                else
+                {
+                    TrayIcon[] NewIcons = new TrayIcon[trayIcons.GetUpperBound(0)];
+                    Int32 OffsetCount = 0;
+                    for (Int32 i = 0; i <= trayIcons.GetUpperBound(0); i++)
+                    {
+                        if (i != aIconIndex)
+                        {
+                            NewIcons[OffsetCount] = trayIcons[i];
+                            OffsetCount++;
+                        }
+                        else
+                        {
+                            trayIcons[i].Dispose();
+                            trayIcons[i] = null;
+                        }
+                    }
+                    trayIcons = NewIcons;
+                }
+                CheckDummyIconVisibliy();
+                ReshowIcons();
             }
-            CheckDummyIconVisibliy();
-            ReshowIcons();
         }
 
         //Move an icon up.
         public static void MoveIconUp(Int32 index)
         {
-            TrayIcon tempIcon = trayIcons[index];
-            trayIcons[index] = trayIcons[index - 1];
-            trayIcons[index - 1] = tempIcon;
-            ReshowIcons();
+            lock (_iconLock)
+            {
+                TrayIcon tempIcon = trayIcons[index];
+                trayIcons[index] = trayIcons[index - 1];
+                trayIcons[index - 1] = tempIcon;
+                ReshowIcons();
+            }
         }
 
         //Move an icon down.
         public static void MoveIconDown(Int32 index)
         {
-            TrayIcon tempIcon = trayIcons[index];
-            trayIcons[index] = trayIcons[index + 1];
-            trayIcons[index + 1] = tempIcon;
-            ReshowIcons();
+            lock (_iconLock)
+            {
+                TrayIcon tempIcon = trayIcons[index];
+                trayIcons[index] = trayIcons[index + 1];
+                trayIcons[index + 1] = tempIcon;
+                ReshowIcons();
+            }
         }
 
         //Shows all the icons.
@@ -245,14 +264,17 @@ namespace TrayUsage
         //Render the icons.
         public static void UpdateIcons(Boolean sleeping)
         {
-            if (trayIcons == null) { return; }
-            if (Globals.MissingIconFix)
+            lock (_iconLock)
             {
-                if (!_missingIconFixRun) { MissingIconFixCheck(); }
-            }
-            for (Int32 i = 0; i <= trayIcons.GetUpperBound(0); i++)
-            {
-                trayIcons[i].RenderIcon(sleeping);
+                if (trayIcons == null) { return; }
+                if (Globals.MissingIconFix)
+                {
+                    if (!_missingIconFixRun) { MissingIconFixCheck(); }
+                }
+                for (Int32 i = 0; i <= trayIcons.GetUpperBound(0); i++)
+                {
+                    trayIcons[i].RenderIcon(sleeping);
+                }
             }
         }
 

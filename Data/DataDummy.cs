@@ -36,8 +36,6 @@ namespace TrayUsage
 
         public DataDummy() : base(3)
         {
-            ranNum = new Random();
-
             _dataLabels[0] = "Random Data";
             _dataLabels[1] = "Count Up";
             _dataLabels[2] = "Count Down";
@@ -46,6 +44,7 @@ namespace TrayUsage
 
         public override void UpdateValues()
         {
+            if (!_isAwake) { throw new Exception("Data class is sleeping."); }
             upCount++;
             if (upCount > 100) { upCount = 0; }
             downCount--;
@@ -55,9 +54,14 @@ namespace TrayUsage
             _currentValue[2] = downCount;
         }
 
-        new internal void Dispose()
+        public override void Load()
         {
-            base.Dispose();
+            ranNum = new Random();
+        }
+
+        public override void Unload()
+        {
+            ranNum = null;
         }
     }
 }

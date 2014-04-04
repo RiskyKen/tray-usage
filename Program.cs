@@ -33,9 +33,6 @@ namespace TrayUsage
         /// The main entry point for the application.
         /// </summary>
         
-        //A class handling all data collection.
-        public static DataManager dataManager = null;
-
         //A class that checks if a fullscreen application is running.
         public static FullScreenCheck fullScreenCheck = null;
 
@@ -80,7 +77,8 @@ namespace TrayUsage
         private static void LoadClasses()
         {
             formHelper = new FormHelper();
-            dataManager = new DataManager();
+            DataManager.Init();
+            IconManager.Init();
             settingsClass = new Settings();
             updateHelper = new UpdateHelper(Application.StartupPath, Globals.FileDownloadPath, new Version(Application.ProductVersion));
             fullScreenCheck = new FullScreenCheck();
@@ -92,7 +90,7 @@ namespace TrayUsage
             updateHelper.Dispose();
             fullScreenCheck.Dispose();
             IconManager.Dispose();
-            dataManager.Dispose();
+            DataManager.Dispose();
             settingsClass.Dispose();
             formHelper.Dispose();
         }
@@ -114,9 +112,9 @@ namespace TrayUsage
             {
                 Boolean sleeping = false;
                 if (Globals.FullscreenSleep) { sleeping = fullScreenCheck.FullScreenProgramRunning; }
-                dataManager.UpdateValues();
+                DataManager.UpdateValues();
                 IconManager.UpdateIcons(sleeping);
-                updateHelper.CheckForUpdates();
+                updateHelper.CheckForUpdatesIfNeeded();
                 if (sleeping) { Thread.Sleep(Globals.SleepTime); }
                 else { Thread.Sleep(Globals.IconUpdateRate); }
                 

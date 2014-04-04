@@ -131,5 +131,10 @@ namespace TrayUsage
             ApplySettings();
             this.DialogResult = DialogResult.OK;
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblLoaded.Text = "Loaded Data Classes: " + DataManager.GetNumberOfLoadedDataClasses();
+        }
     }
 }
