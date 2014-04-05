@@ -33,9 +33,10 @@ namespace RiskyKen.TrayUsage
             get { return "RAM"; }
         }
 
-        public DataRam() : base(1)
+        public DataRam() : base(2)
         {
-            _dataLabels[0] = "% Of Bytes In Use";
+            _dataLabels[0] = "% Of Bytes In Use Physical";
+            _dataLabels[1] = "% Of Bytes In Use Virtual";
             SetMaxValues(100);
         }
 
@@ -44,7 +45,9 @@ namespace RiskyKen.TrayUsage
             if (!_isAwake) { throw new Exception("Data class is sleeping."); }
             _currentValue[0] = (UInt64)computerInfo.TotalPhysicalMemory - computerInfo.AvailablePhysicalMemory;
             _maxValue[0] = (UInt64)computerInfo.TotalPhysicalMemory;
-            //UpdateMaxValues();
+
+            _currentValue[1] = (UInt64)computerInfo.TotalVirtualMemory - computerInfo.AvailableVirtualMemory;
+            _maxValue[1] = (UInt64)computerInfo.TotalVirtualMemory;
         }
 
         public override void Load()
