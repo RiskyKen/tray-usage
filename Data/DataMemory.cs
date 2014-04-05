@@ -30,7 +30,7 @@ namespace RiskyKen.TrayUsage
         private ComputerInfo computerInfo = null;
         public override string DataName
         {
-            get { return "RAM"; }
+            get { return "Memory"; }
         }
 
         public DataRam() : base(2)

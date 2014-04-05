@@ -95,7 +95,7 @@
     <Compile Include="Data\DataCpu.cs" />
     <Compile Include="Data\DataDummy.cs" />
     <Compile Include="Data\DataManager.cs" />
-    <Compile Include="Data\DataRam.cs" />
+    <Compile Include="Data\DataMemory.cs" />
     <Compile Include="Data\DataDiskSpace.cs" />
     <Compile Include="Data\DataDiskAccess.cs" />
     <Compile Include="Data\DataBattery.cs" />

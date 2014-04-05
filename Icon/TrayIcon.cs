@@ -102,6 +102,7 @@ namespace RiskyKen.TrayUsage
 
         public void AddDataSource(DataLink aDataLink)
         {
+            if (aDataLink.DataClassRef == null) { return; }
             if (TargetData == null)
             {
                 TargetData = new DataLink[1];
@@ -110,10 +111,13 @@ namespace RiskyKen.TrayUsage
             {
                 Array.Resize(ref TargetData, TargetData.GetUpperBound(0) + 2);
             }
-            TargetData[TargetData.GetUpperBound(0)] = aDataLink;
-            aDataLink.DataClassRef.Wake();
-            //UpdateName();
-            renderer.ForceIconRedraw();
+            if (aDataLink.DataClassRef != null)
+            {
+                TargetData[TargetData.GetUpperBound(0)] = aDataLink;
+                aDataLink.DataClassRef.Wake();
+                //UpdateName();
+                renderer.ForceIconRedraw();
+            }
         }
 
         public void RemoveDataSource(Int32 aIndex)
