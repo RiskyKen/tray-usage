@@ -44,7 +44,10 @@ namespace RiskyKen.TrayUsage
 
         //Temp location for files downloaded by updater.
         public static readonly string FileDownloadPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\" + Application.ProductName + @"\download";
-        
+
+        //Crash dump file path.
+        public static readonly string CrashDumpFilePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\" + Application.ProductName + @"\crash.dump";
+
         //Update rate in ms of tray icons.
         public static Int32 IconUpdateRate = 250;
 

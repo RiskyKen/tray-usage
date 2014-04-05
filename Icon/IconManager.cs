@@ -95,7 +95,7 @@ namespace RiskyKen.TrayUsage
             tempLinkRAM.DataClassRef = DataManager.GetDataClassRef("Memory");
             tempLinkRAM.DataClassRef.Wake();
 
-            AddIcon("Memory", "{iconname} - {RAM%0}%\n\n{RAM#!0} - {RAM*!0}", new DataLink[] { tempLinkRAM },
+            AddIcon("Memory", "{iconname} - {Memory%0}%\n\n{Memory#!0} - {Memory*!0}", new DataLink[] { tempLinkRAM },
                 Globals.colorPresets[11].BackgroundColor, Globals.colorPresets[11].ForegroundColor);
         }
 

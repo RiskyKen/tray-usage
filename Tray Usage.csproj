@@ -171,6 +171,7 @@
     <Compile Include="Forms\frmUpdate.Designer.cs">
       <DependentUpon>frmUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThreadExceptionHandler.cs" />
     <Compile Include="Update\UpdateHelper.cs" />
     <Compile Include="Update\Updater.cs" />
     <Compile Include="Utils\Common.cs" />

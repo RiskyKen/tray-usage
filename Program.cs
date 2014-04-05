@@ -67,6 +67,7 @@ namespace RiskyKen.TrayUsage
             ParseArguments(args);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            ThreadExceptionHandler.Init();
             Globals.LoadPresetColors();
             LoadClasses();
             LoadSettingFile();
