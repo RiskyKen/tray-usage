@@ -52,6 +52,7 @@ namespace RiskyKen.TrayUsage
                             _dataLabels[(nicCount * 3)] = nics[i].Name + " - Down";
                             _dataLabels[(nicCount * 3) + 1] = nics[i].Name + " - Up";
                             _dataLabels[(nicCount * 3) + 2] = nics[i].Name + " - Total";
+                            nicCount++;
                         }
                     }
                 }
