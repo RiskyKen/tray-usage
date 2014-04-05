@@ -96,6 +96,7 @@ namespace RiskyKen.TrayUsage
             formHelper = new FormHelper();
             DataManager.Init();
             IconManager.Init();
+            Render.RenderRegistry.Init();
             settingsClass = new Settings();
             updateHelper = new UpdateHelper(Application.StartupPath, Globals.FileDownloadPath, new Version(Application.ProductVersion));
             fullScreenCheck = new FullScreenCheck();

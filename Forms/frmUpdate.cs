@@ -59,12 +59,36 @@ namespace RiskyKen.TrayUsage
             Program.updateHelper.updater.UpdateCheckFinished -= UpdateCheckReturn;
             proBar.Style = ProgressBarStyle.Continuous;
             lblRemoteVer.Text = "Remote version: " + result.LatestVersion.ToString();
+
+            DownloadChangeLog(result.ChangeLogUrl);
+
             if (result.UpdateAvailable)
             {
                 btnUpdate.Enabled = true;
                 updateFileListUrl = result.UpdateFileListUrl;
             }
-            
+        }
+
+        private void DownloadChangeLog(string fileUrl)
+        {
+            textBoxChangeLog.Text = "Downloading...";
+            Program.updateHelper.updater.DownloadChangeLogFinished += new Updater.DownloadChangeLogFinishedHandler(DownloadChangeLogFinished);
+            Program.updateHelper.updater.DownloadChangeLogAsync(fileUrl);
+        }
+
+        private void DownloadChangeLogFinished(Updater.DownloadChangeLogResult result)
+        {
+            if (this.InvokeRequired)
+            {
+                Debug.WriteLine("Invoking download change log on update form.");
+                Updater.DownloadChangeLogFinishedHandler updateFormInvoker = new Updater.DownloadChangeLogFinishedHandler(DownloadChangeLogFinished);
+                this.Invoke(updateFormInvoker, result);
+            }
+            Program.updateHelper.updater.DownloadChangeLogFinished -= DownloadChangeLogFinished;
+            if (result.Success)
+            {
+                textBoxChangeLog.Text = result.LogText;
+            }
         }
 
         //Start downloading an update

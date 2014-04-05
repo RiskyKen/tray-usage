@@ -317,7 +317,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRenderInfo.Location = new System.Drawing.Point(6, 16);
             this.lblRenderInfo.Name = "lblRenderInfo";
-            this.lblRenderInfo.Size = new System.Drawing.Size(308, 111);
+            this.lblRenderInfo.Size = new System.Drawing.Size(308, 96);
             this.lblRenderInfo.TabIndex = 4;
             this.lblRenderInfo.Text = "label4";
             // 
@@ -365,9 +365,6 @@
             // 
             this.comboRenderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboRenderType.FormattingEnabled = true;
-            this.comboRenderType.Items.AddRange(new object[] {
-            "Basic",
-            "History"});
             this.comboRenderType.Location = new System.Drawing.Point(6, 123);
             this.comboRenderType.Name = "comboRenderType";
             this.comboRenderType.Size = new System.Drawing.Size(172, 21);

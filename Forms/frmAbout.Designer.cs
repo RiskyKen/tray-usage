@@ -33,6 +33,8 @@
             this.lblProgramName = new System.Windows.Forms.Label();
             this.lblProgramVersion = new System.Windows.Forms.Label();
             this.lblWebsite = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.linkEmail = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // btnClose
@@ -64,7 +66,7 @@
             this.lblProgramName.Location = new System.Drawing.Point(12, 9);
             this.lblProgramName.Name = "lblProgramName";
             this.lblProgramName.Size = new System.Drawing.Size(70, 25);
-            this.lblProgramName.TabIndex = 2;
+            this.lblProgramName.TabIndex = 0;
             this.lblProgramName.Text = "label1";
             // 
             // lblProgramVersion
@@ -85,14 +87,36 @@
             this.lblWebsite.TabIndex = 4;
             this.lblWebsite.Text = "Website:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 99);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Email:";
+            // 
+            // linkEmail
+            // 
+            this.linkEmail.AutoSize = true;
+            this.linkEmail.Location = new System.Drawing.Point(69, 99);
+            this.linkEmail.Name = "linkEmail";
+            this.linkEmail.Size = new System.Drawing.Size(127, 13);
+            this.linkEmail.TabIndex = 1;
+            this.linkEmail.TabStop = true;
+            this.linkEmail.Text = "riskyken.web@gmail.com";
+            this.linkEmail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkEmail_LinkClicked);
+            // 
             // frmAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(317, 161);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblWebsite);
             this.Controls.Add(this.lblProgramVersion);
             this.Controls.Add(this.lblProgramName);
+            this.Controls.Add(this.linkEmail);
             this.Controls.Add(this.linkWebsite);
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -113,5 +137,7 @@
         private System.Windows.Forms.Label lblProgramName;
         private System.Windows.Forms.Label lblProgramVersion;
         private System.Windows.Forms.Label lblWebsite;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkEmail;
     }
 }

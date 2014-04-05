@@ -24,6 +24,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace RiskyKen.TrayUsage
 {
@@ -45,6 +46,28 @@ namespace RiskyKen.TrayUsage
         private void linkWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(linkWebsite.Text);
+        }
+
+        private void linkEmail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!OpenEmailLink(linkEmail.Text))
+            {
+                MessageBox.Show("No default email client found.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private bool OpenEmailLink(string address)
+        {
+            string runPrams = "mailto" + address;
+            try
+            {
+                Process.Start(runPrams);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

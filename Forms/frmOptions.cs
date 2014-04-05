@@ -98,6 +98,7 @@ namespace RiskyKen.TrayUsage
         private void btnOK_Click(object sender, EventArgs e)
         {
             ApplySettings();
+            Program.settingsClass.Save();
             this.DialogResult = DialogResult.OK;
         }
 

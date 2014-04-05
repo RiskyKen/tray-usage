@@ -37,6 +37,7 @@ namespace RiskyKen.TrayUsage
             public Version LatestVersion;
             public String ChangeLogUrl;
             public String UpdateFileListUrl;
+            public Boolean Success;
         }
 
         public delegate void DownloadUpdateFinishedHandler(DownloadUpdateResult result);
@@ -143,6 +144,46 @@ namespace RiskyKen.TrayUsage
             Debug.WriteLine("Finished update check.");
             if (UpdateCheckFinished != null)
             { UpdateCheckFinished((UpdateCheckResult)e.Result); }
+        }
+
+        public void DownloadChangeLogAsync(string fileUrl)
+        {
+            if (bgWorker != null) { return; }
+            bgWorker = new BackgroundWorker();
+            bgWorker.WorkerReportsProgress = false;
+            bgWorker.WorkerSupportsCancellation = false;
+
+            bgWorker.DoWork += new DoWorkEventHandler(DownloadChangeLogDoWork);
+            bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(DownloadChangeLogCompleted);
+            bgWorker.RunWorkerAsync(fileUrl);
+        }
+
+        private void DownloadChangeLogDoWork(object sender, DoWorkEventArgs e)
+        {
+            DownloadChangeLogResult result = new DownloadChangeLogResult();
+            String downloadedText = DownloadString((String)e.Argument);
+
+            if (downloadedText != null)
+            {
+                result.Success = true;
+                result.LogText = downloadedText;
+            }
+            else
+            {
+                result.Success = false;
+            }
+
+            e.Result = result;
+        }
+
+        private void DownloadChangeLogCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            bgWorker.DoWork -= DownloadChangeLogDoWork;
+            bgWorker.RunWorkerCompleted -= DownloadChangeLogCompleted;
+            bgWorker.Dispose();
+            bgWorker = null;
+            if (DownloadChangeLogFinished != null)
+            { DownloadChangeLogFinished((DownloadChangeLogResult)e.Result); }
         }
 
         //Download the update.
@@ -355,7 +396,7 @@ namespace RiskyKen.TrayUsage
             WebClient wc = new WebClient();
             try
             { downloadString = wc.DownloadString(url); }
-            catch { }
+            catch { return null; }
             wc.Dispose();
             return downloadString;
         }

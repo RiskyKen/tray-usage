@@ -22,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using RiskyKen.TrayUsage.Utils;
+
 namespace RiskyKen.TrayUsage
 {
     public class UpdateHelper

@@ -33,21 +33,22 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblLocalVer = new System.Windows.Forms.Label();
             this.lblRemoteVer = new System.Windows.Forms.Label();
+            this.textBoxChangeLog = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // proBar
             // 
             this.proBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.proBar.Location = new System.Drawing.Point(0, 124);
+            this.proBar.Location = new System.Drawing.Point(0, 327);
             this.proBar.Name = "proBar";
-            this.proBar.Size = new System.Drawing.Size(327, 23);
+            this.proBar.Size = new System.Drawing.Size(475, 23);
             this.proBar.TabIndex = 0;
             // 
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpdate.Enabled = false;
-            this.btnUpdate.Location = new System.Drawing.Point(159, 95);
+            this.btnUpdate.Location = new System.Drawing.Point(307, 298);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 1;
@@ -58,7 +59,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(240, 95);
+            this.btnCancel.Location = new System.Drawing.Point(388, 298);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -84,11 +85,25 @@
             this.lblRemoteVer.TabIndex = 5;
             this.lblRemoteVer.Text = "Remote version:";
             // 
+            // textBoxChangeLog
+            // 
+            this.textBoxChangeLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxChangeLog.Location = new System.Drawing.Point(12, 60);
+            this.textBoxChangeLog.Multiline = true;
+            this.textBoxChangeLog.Name = "textBoxChangeLog";
+            this.textBoxChangeLog.ReadOnly = true;
+            this.textBoxChangeLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxChangeLog.Size = new System.Drawing.Size(451, 232);
+            this.textBoxChangeLog.TabIndex = 6;
+            // 
             // frmUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 147);
+            this.ClientSize = new System.Drawing.Size(475, 350);
+            this.Controls.Add(this.textBoxChangeLog);
             this.Controls.Add(this.lblRemoteVer);
             this.Controls.Add(this.lblLocalVer);
             this.Controls.Add(this.btnCancel);
@@ -113,5 +128,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblLocalVer;
         private System.Windows.Forms.Label lblRemoteVer;
+        private System.Windows.Forms.TextBox textBoxChangeLog;
     }
 }

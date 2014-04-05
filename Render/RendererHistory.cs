@@ -62,7 +62,6 @@ namespace RiskyKen.TrayUsage
         public RendererHistory()
         {
             PostInt();
-
         }
 
         ///<summary>Constructor using Xml</summary>

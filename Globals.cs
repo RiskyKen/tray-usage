@@ -33,7 +33,7 @@ namespace RiskyKen.TrayUsage
         //The url that is used to look for updates.
         //"https://dl.dropbox.com/u/9733425/app_update/tray_usage/update.txt"
         //"http://bit.ly/1mQwo4Z"
-        public static string UpdateUrlMain = "https://dl.dropbox.com/u/9733425/app_update/tray_usage/update.txt";
+        public static string UpdateUrlMain = "http://bit.ly/1mQwo4Z";
 
         //Backup url that is used to look for updates, if the main one is down.
         //"http://dl.dropbox.com/u/9733425/app_update/tray_usage/update.txt"

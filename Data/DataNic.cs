@@ -27,7 +27,6 @@ namespace RiskyKen.TrayUsage
     public class DataNic : Data
     {
         private NetworkInterface[] _nics = null;
-
         private UInt64[] _lastValue;
 
         public override string DataName
@@ -71,9 +70,9 @@ namespace RiskyKen.TrayUsage
                 UInt64 thisUp = (UInt64)_nics[i].GetIPv4Statistics().BytesSent;
                 UInt64 thisTotal = thisDown + thisUp;
 
-                _currentValue[(i * 3)] = thisDown - _lastValue[(i * 3)];
-                _currentValue[(i * 3) + 1] = thisUp - _lastValue[(i * 3) + 1];
-                _currentValue[(i * 3) + 2] = thisTotal - _lastValue[(i * 3) + 2];
+                _currentValue[(i * 3)] = (thisDown - _lastValue[(i * 3)]) * 1000 / (UInt64)Globals.IconUpdateRate;
+                _currentValue[(i * 3) + 1] = (thisUp - _lastValue[(i * 3) + 1]) * 1000 / (UInt64)Globals.IconUpdateRate;
+                _currentValue[(i * 3) + 2] = (thisTotal - _lastValue[(i * 3) + 2]) * 1000 / (UInt64)Globals.IconUpdateRate;
 
                 _lastValue[(i * 3)] = thisDown;
                 _lastValue[(i * 3) + 1] = thisUp;

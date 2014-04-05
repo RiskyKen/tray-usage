@@ -69,11 +69,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorPresetPicker.cs">
+    <Compile Include="Forms\ColorPresetPicker.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataNic.cs" />
-    <Compile Include="FormHelper.cs" />
+    <Compile Include="Forms\FormHelper.cs" />
     <Compile Include="Forms\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,8 +87,9 @@
       <DependentUpon>frmRenderOptionsHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="FullScreenCheck.cs" />
-    <Compile Include="Renderer\RendererHistory.cs" />
-    <Compile Include="Renderer\RendererHistory.Properties.cs" />
+    <Compile Include="Render\RendererHistory.cs" />
+    <Compile Include="Render\RendererHistory.Properties.cs" />
+    <Compile Include="Render\RenderRegistry.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Data\DataCpu.cs" />
@@ -129,8 +130,8 @@
     </Compile>
     <Compile Include="Icon\TrayIcon.IO.cs" />
     <Compile Include="Icon\DummyIcon.cs" />
-    <Compile Include="Renderer\Renderer.cs" />
-    <Compile Include="Renderer\RendererBasic.cs" />
+    <Compile Include="Render\Renderer.cs" />
+    <Compile Include="Render\RendererBasic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\frmAbout.resx">
@@ -163,15 +164,15 @@
     </Compile>
     <Compile Include="Icon\IconManager.cs" />
     <Compile Include="Icon\IconMenu.cs" />
-    <Compile Include="Renderer\RendererImage.cs" />
+    <Compile Include="Render\RendererImage.cs" />
     <Compile Include="Forms\frmUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmUpdate.Designer.cs">
       <DependentUpon>frmUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdateHelper.cs" />
-    <Compile Include="Updater.cs" />
+    <Compile Include="Update\UpdateHelper.cs" />
+    <Compile Include="Update\Updater.cs" />
     <Compile Include="Utils\Common.cs" />
   </ItemGroup>
   <ItemGroup>

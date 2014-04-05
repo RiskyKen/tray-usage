@@ -30,11 +30,18 @@ namespace RiskyKen.TrayUsage
     {
         private void LoadIconTab()
         {
+            foreach (string renderName in Render.RenderRegistry.GetRendererNames())
+            {
+                comboRenderType.Items.Add(renderName);
+            }
+
             populateIconsList();
             if (listIcons.Items.Count > 0)
             {
                 listIcons.SelectedIndex = 0;
             }
+
+
         }
 
         private void populateIconsList()
