@@ -71,6 +71,7 @@ namespace RiskyKen.TrayUsage
             Globals.LoadPresetColors();
             LoadClasses();
             LoadSettingFile();
+            IconManager.ShowAllIcons();
             StartUpdateLoop();
             Application.Run();
             settingsClass.Save();

@@ -64,7 +64,7 @@ namespace RiskyKen.TrayUsage
             //UpdateName();
             //TrayIcon.Text = IconName;
             RenderIcon(false);
-            trayIcon.Visible = true;
+            //trayIcon.Visible = true;
             trayIcon.DoubleClick += TrayIcon_DoubleClick;
         }
 

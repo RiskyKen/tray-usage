@@ -230,7 +230,7 @@ namespace RiskyKen.TrayUsage
         public static void ShowAllIcons()
         {
             if (trayIcons == null) { return; }
-            for (Int32 i = 0; i <= trayIcons.GetUpperBound(0); i++)
+            for (Int32 i = trayIcons.GetUpperBound(0); i >= 0; i--)
             { trayIcons[i].Show(); }
         }
 
