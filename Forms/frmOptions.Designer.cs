@@ -59,6 +59,14 @@
             this.btnRenderOptions = new System.Windows.Forms.Button();
             this.btnMoveIconUp = new System.Windows.Forms.Button();
             this.btnMoveIconDown = new System.Windows.Forms.Button();
+            this.btnAddPresetIcon = new System.Windows.Forms.Button();
+            this.contextMenuPersets = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addCPUItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRAMIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDiskSpaceIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDiskAccessIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addBatteryIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddIcon = new System.Windows.Forms.Button();
             this.btnRemoveIcon = new System.Windows.Forms.Button();
             this.listIcons = new System.Windows.Forms.ListBox();
@@ -85,6 +93,7 @@
             this.tabData.SuspendLayout();
             this.tabRender.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.contextMenuPersets.SuspendLayout();
             this.tabAdvanced.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
@@ -225,6 +234,7 @@
             this.tabIcons.Controls.Add(this.tabControl2);
             this.tabIcons.Controls.Add(this.btnMoveIconUp);
             this.tabIcons.Controls.Add(this.btnMoveIconDown);
+            this.tabIcons.Controls.Add(this.btnAddPresetIcon);
             this.tabIcons.Controls.Add(this.btnAddIcon);
             this.tabIcons.Controls.Add(this.btnRemoveIcon);
             this.tabIcons.Controls.Add(this.listIcons);
@@ -241,10 +251,10 @@
             this.tabControl2.Controls.Add(this.tabText);
             this.tabControl2.Controls.Add(this.tabData);
             this.tabControl2.Controls.Add(this.tabRender);
-            this.tabControl2.Location = new System.Drawing.Point(129, 13);
+            this.tabControl2.Location = new System.Drawing.Point(168, 13);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(620, 347);
+            this.tabControl2.Size = new System.Drawing.Size(581, 347);
             this.tabControl2.TabIndex = 6;
             // 
             // tabText
@@ -256,7 +266,7 @@
             this.tabText.Location = new System.Drawing.Point(4, 22);
             this.tabText.Name = "tabText";
             this.tabText.Padding = new System.Windows.Forms.Padding(3);
-            this.tabText.Size = new System.Drawing.Size(612, 321);
+            this.tabText.Size = new System.Drawing.Size(573, 321);
             this.tabText.TabIndex = 0;
             this.tabText.Text = "Text";
             this.tabText.UseVisualStyleBackColor = true;
@@ -276,7 +286,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRollover.Location = new System.Drawing.Point(3, 58);
             this.txtRollover.Name = "txtRollover";
-            this.txtRollover.Size = new System.Drawing.Size(600, 20);
+            this.txtRollover.Size = new System.Drawing.Size(561, 20);
             this.txtRollover.TabIndex = 8;
             this.toolTip1.SetToolTip(this.txtRollover, "{iconname} will show the icon name.\r\n{Data Name:DataIndex} example {CPU:0} will s" +
                     "how total cpu use.");
@@ -309,7 +319,7 @@
             this.tabData.Location = new System.Drawing.Point(4, 22);
             this.tabData.Name = "tabData";
             this.tabData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabData.Size = new System.Drawing.Size(612, 321);
+            this.tabData.Size = new System.Drawing.Size(573, 321);
             this.tabData.TabIndex = 1;
             this.tabData.Text = "Data";
             this.tabData.UseVisualStyleBackColor = true;
@@ -322,7 +332,7 @@
             this.listData.IntegralHeight = false;
             this.listData.Location = new System.Drawing.Point(6, 19);
             this.listData.Name = "listData";
-            this.listData.Size = new System.Drawing.Size(460, 134);
+            this.listData.Size = new System.Drawing.Size(421, 134);
             this.listData.TabIndex = 6;
             // 
             // btnEditDataLinks
@@ -352,7 +362,7 @@
             this.tabRender.Controls.Add(this.btnRenderOptions);
             this.tabRender.Location = new System.Drawing.Point(4, 22);
             this.tabRender.Name = "tabRender";
-            this.tabRender.Size = new System.Drawing.Size(612, 321);
+            this.tabRender.Size = new System.Drawing.Size(573, 321);
             this.tabRender.TabIndex = 2;
             this.tabRender.Text = "Render";
             this.tabRender.UseVisualStyleBackColor = true;
@@ -373,7 +383,7 @@
             this.groupBox2.Controls.Add(this.lblRenderInfo);
             this.groupBox2.Location = new System.Drawing.Point(12, 52);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(476, 125);
+            this.groupBox2.Size = new System.Drawing.Size(437, 125);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Renderer Info:";
@@ -385,7 +395,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRenderInfo.Location = new System.Drawing.Point(6, 16);
             this.lblRenderInfo.Name = "lblRenderInfo";
-            this.lblRenderInfo.Size = new System.Drawing.Size(464, 96);
+            this.lblRenderInfo.Size = new System.Drawing.Size(425, 96);
             this.lblRenderInfo.TabIndex = 4;
             this.lblRenderInfo.Text = "label4";
             // 
@@ -413,9 +423,9 @@
             // 
             this.btnMoveIconUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMoveIconUp.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_up;
-            this.btnMoveIconUp.Location = new System.Drawing.Point(42, 337);
+            this.btnMoveIconUp.Location = new System.Drawing.Point(44, 337);
             this.btnMoveIconUp.Name = "btnMoveIconUp";
-            this.btnMoveIconUp.Size = new System.Drawing.Size(23, 23);
+            this.btnMoveIconUp.Size = new System.Drawing.Size(25, 25);
             this.btnMoveIconUp.TabIndex = 5;
             this.toolTip1.SetToolTip(this.btnMoveIconUp, "Move Up");
             this.btnMoveIconUp.UseVisualStyleBackColor = true;
@@ -425,21 +435,89 @@
             // 
             this.btnMoveIconDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMoveIconDown.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_down;
-            this.btnMoveIconDown.Location = new System.Drawing.Point(71, 337);
+            this.btnMoveIconDown.Location = new System.Drawing.Point(75, 337);
             this.btnMoveIconDown.Name = "btnMoveIconDown";
-            this.btnMoveIconDown.Size = new System.Drawing.Size(23, 23);
+            this.btnMoveIconDown.Size = new System.Drawing.Size(25, 25);
             this.btnMoveIconDown.TabIndex = 4;
             this.toolTip1.SetToolTip(this.btnMoveIconDown, "Move Down");
             this.btnMoveIconDown.UseVisualStyleBackColor = true;
             this.btnMoveIconDown.Click += new System.EventHandler(this.btnMoveIconDown_Click);
             // 
+            // btnAddPresetIcon
+            // 
+            this.btnAddPresetIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddPresetIcon.ContextMenuStrip = this.contextMenuPersets;
+            this.btnAddPresetIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.lightning_add;
+            this.btnAddPresetIcon.Location = new System.Drawing.Point(137, 337);
+            this.btnAddPresetIcon.Name = "btnAddPresetIcon";
+            this.btnAddPresetIcon.Size = new System.Drawing.Size(25, 25);
+            this.btnAddPresetIcon.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.btnAddPresetIcon, "Add Preset Icon");
+            this.btnAddPresetIcon.UseVisualStyleBackColor = true;
+            this.btnAddPresetIcon.Click += new System.EventHandler(this.btnAddPresetIcon_Click);
+            // 
+            // contextMenuPersets
+            // 
+            this.contextMenuPersets.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addCPUItemToolStripMenuItem,
+            this.addRAMIconToolStripMenuItem,
+            this.addToolStripMenuItem,
+            this.addDiskSpaceIconToolStripMenuItem,
+            this.addDiskAccessIconToolStripMenuItem,
+            this.addBatteryIconToolStripMenuItem});
+            this.contextMenuPersets.Name = "contextMenuPersets";
+            this.contextMenuPersets.Size = new System.Drawing.Size(187, 158);
+            this.contextMenuPersets.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuPersets_ItemClicked);
+            // 
+            // addCPUItemToolStripMenuItem
+            // 
+            this.addCPUItemToolStripMenuItem.Name = "addCPUItemToolStripMenuItem";
+            this.addCPUItemToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.addCPUItemToolStripMenuItem.Tag = "CPU";
+            this.addCPUItemToolStripMenuItem.Text = "Add CPU Icon";
+            // 
+            // addRAMIconToolStripMenuItem
+            // 
+            this.addRAMIconToolStripMenuItem.Name = "addRAMIconToolStripMenuItem";
+            this.addRAMIconToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.addRAMIconToolStripMenuItem.Tag = "RAM";
+            this.addRAMIconToolStripMenuItem.Text = "Add RAM Icon";
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.addToolStripMenuItem.Tag = "Network";
+            this.addToolStripMenuItem.Text = "Add Network Icon";
+            // 
+            // addDiskSpaceIconToolStripMenuItem
+            // 
+            this.addDiskSpaceIconToolStripMenuItem.Name = "addDiskSpaceIconToolStripMenuItem";
+            this.addDiskSpaceIconToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.addDiskSpaceIconToolStripMenuItem.Tag = "Disk Space";
+            this.addDiskSpaceIconToolStripMenuItem.Text = "Add Disk Space Icon";
+            // 
+            // addDiskAccessIconToolStripMenuItem
+            // 
+            this.addDiskAccessIconToolStripMenuItem.Name = "addDiskAccessIconToolStripMenuItem";
+            this.addDiskAccessIconToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.addDiskAccessIconToolStripMenuItem.Tag = "Disk Access";
+            this.addDiskAccessIconToolStripMenuItem.Text = "Add Disk Access Icon";
+            // 
+            // addBatteryIconToolStripMenuItem
+            // 
+            this.addBatteryIconToolStripMenuItem.Name = "addBatteryIconToolStripMenuItem";
+            this.addBatteryIconToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.addBatteryIconToolStripMenuItem.Tag = "Battery";
+            this.addBatteryIconToolStripMenuItem.Text = "Add Battery Icon";
+            // 
             // btnAddIcon
             // 
             this.btnAddIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.add;
-            this.btnAddIcon.Location = new System.Drawing.Point(100, 337);
+            this.btnAddIcon.Location = new System.Drawing.Point(106, 337);
             this.btnAddIcon.Name = "btnAddIcon";
-            this.btnAddIcon.Size = new System.Drawing.Size(23, 23);
+            this.btnAddIcon.Size = new System.Drawing.Size(25, 25);
             this.btnAddIcon.TabIndex = 2;
             this.toolTip1.SetToolTip(this.btnAddIcon, "Add");
             this.btnAddIcon.UseVisualStyleBackColor = true;
@@ -451,7 +529,7 @@
             this.btnRemoveIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.delete;
             this.btnRemoveIcon.Location = new System.Drawing.Point(13, 337);
             this.btnRemoveIcon.Name = "btnRemoveIcon";
-            this.btnRemoveIcon.Size = new System.Drawing.Size(23, 23);
+            this.btnRemoveIcon.Size = new System.Drawing.Size(25, 25);
             this.btnRemoveIcon.TabIndex = 1;
             this.toolTip1.SetToolTip(this.btnRemoveIcon, "Remove");
             this.btnRemoveIcon.UseVisualStyleBackColor = true;
@@ -467,7 +545,7 @@
             "Test Icon"});
             this.listIcons.Location = new System.Drawing.Point(13, 13);
             this.listIcons.Name = "listIcons";
-            this.listIcons.Size = new System.Drawing.Size(110, 318);
+            this.listIcons.Size = new System.Drawing.Size(149, 318);
             this.listIcons.TabIndex = 0;
             this.listIcons.SelectedIndexChanged += new System.EventHandler(this.listIcons_SelectedIndexChanged);
             // 
@@ -628,6 +706,7 @@
             this.tabRender.ResumeLayout(false);
             this.tabRender.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.contextMenuPersets.ResumeLayout(false);
             this.tabAdvanced.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -682,6 +761,14 @@
         private System.Windows.Forms.TabPage tabText;
         private System.Windows.Forms.TabPage tabData;
         private System.Windows.Forms.TabPage tabRender;
+        private System.Windows.Forms.Button btnAddPresetIcon;
+        private System.Windows.Forms.ContextMenuStrip contextMenuPersets;
+        private System.Windows.Forms.ToolStripMenuItem addCPUItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addRAMIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addDiskSpaceIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addDiskAccessIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addBatteryIconToolStripMenuItem;
 
     }
 }

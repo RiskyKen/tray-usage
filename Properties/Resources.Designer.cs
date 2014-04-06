@@ -88,6 +88,13 @@ namespace RiskyKen.TrayUsage.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap lightning_add {
+            get {
+                object obj = ResourceManager.GetObject("lightning_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>

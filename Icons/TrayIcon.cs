@@ -49,10 +49,16 @@ namespace RiskyKen.TrayUsage
         {
             _iconName = aIconName;
             _rolloverText = aRolloverText;
-            TargetData = aTargetData;
+
             renderer = new RendererBasic();
             ((RendererBasic)renderer).BackgroundColour = BackgroundColor;
             ((RendererBasic)renderer).ForegroundColour = ForegroundColor;
+
+            foreach (DataLink dataLink in aTargetData)
+            {
+                AddDataSource(dataLink);
+            }
+
             MakeTrayIcon();
         }
 

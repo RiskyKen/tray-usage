@@ -25,6 +25,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using RiskyKen.TrayUsage.Render;
 using System.Diagnostics;
+using RiskyKen.TrayUsage.Icons;
 
 namespace RiskyKen.TrayUsage
 {
@@ -60,6 +61,20 @@ namespace RiskyKen.TrayUsage
         {
             IconManager.AddIcon("New Icon", "{iconname}", null, Color.Black, Color.White);
             populateIconsList();
+        }
+
+        private void btnAddPresetIcon_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs em = (MouseEventArgs)e;
+            contextMenuPersets.Show(btnAddPresetIcon, new Point(em.X, em.Y));
+        }
+
+        private void contextMenuPersets_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (PresetIconHelper.AddPersetIcon(e.ClickedItem.Tag.ToString()))
+            {
+                populateIconsList();
+            }
         }
 
         private void btnRemoveIcon_Click(object sender, EventArgs e)
@@ -197,28 +212,27 @@ namespace RiskyKen.TrayUsage
         private void comboRenderType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listIcons.SelectedIndex == -1) { return; }
-            if (SelectedIcon.renderer.Name != comboRenderType.Text)
+            if (SelectedIcon.renderer.Name == comboRenderType.Text) { return; }
+            
+            if (typeof(IRenderColorable).IsAssignableFrom(SelectedIcon.renderer.GetType()) &&
+                typeof(IRenderColorable).IsAssignableFrom(RenderRegistry.GetRenderTypeFormName(comboRenderType.Text)))
             {
-                if (typeof(IRenderColorable).IsAssignableFrom(SelectedIcon.renderer.GetType()) &&
-                    typeof(IRenderColorable).IsAssignableFrom(RenderRegistry.GetRenderTypeFormName(comboRenderType.Text)))
-                {
-                    Color fgColor = ((IRenderColorable)SelectedIcon.renderer).ForegroundColour;
-                    Color bgColor = ((IRenderColorable)SelectedIcon.renderer).BackgroundColour;
+                Color fgColor = ((IRenderColorable)SelectedIcon.renderer).ForegroundColour;
+                Color bgColor = ((IRenderColorable)SelectedIcon.renderer).BackgroundColour;
 
-                    SelectedIcon.ChangeRenderer(comboRenderType.Text);
+                SelectedIcon.ChangeRenderer(comboRenderType.Text);
 
-                    ((IRenderColorable)SelectedIcon.renderer).ForegroundColour = fgColor;
-                    ((IRenderColorable)SelectedIcon.renderer).BackgroundColour = bgColor;
-                }
+                ((IRenderColorable)SelectedIcon.renderer).ForegroundColour = fgColor;
+                ((IRenderColorable)SelectedIcon.renderer).BackgroundColour = bgColor;
+            }
+            else
+            {
+                if (MessageBox.Show("This will clear the renderer settings.\n\nAre you sure?",
+                  Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                { SelectedIcon.ChangeRenderer(comboRenderType.Text); }
                 else
                 {
-                    if (MessageBox.Show("This will clear the renderer settings.\n\nAre you sure?",
-                      Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    { SelectedIcon.ChangeRenderer(comboRenderType.Text); }
-                    else
-                    {
-                        comboRenderType.Text = SelectedIcon.renderer.Name;
-                    }
+                    comboRenderType.Text = SelectedIcon.renderer.Name;
                 }
             }
             

@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace RiskyKen.TrayUsage
 {
@@ -32,9 +33,19 @@ namespace RiskyKen.TrayUsage
             get { return "Disk Space"; }
         }
 
-        public DataDiskSpace() : base(System.IO.DriveInfo.GetDrives().Length)
+        public DataDiskSpace() : base(GetDriveCount())
         {
-            Drives = System.IO.DriveInfo.GetDrives();
+            Drives = new DriveInfo[GetDriveCount()];
+            DriveInfo[] diskDrives = System.IO.DriveInfo.GetDrives();
+            int count = 0;
+            for (int i = 0; i < diskDrives.Length; i++)
+            {
+                if (diskDrives[i].DriveType == DriveType.Fixed )
+                {
+                    Drives[count] = diskDrives[i];
+                    count++;
+                }
+            }
 
             for (Int32 i = 0; i <= Drives.GetUpperBound(0); i++)
             {
@@ -53,6 +64,20 @@ namespace RiskyKen.TrayUsage
                 { thisSpace = (Int32)(((Drives[i].TotalSize - Drives[i].TotalFreeSpace) * 100) / Drives[i].TotalSize); }
                 _currentValue[i] = (UInt64)thisSpace;
             }
+        }
+
+        public static int GetDriveCount()
+        {
+            DriveInfo[] diskDrives = System.IO.DriveInfo.GetDrives();
+            int count = 0;
+            foreach (DriveInfo drive in diskDrives)
+            {
+                if (drive.DriveType == DriveType.Fixed )
+                {
+                    count++;
+                }
+            }
+            return count;
         }
 
         public override void Load()

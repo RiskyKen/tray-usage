@@ -87,6 +87,7 @@
       <DependentUpon>frmRenderOptionsHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="FullScreenCheck.cs" />
+    <Compile Include="Icons\PresetIconHelper.cs" />
     <Compile Include="Render\IRenderColorable.cs" />
     <Compile Include="Render\RendererHistory.cs" />
     <Compile Include="Render\RendererHistory.Properties.cs" />
@@ -122,15 +123,15 @@
       <DependentUpon>frmRenderOptionsImage.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
-    <Compile Include="Icon\TrayIcon.cs" />
+    <Compile Include="Icons\TrayIcon.cs" />
     <Compile Include="Forms\frmOptions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmOptions.Designer.cs">
       <DependentUpon>frmOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Icon\TrayIcon.IO.cs" />
-    <Compile Include="Icon\DummyIcon.cs" />
+    <Compile Include="Icons\TrayIcon.IO.cs" />
+    <Compile Include="Icons\DummyIcon.cs" />
     <Compile Include="Render\Renderer.cs" />
     <Compile Include="Render\RendererBasic.cs" />
     <Compile Include="Program.cs" />
@@ -163,8 +164,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Icon\IconManager.cs" />
-    <Compile Include="Icon\IconMenu.cs" />
+    <Compile Include="Icons\IconManager.cs" />
+    <Compile Include="Icons\IconMenu.cs" />
     <Compile Include="Render\RendererImage.cs" />
     <Compile Include="Forms\frmUpdate.cs">
       <SubType>Form</SubType>
@@ -214,6 +215,7 @@
     <Content Include="Resources\arrow_down.png" />
     <Content Include="Resources\arrow_up.png" />
     <Content Include="Resources\delete.png" />
+    <Content Include="Resources\lightning_add.png" />
     <Content Include="todo list.txt" />
     <Content Include="tray.ico" />
   </ItemGroup>
