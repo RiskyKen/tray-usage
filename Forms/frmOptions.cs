@@ -40,7 +40,7 @@ namespace RiskyKen.TrayUsage
             InitializeComponent();
             this.Icon = Properties.Resources.tray;
             LoadIconTab();
-            tabControl1.SelectedTab = tabPage2;
+            tabControl1.SelectedTab = tabIcons;
             LoadGeneralSettings();
             LoadAdvancedSettings();
         }

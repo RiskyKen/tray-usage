@@ -30,5 +30,17 @@ namespace RiskyKen.TrayUsage.Render
         {
             Renderers.Add(name, typeof(RendererType));
         }
+
+        public static Type GetRenderTypeFormName(string name)
+        {
+            if (Renderers.ContainsKey(name))
+            {
+                return Renderers[name];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

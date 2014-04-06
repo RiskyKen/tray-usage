@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabGeneral = new System.Windows.Forms.TabPage();
             this.lblLoaded = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkMissingIconFix = new System.Windows.Forms.CheckBox();
@@ -40,25 +40,29 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numUpdateCheckTime = new System.Windows.Forms.NumericUpDown();
             this.chkAutoUpdate = new System.Windows.Forms.CheckBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnMoveIconUp = new System.Windows.Forms.Button();
-            this.btnMoveIconDown = new System.Windows.Forms.Button();
+            this.tabIcons = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabText = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtRollover = new System.Windows.Forms.TextBox();
+            this.txtIconName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.tabData = new System.Windows.Forms.TabPage();
+            this.listData = new System.Windows.Forms.ListBox();
+            this.btnEditDataLinks = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tabRender = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblRenderInfo = new System.Windows.Forms.Label();
-            this.btnEditDataLinks = new System.Windows.Forms.Button();
-            this.listData = new System.Windows.Forms.ListBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnRenderOptions = new System.Windows.Forms.Button();
             this.comboRenderType = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtIconName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnRenderOptions = new System.Windows.Forms.Button();
+            this.btnMoveIconUp = new System.Windows.Forms.Button();
+            this.btnMoveIconDown = new System.Windows.Forms.Button();
             this.btnAddIcon = new System.Windows.Forms.Button();
             this.btnRemoveIcon = new System.Windows.Forms.Button();
             this.listIcons = new System.Windows.Forms.ListBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabAdvanced = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.comboThreadPriority = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -70,23 +74,19 @@
             this.btnApply = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabGeneral.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpdateCheckTime)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.tabIcons.SuspendLayout();
             this.tabControl2.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
+            this.tabText.SuspendLayout();
+            this.tabData.SuspendLayout();
+            this.tabRender.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.tabAdvanced.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -94,27 +94,27 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabGeneral);
+            this.tabControl1.Controls.Add(this.tabIcons);
+            this.tabControl1.Controls.Add(this.tabAdvanced);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(770, 399);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabGeneral
             // 
-            this.tabPage1.Controls.Add(this.lblLoaded);
-            this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(762, 373);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "General";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabGeneral.Controls.Add(this.lblLoaded);
+            this.tabGeneral.Controls.Add(this.groupBox4);
+            this.tabGeneral.Controls.Add(this.groupBox3);
+            this.tabGeneral.Location = new System.Drawing.Point(4, 22);
+            this.tabGeneral.Name = "tabGeneral";
+            this.tabGeneral.Padding = new System.Windows.Forms.Padding(6);
+            this.tabGeneral.Size = new System.Drawing.Size(762, 373);
+            this.tabGeneral.TabIndex = 0;
+            this.tabGeneral.Text = "General";
+            this.tabGeneral.UseVisualStyleBackColor = true;
             // 
             // lblLoaded
             // 
@@ -220,45 +220,55 @@
             this.chkAutoUpdate.Text = "Auto update";
             this.chkAutoUpdate.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabIcons
             // 
-            this.tabPage2.Controls.Add(this.tabControl2);
-            this.tabPage2.Controls.Add(this.btnMoveIconUp);
-            this.tabPage2.Controls.Add(this.btnMoveIconDown);
-            this.tabPage2.Controls.Add(this.btnAddIcon);
-            this.tabPage2.Controls.Add(this.btnRemoveIcon);
-            this.tabPage2.Controls.Add(this.listIcons);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPage2.Size = new System.Drawing.Size(762, 373);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Icons";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabIcons.Controls.Add(this.tabControl2);
+            this.tabIcons.Controls.Add(this.btnMoveIconUp);
+            this.tabIcons.Controls.Add(this.btnMoveIconDown);
+            this.tabIcons.Controls.Add(this.btnAddIcon);
+            this.tabIcons.Controls.Add(this.btnRemoveIcon);
+            this.tabIcons.Controls.Add(this.listIcons);
+            this.tabIcons.Location = new System.Drawing.Point(4, 22);
+            this.tabIcons.Name = "tabIcons";
+            this.tabIcons.Padding = new System.Windows.Forms.Padding(10);
+            this.tabIcons.Size = new System.Drawing.Size(762, 373);
+            this.tabIcons.TabIndex = 1;
+            this.tabIcons.Text = "Icons";
+            this.tabIcons.UseVisualStyleBackColor = true;
             // 
-            // btnMoveIconUp
+            // tabControl2
             // 
-            this.btnMoveIconUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMoveIconUp.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_up;
-            this.btnMoveIconUp.Location = new System.Drawing.Point(42, 337);
-            this.btnMoveIconUp.Name = "btnMoveIconUp";
-            this.btnMoveIconUp.Size = new System.Drawing.Size(23, 23);
-            this.btnMoveIconUp.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.btnMoveIconUp, "Move Up");
-            this.btnMoveIconUp.UseVisualStyleBackColor = true;
-            this.btnMoveIconUp.Click += new System.EventHandler(this.btnMoveIconUp_Click);
+            this.tabControl2.Controls.Add(this.tabText);
+            this.tabControl2.Controls.Add(this.tabData);
+            this.tabControl2.Controls.Add(this.tabRender);
+            this.tabControl2.Location = new System.Drawing.Point(129, 13);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(620, 347);
+            this.tabControl2.TabIndex = 6;
             // 
-            // btnMoveIconDown
+            // tabText
             // 
-            this.btnMoveIconDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMoveIconDown.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_down;
-            this.btnMoveIconDown.Location = new System.Drawing.Point(71, 337);
-            this.btnMoveIconDown.Name = "btnMoveIconDown";
-            this.btnMoveIconDown.Size = new System.Drawing.Size(23, 23);
-            this.btnMoveIconDown.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.btnMoveIconDown, "Move Down");
-            this.btnMoveIconDown.UseVisualStyleBackColor = true;
-            this.btnMoveIconDown.Click += new System.EventHandler(this.btnMoveIconDown_Click);
+            this.tabText.Controls.Add(this.label1);
+            this.tabText.Controls.Add(this.txtRollover);
+            this.tabText.Controls.Add(this.txtIconName);
+            this.tabText.Controls.Add(this.label7);
+            this.tabText.Location = new System.Drawing.Point(4, 22);
+            this.tabText.Name = "tabText";
+            this.tabText.Padding = new System.Windows.Forms.Padding(3);
+            this.tabText.Size = new System.Drawing.Size(612, 321);
+            this.tabText.TabIndex = 0;
+            this.tabText.Text = "Text";
+            this.tabText.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Icon Name:";
             // 
             // txtRollover
             // 
@@ -272,6 +282,16 @@
                     "how total cpu use.");
             this.txtRollover.TextChanged += new System.EventHandler(this.txtRollover_TextChanged);
             // 
+            // txtIconName
+            // 
+            this.txtIconName.Location = new System.Drawing.Point(3, 19);
+            this.txtIconName.Name = "txtIconName";
+            this.txtIconName.Size = new System.Drawing.Size(100, 20);
+            this.txtIconName.TabIndex = 1;
+            this.txtIconName.Text = "Test Icon";
+            this.txtIconName.TextChanged += new System.EventHandler(this.txtIconName_TextChanged);
+            this.txtIconName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIconName_KeyPress);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -280,6 +300,71 @@
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 4;
             this.label7.Text = "Rollover Text:";
+            // 
+            // tabData
+            // 
+            this.tabData.Controls.Add(this.listData);
+            this.tabData.Controls.Add(this.btnEditDataLinks);
+            this.tabData.Controls.Add(this.label3);
+            this.tabData.Location = new System.Drawing.Point(4, 22);
+            this.tabData.Name = "tabData";
+            this.tabData.Padding = new System.Windows.Forms.Padding(3);
+            this.tabData.Size = new System.Drawing.Size(612, 321);
+            this.tabData.TabIndex = 1;
+            this.tabData.Text = "Data";
+            this.tabData.UseVisualStyleBackColor = true;
+            // 
+            // listData
+            // 
+            this.listData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listData.FormattingEnabled = true;
+            this.listData.IntegralHeight = false;
+            this.listData.Location = new System.Drawing.Point(6, 19);
+            this.listData.Name = "listData";
+            this.listData.Size = new System.Drawing.Size(460, 134);
+            this.listData.TabIndex = 6;
+            // 
+            // btnEditDataLinks
+            // 
+            this.btnEditDataLinks.Location = new System.Drawing.Point(6, 159);
+            this.btnEditDataLinks.Name = "btnEditDataLinks";
+            this.btnEditDataLinks.Size = new System.Drawing.Size(150, 23);
+            this.btnEditDataLinks.TabIndex = 7;
+            this.btnEditDataLinks.Text = "Edit...";
+            this.btnEditDataLinks.UseVisualStyleBackColor = true;
+            this.btnEditDataLinks.Click += new System.EventHandler(this.btnEditDataLinks_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Data Inputs:";
+            // 
+            // tabRender
+            // 
+            this.tabRender.Controls.Add(this.label2);
+            this.tabRender.Controls.Add(this.groupBox2);
+            this.tabRender.Controls.Add(this.comboRenderType);
+            this.tabRender.Controls.Add(this.btnRenderOptions);
+            this.tabRender.Location = new System.Drawing.Point(4, 22);
+            this.tabRender.Name = "tabRender";
+            this.tabRender.Size = new System.Drawing.Size(612, 321);
+            this.tabRender.TabIndex = 2;
+            this.tabRender.Text = "Render";
+            this.tabRender.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Render Type:";
             // 
             // groupBox2
             // 
@@ -304,35 +389,15 @@
             this.lblRenderInfo.TabIndex = 4;
             this.lblRenderInfo.Text = "label4";
             // 
-            // btnEditDataLinks
+            // comboRenderType
             // 
-            this.btnEditDataLinks.Location = new System.Drawing.Point(6, 159);
-            this.btnEditDataLinks.Name = "btnEditDataLinks";
-            this.btnEditDataLinks.Size = new System.Drawing.Size(150, 23);
-            this.btnEditDataLinks.TabIndex = 7;
-            this.btnEditDataLinks.Text = "Edit...";
-            this.btnEditDataLinks.UseVisualStyleBackColor = true;
-            this.btnEditDataLinks.Click += new System.EventHandler(this.btnEditDataLinks_Click);
-            // 
-            // listData
-            // 
-            this.listData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listData.FormattingEnabled = true;
-            this.listData.IntegralHeight = false;
-            this.listData.Location = new System.Drawing.Point(6, 19);
-            this.listData.Name = "listData";
-            this.listData.Size = new System.Drawing.Size(460, 134);
-            this.listData.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Data Inputs:";
+            this.comboRenderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboRenderType.FormattingEnabled = true;
+            this.comboRenderType.Location = new System.Drawing.Point(12, 25);
+            this.comboRenderType.Name = "comboRenderType";
+            this.comboRenderType.Size = new System.Drawing.Size(172, 21);
+            this.comboRenderType.TabIndex = 3;
+            this.comboRenderType.SelectedIndexChanged += new System.EventHandler(this.comboRenderType_SelectedIndexChanged);
             // 
             // btnRenderOptions
             // 
@@ -344,43 +409,29 @@
             this.btnRenderOptions.UseVisualStyleBackColor = true;
             this.btnRenderOptions.Click += new System.EventHandler(this.btnRenderOptions_Click);
             // 
-            // comboRenderType
+            // btnMoveIconUp
             // 
-            this.comboRenderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboRenderType.FormattingEnabled = true;
-            this.comboRenderType.Location = new System.Drawing.Point(12, 25);
-            this.comboRenderType.Name = "comboRenderType";
-            this.comboRenderType.Size = new System.Drawing.Size(172, 21);
-            this.comboRenderType.TabIndex = 3;
-            this.comboRenderType.SelectedIndexChanged += new System.EventHandler(this.comboRenderType_SelectedIndexChanged);
+            this.btnMoveIconUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMoveIconUp.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_up;
+            this.btnMoveIconUp.Location = new System.Drawing.Point(42, 337);
+            this.btnMoveIconUp.Name = "btnMoveIconUp";
+            this.btnMoveIconUp.Size = new System.Drawing.Size(23, 23);
+            this.btnMoveIconUp.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.btnMoveIconUp, "Move Up");
+            this.btnMoveIconUp.UseVisualStyleBackColor = true;
+            this.btnMoveIconUp.Click += new System.EventHandler(this.btnMoveIconUp_Click);
             // 
-            // label2
+            // btnMoveIconDown
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Render Type:";
-            // 
-            // txtIconName
-            // 
-            this.txtIconName.Location = new System.Drawing.Point(3, 19);
-            this.txtIconName.Name = "txtIconName";
-            this.txtIconName.Size = new System.Drawing.Size(100, 20);
-            this.txtIconName.TabIndex = 1;
-            this.txtIconName.Text = "Test Icon";
-            this.txtIconName.TextChanged += new System.EventHandler(this.txtIconName_TextChanged);
-            this.txtIconName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIconName_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Icon Name:";
+            this.btnMoveIconDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMoveIconDown.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_down;
+            this.btnMoveIconDown.Location = new System.Drawing.Point(71, 337);
+            this.btnMoveIconDown.Name = "btnMoveIconDown";
+            this.btnMoveIconDown.Size = new System.Drawing.Size(23, 23);
+            this.btnMoveIconDown.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.btnMoveIconDown, "Move Down");
+            this.btnMoveIconDown.UseVisualStyleBackColor = true;
+            this.btnMoveIconDown.Click += new System.EventHandler(this.btnMoveIconDown_Click);
             // 
             // btnAddIcon
             // 
@@ -420,16 +471,16 @@
             this.listIcons.TabIndex = 0;
             this.listIcons.SelectedIndexChanged += new System.EventHandler(this.listIcons_SelectedIndexChanged);
             // 
-            // tabPage3
+            // tabAdvanced
             // 
-            this.tabPage3.Controls.Add(this.groupBox5);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPage3.Size = new System.Drawing.Size(762, 373);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Advanced";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabAdvanced.Controls.Add(this.groupBox5);
+            this.tabAdvanced.Location = new System.Drawing.Point(4, 22);
+            this.tabAdvanced.Name = "tabAdvanced";
+            this.tabAdvanced.Padding = new System.Windows.Forms.Padding(10);
+            this.tabAdvanced.Size = new System.Drawing.Size(762, 373);
+            this.tabAdvanced.TabIndex = 2;
+            this.tabAdvanced.Text = "Advanced";
+            this.tabAdvanced.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -545,57 +596,6 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Controls.Add(this.tabPage5);
-            this.tabControl2.Controls.Add(this.tabPage6);
-            this.tabControl2.Location = new System.Drawing.Point(129, 13);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(620, 347);
-            this.tabControl2.TabIndex = 6;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.label1);
-            this.tabPage4.Controls.Add(this.txtRollover);
-            this.tabPage4.Controls.Add(this.txtIconName);
-            this.tabPage4.Controls.Add(this.label7);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(612, 321);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.listData);
-            this.tabPage5.Controls.Add(this.btnEditDataLinks);
-            this.tabPage5.Controls.Add(this.label3);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(612, 321);
-            this.tabPage5.TabIndex = 1;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.label2);
-            this.tabPage6.Controls.Add(this.groupBox2);
-            this.tabPage6.Controls.Add(this.comboRenderType);
-            this.tabPage6.Controls.Add(this.btnRenderOptions);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(612, 321);
-            this.tabPage6.TabIndex = 2;
-            this.tabPage6.Text = "tabPage6";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
             // frmOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -612,25 +612,25 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tray Usage - Options";
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabGeneral.ResumeLayout(false);
+            this.tabGeneral.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpdateCheckTime)).EndInit();
-            this.tabPage2.ResumeLayout(false);
+            this.tabIcons.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabText.ResumeLayout(false);
+            this.tabText.PerformLayout();
+            this.tabData.ResumeLayout(false);
+            this.tabData.PerformLayout();
+            this.tabRender.ResumeLayout(false);
+            this.tabRender.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
+            this.tabAdvanced.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -638,12 +638,12 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabGeneral;
+        private System.Windows.Forms.TabPage tabIcons;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnApply;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabAdvanced;
         private System.Windows.Forms.ListBox listIcons;
         private System.Windows.Forms.Button btnAddIcon;
         private System.Windows.Forms.Button btnRemoveIcon;
@@ -679,9 +679,9 @@
         private System.Windows.Forms.Label lblLoaded;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabText;
+        private System.Windows.Forms.TabPage tabData;
+        private System.Windows.Forms.TabPage tabRender;
 
     }
 }

@@ -22,10 +22,11 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Drawing;
+using RiskyKen.TrayUsage.Render;
 
 namespace RiskyKen.TrayUsage
 {
-    partial class RendererHistory : Renderer
+    partial class RendererHistory : Renderer, IRenderColorable
     {
         private Boolean _horizontal = false;
 
