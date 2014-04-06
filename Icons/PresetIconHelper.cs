@@ -69,7 +69,7 @@ namespace RiskyKen.TrayUsage.Icons
             dataLink[0].DataIndex = 0;
             dataLink[0].DataClassRef = DataManager.GetDataClassRef("Memory");
 
-            IconManager.AddIcon("Memory", @"{iconname} - {Memory%0}%\n\n{Memory#!0} - {Memory*!0}", dataLink,
+            IconManager.AddIcon("Memory", "{iconname} - {Memory%0}%" + Environment.NewLine + Environment.NewLine + "{Memory#!0} - {Memory*!0}", dataLink,
                 Globals.colorPresets[11].BackgroundColor, Globals.colorPresets[11].ForegroundColor);
         }
 
@@ -85,7 +85,7 @@ namespace RiskyKen.TrayUsage.Icons
             dataLink[1].DataIndex = 1;
             dataLink[1].DataClassRef = DataManager.GetDataClassRef("Network Interface");
 
-            IconManager.AddIcon("Network", @"{iconname}\n\n{Network Interface#!0} - {Network Interface*!0}\n{Network Interface#!1} - {Network Interface*!1}", dataLink,
+            IconManager.AddIcon("Network", "{iconname}" + Environment.NewLine + Environment.NewLine + "{Network Interface#!0} - {Network Interface*!0}\n{Network Interface#!1} - {Network Interface*!1}", dataLink,
                 Globals.colorPresets[2].BackgroundColor, Globals.colorPresets[2].ForegroundColor);
         }
 
@@ -150,7 +150,7 @@ namespace RiskyKen.TrayUsage.Icons
             dataLink[0].DataIndex = 0;
             dataLink[0].DataClassRef = DataManager.GetDataClassRef("Battery");
 
-            IconManager.AddIcon("Battery", @"{iconname} - {Battery%0}%", dataLink,
+            IconManager.AddIcon("Battery", "{iconname} - {Battery%0}%", dataLink,
                 Globals.colorPresets[4].BackgroundColor, Globals.colorPresets[4].ForegroundColor);
         }
     }

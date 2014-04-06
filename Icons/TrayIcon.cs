@@ -54,9 +54,12 @@ namespace RiskyKen.TrayUsage
             ((RendererBasic)renderer).BackgroundColour = BackgroundColor;
             ((RendererBasic)renderer).ForegroundColour = ForegroundColor;
 
-            foreach (DataLink dataLink in aTargetData)
+            if (aTargetData != null)
             {
-                AddDataSource(dataLink);
+                foreach (DataLink dataLink in aTargetData)
+                {
+                    AddDataSource(dataLink);
+                }
             }
 
             MakeTrayIcon();

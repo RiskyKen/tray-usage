@@ -274,7 +274,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 0;
@@ -285,8 +285,9 @@
             this.txtRollover.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRollover.Location = new System.Drawing.Point(3, 58);
+            this.txtRollover.Multiline = true;
             this.txtRollover.Name = "txtRollover";
-            this.txtRollover.Size = new System.Drawing.Size(561, 20);
+            this.txtRollover.Size = new System.Drawing.Size(564, 112);
             this.txtRollover.TabIndex = 8;
             this.toolTip1.SetToolTip(this.txtRollover, "{iconname} will show the icon name.\r\n{Data Name:DataIndex} example {CPU:0} will s" +
                     "how total cpu use.");
@@ -330,14 +331,14 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.listData.FormattingEnabled = true;
             this.listData.IntegralHeight = false;
-            this.listData.Location = new System.Drawing.Point(6, 19);
+            this.listData.Location = new System.Drawing.Point(3, 19);
             this.listData.Name = "listData";
-            this.listData.Size = new System.Drawing.Size(421, 134);
+            this.listData.Size = new System.Drawing.Size(564, 134);
             this.listData.TabIndex = 6;
             // 
             // btnEditDataLinks
             // 
-            this.btnEditDataLinks.Location = new System.Drawing.Point(6, 159);
+            this.btnEditDataLinks.Location = new System.Drawing.Point(3, 159);
             this.btnEditDataLinks.Name = "btnEditDataLinks";
             this.btnEditDataLinks.Size = new System.Drawing.Size(150, 23);
             this.btnEditDataLinks.TabIndex = 7;
@@ -348,7 +349,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 3);
+            this.label3.Location = new System.Drawing.Point(3, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 5;
@@ -370,7 +371,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(3, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 2;
@@ -381,9 +382,9 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.lblRenderInfo);
-            this.groupBox2.Location = new System.Drawing.Point(12, 52);
+            this.groupBox2.Location = new System.Drawing.Point(3, 48);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(437, 125);
+            this.groupBox2.Size = new System.Drawing.Size(567, 125);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Renderer Info:";
@@ -395,7 +396,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRenderInfo.Location = new System.Drawing.Point(6, 16);
             this.lblRenderInfo.Name = "lblRenderInfo";
-            this.lblRenderInfo.Size = new System.Drawing.Size(425, 96);
+            this.lblRenderInfo.Size = new System.Drawing.Size(555, 96);
             this.lblRenderInfo.TabIndex = 4;
             this.lblRenderInfo.Text = "label4";
             // 
@@ -403,7 +404,7 @@
             // 
             this.comboRenderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboRenderType.FormattingEnabled = true;
-            this.comboRenderType.Location = new System.Drawing.Point(12, 25);
+            this.comboRenderType.Location = new System.Drawing.Point(3, 19);
             this.comboRenderType.Name = "comboRenderType";
             this.comboRenderType.Size = new System.Drawing.Size(172, 21);
             this.comboRenderType.TabIndex = 3;
@@ -411,7 +412,7 @@
             // 
             // btnRenderOptions
             // 
-            this.btnRenderOptions.Location = new System.Drawing.Point(190, 23);
+            this.btnRenderOptions.Location = new System.Drawing.Point(181, 19);
             this.btnRenderOptions.Name = "btnRenderOptions";
             this.btnRenderOptions.Size = new System.Drawing.Size(104, 23);
             this.btnRenderOptions.TabIndex = 4;
@@ -466,7 +467,7 @@
             this.addDiskAccessIconToolStripMenuItem,
             this.addBatteryIconToolStripMenuItem});
             this.contextMenuPersets.Name = "contextMenuPersets";
-            this.contextMenuPersets.Size = new System.Drawing.Size(187, 158);
+            this.contextMenuPersets.Size = new System.Drawing.Size(187, 136);
             this.contextMenuPersets.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuPersets_ItemClicked);
             // 
             // addCPUItemToolStripMenuItem
