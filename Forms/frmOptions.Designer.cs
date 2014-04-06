@@ -119,7 +119,7 @@
             this.tabGeneral.Controls.Add(this.groupBox3);
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
-            this.tabGeneral.Padding = new System.Windows.Forms.Padding(6);
+            this.tabGeneral.Padding = new System.Windows.Forms.Padding(10);
             this.tabGeneral.Size = new System.Drawing.Size(762, 373);
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
@@ -128,7 +128,7 @@
             // lblLoaded
             // 
             this.lblLoaded.AutoSize = true;
-            this.lblLoaded.Location = new System.Drawing.Point(15, 354);
+            this.lblLoaded.Location = new System.Drawing.Point(7, 358);
             this.lblLoaded.Name = "lblLoaded";
             this.lblLoaded.Size = new System.Drawing.Size(111, 13);
             this.lblLoaded.TabIndex = 3;
@@ -141,10 +141,10 @@
             this.groupBox4.Controls.Add(this.chkMissingIconFix);
             this.groupBox4.Controls.Add(this.chkFullScreenSleep);
             this.groupBox4.Controls.Add(this.chkRunOnStartup);
-            this.groupBox4.Location = new System.Drawing.Point(9, 9);
+            this.groupBox4.Location = new System.Drawing.Point(3, 13);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(6, 0, 6, 3);
-            this.groupBox4.Size = new System.Drawing.Size(744, 87);
+            this.groupBox4.Size = new System.Drawing.Size(746, 87);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             // 
@@ -185,10 +185,10 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.numUpdateCheckTime);
             this.groupBox3.Controls.Add(this.chkAutoUpdate);
-            this.groupBox3.Location = new System.Drawing.Point(9, 102);
+            this.groupBox3.Location = new System.Drawing.Point(3, 106);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(6, 0, 6, 3);
-            this.groupBox3.Size = new System.Drawing.Size(744, 89);
+            this.groupBox3.Size = new System.Drawing.Size(746, 89);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Update";
@@ -254,7 +254,7 @@
             this.tabControl2.Location = new System.Drawing.Point(168, 13);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(581, 347);
+            this.tabControl2.Size = new System.Drawing.Size(581, 349);
             this.tabControl2.TabIndex = 6;
             // 
             // tabText
@@ -266,7 +266,7 @@
             this.tabText.Location = new System.Drawing.Point(4, 22);
             this.tabText.Name = "tabText";
             this.tabText.Padding = new System.Windows.Forms.Padding(3);
-            this.tabText.Size = new System.Drawing.Size(573, 321);
+            this.tabText.Size = new System.Drawing.Size(573, 323);
             this.tabText.TabIndex = 0;
             this.tabText.Text = "Text";
             this.tabText.UseVisualStyleBackColor = true;
@@ -424,7 +424,7 @@
             // 
             this.btnMoveIconUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMoveIconUp.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_up;
-            this.btnMoveIconUp.Location = new System.Drawing.Point(44, 337);
+            this.btnMoveIconUp.Location = new System.Drawing.Point(34, 345);
             this.btnMoveIconUp.Name = "btnMoveIconUp";
             this.btnMoveIconUp.Size = new System.Drawing.Size(25, 25);
             this.btnMoveIconUp.TabIndex = 5;
@@ -436,7 +436,7 @@
             // 
             this.btnMoveIconDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMoveIconDown.Image = global::RiskyKen.TrayUsage.Properties.Resources.arrow_down;
-            this.btnMoveIconDown.Location = new System.Drawing.Point(75, 337);
+            this.btnMoveIconDown.Location = new System.Drawing.Point(65, 345);
             this.btnMoveIconDown.Name = "btnMoveIconDown";
             this.btnMoveIconDown.Size = new System.Drawing.Size(25, 25);
             this.btnMoveIconDown.TabIndex = 4;
@@ -449,7 +449,7 @@
             this.btnAddPresetIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddPresetIcon.ContextMenuStrip = this.contextMenuPersets;
             this.btnAddPresetIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.lightning_add;
-            this.btnAddPresetIcon.Location = new System.Drawing.Point(137, 337);
+            this.btnAddPresetIcon.Location = new System.Drawing.Point(127, 345);
             this.btnAddPresetIcon.Name = "btnAddPresetIcon";
             this.btnAddPresetIcon.Size = new System.Drawing.Size(25, 25);
             this.btnAddPresetIcon.TabIndex = 2;
@@ -516,7 +516,7 @@
             // 
             this.btnAddIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.add;
-            this.btnAddIcon.Location = new System.Drawing.Point(106, 337);
+            this.btnAddIcon.Location = new System.Drawing.Point(96, 345);
             this.btnAddIcon.Name = "btnAddIcon";
             this.btnAddIcon.Size = new System.Drawing.Size(25, 25);
             this.btnAddIcon.TabIndex = 2;
@@ -528,7 +528,7 @@
             // 
             this.btnRemoveIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemoveIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.delete;
-            this.btnRemoveIcon.Location = new System.Drawing.Point(13, 337);
+            this.btnRemoveIcon.Location = new System.Drawing.Point(3, 345);
             this.btnRemoveIcon.Name = "btnRemoveIcon";
             this.btnRemoveIcon.Size = new System.Drawing.Size(25, 25);
             this.btnRemoveIcon.TabIndex = 1;
@@ -544,9 +544,9 @@
             this.listIcons.IntegralHeight = false;
             this.listIcons.Items.AddRange(new object[] {
             "Test Icon"});
-            this.listIcons.Location = new System.Drawing.Point(13, 13);
+            this.listIcons.Location = new System.Drawing.Point(3, 13);
             this.listIcons.Name = "listIcons";
-            this.listIcons.Size = new System.Drawing.Size(149, 318);
+            this.listIcons.Size = new System.Drawing.Size(149, 326);
             this.listIcons.TabIndex = 0;
             this.listIcons.SelectedIndexChanged += new System.EventHandler(this.listIcons_SelectedIndexChanged);
             // 
@@ -570,10 +570,10 @@
             this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.chkAlwaysRedraw);
             this.groupBox5.Controls.Add(this.txtUpdateURL);
-            this.groupBox5.Location = new System.Drawing.Point(13, 13);
+            this.groupBox5.Location = new System.Drawing.Point(3, 13);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(6, 0, 6, 3);
-            this.groupBox5.Size = new System.Drawing.Size(736, 159);
+            this.groupBox5.Size = new System.Drawing.Size(746, 159);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             // 
@@ -626,7 +626,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUpdateURL.Location = new System.Drawing.Point(9, 32);
             this.txtUpdateURL.Name = "txtUpdateURL";
-            this.txtUpdateURL.Size = new System.Drawing.Size(718, 20);
+            this.txtUpdateURL.Size = new System.Drawing.Size(728, 20);
             this.txtUpdateURL.TabIndex = 1;
             // 
             // btnOK
