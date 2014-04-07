@@ -29,14 +29,68 @@ namespace RiskyKen.TrayUsage
 {
     public partial class frmRenderOptionsImage : Form
     {
-        private TrayIcon TargetIcon = null;
-        private RendererImage TargetRender = null;
+        private TrayIcon targetIcon = null;
+        private RendererImage targetRender = null;
 
-        public frmRenderOptionsImage(TrayIcon aTargetIcon)
+        public frmRenderOptionsImage(TrayIcon targetIcon)
         {
             InitializeComponent();
-            TargetIcon = aTargetIcon;
-            TargetRender = (RendererImage)TargetIcon.renderer;
+            this.targetIcon = targetIcon;
+            targetRender = (RendererImage)targetIcon.renderer;
+
+            textBoxBgImage.Text = targetRender.BackgroundImagePath;
+            textBoxActiveImage.Text = targetRender.ActiveImagePath;
+            textBoxFgImage.Text = targetRender.ForegroundImagePath;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonBrowseBgImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                textBoxBgImage.Text = fd.FileName;
+            }
+            fd.Dispose();
+        }
+
+        private void buttonBrowseActiveImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                textBoxActiveImage.Text = fd.FileName;
+            }
+            fd.Dispose();
+        }
+
+        private void buttonBrowseFgImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                textBoxFgImage.Text = fd.FileName;
+            }
+            fd.Dispose();
+        }
+
+        private void textBoxBgImage_TextChanged(object sender, EventArgs e)
+        {
+            targetRender.BackgroundImagePath = textBoxBgImage.Text;
+        }
+
+        private void textBoxActiveImage_TextChanged(object sender, EventArgs e)
+        {
+            targetRender.ActiveImagePath = textBoxActiveImage.Text;
+        }
+
+        private void textBoxFgImage_TextChanged(object sender, EventArgs e)
+        {
+            targetRender.ForegroundImagePath = textBoxFgImage.Text;
         }
     }
 }

@@ -53,6 +53,7 @@ namespace RiskyKen.TrayUsage
             renderer = new RendererBasic();
             ((RendererBasic)renderer).BackgroundColour = BackgroundColor;
             ((RendererBasic)renderer).ForegroundColour = ForegroundColor;
+            ((RendererBasic)renderer).UseAlpha = true;
 
             if (aTargetData != null)
             {
@@ -185,22 +186,25 @@ namespace RiskyKen.TrayUsage
 
         public void ChangeRenderer(string NewRenderer)
         {
-            switch (NewRenderer)
+            lock (IconManager._iconLock)
             {
-                case "Basic":
-                    renderer.Dispose();
-                    renderer = new RendererBasic();
-                    break;
+                switch (NewRenderer)
+                {
+                    case "Basic":
+                        renderer.Dispose();
+                        renderer = new RendererBasic();
+                        break;
 
-                case "History":
-                    renderer.Dispose();
-                    renderer = new RendererHistory();
-                    break;
+                    case "History":
+                        renderer.Dispose();
+                        renderer = new RendererHistory();
+                        break;
 
-                case "Image":
-                    renderer.Dispose();
-                    renderer = new RendererImage();
-                    break;
+                    case "Image":
+                        renderer.Dispose();
+                        renderer = new RendererImage();
+                        break;
+                }
             }
         }
 
@@ -255,6 +259,8 @@ namespace RiskyKen.TrayUsage
         public void Dispose()
         {
             RemoveAllDataSources();
+            if (renderer != null)
+            { renderer.Dispose(); }
             trayIcon.DoubleClick -= TrayIcon_DoubleClick;
             trayIcon.Visible = false;
             trayIcon.Dispose();

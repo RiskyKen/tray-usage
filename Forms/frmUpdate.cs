@@ -25,6 +25,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace RiskyKen.TrayUsage
 {
@@ -71,7 +72,7 @@ namespace RiskyKen.TrayUsage
 
         private void DownloadChangeLog(string fileUrl)
         {
-            textBoxChangeLog.Text = "Downloading...";
+            richTextBoxChangeLog.Text = "Downloading...";
             Program.updateHelper.updater.DownloadChangeLogFinished += new Updater.DownloadChangeLogFinishedHandler(DownloadChangeLogFinished);
             Program.updateHelper.updater.DownloadChangeLogAsync(fileUrl);
         }
@@ -87,7 +88,36 @@ namespace RiskyKen.TrayUsage
             Program.updateHelper.updater.DownloadChangeLogFinished -= DownloadChangeLogFinished;
             if (result.Success)
             {
-                textBoxChangeLog.Text = result.LogText;
+                //string[] lines = result.LogText.Split(("\n\r").ToCharArray(), StringSplitOptions.None);
+
+                string[] lines = Regex.Split(result.LogText, @"\r?\n|\r");
+
+                richTextBoxChangeLog.Clear();
+                foreach (string line in lines)
+                {
+                    if (line == "Change Log")
+                    {
+                        richTextBoxChangeLog.SelectionIndent = 0;
+                        richTextBoxChangeLog.SelectionFont = new Font("Microsoft Sans Serif", 12f, FontStyle.Bold);
+                        richTextBoxChangeLog.AppendText(line + "\n");
+                        richTextBoxChangeLog.SelectionFont = new Font("Microsoft Sans Serif", 8.25f);
+                    }
+                    else
+                    {
+                        if (line.Contains("(") && line.Contains(")"))
+                        {
+                            richTextBoxChangeLog.SelectionIndent = 0;
+                            richTextBoxChangeLog.SelectionFont = new Font("Microsoft Sans Serif", 10f, FontStyle.Bold);
+                            richTextBoxChangeLog.AppendText(line + "\n");
+                            richTextBoxChangeLog.SelectionFont = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
+                        }
+                        else
+                        {
+                            richTextBoxChangeLog.SelectionIndent = 10;
+                            richTextBoxChangeLog.AppendText(line + "\n");
+                        }
+                    }
+                }
             }
         }
 

@@ -44,7 +44,7 @@ namespace RiskyKen.TrayUsage
         private static Boolean _missingIconFixRun = false;
 
         //Lock object for the icons.
-        private static object _iconLock;
+        public static object _iconLock;
 
         //Constructor
         public static void Init()

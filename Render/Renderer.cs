@@ -190,10 +190,6 @@ namespace RiskyKen.TrayUsage
             return Color.FromArgb(Int32.Parse(tempS[0]), Int32.Parse(tempS[1]), Int32.Parse(tempS[2]));
         }
 
-        public void Dispose()
-        {
-            
-        }
-
+        public abstract void Dispose();
     }
 }

@@ -27,6 +27,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Threading;
 using RiskyKen.TrayUsage.Utils;
+using System.Diagnostics;
 
 namespace RiskyKen.TrayUsage
 {
@@ -105,6 +106,7 @@ namespace RiskyKen.TrayUsage
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblLoaded.Text = "Loaded Data Classes: " + DataManager.GetNumberOfLoadedDataClasses();
+            labelUpTime.Text = "Program Up Time: " +  Common.ConvertMsToString(Environment.TickCount - Program.startTick);
         }
     }
 }

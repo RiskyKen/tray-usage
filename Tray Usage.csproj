@@ -151,6 +151,9 @@
     <EmbeddedResource Include="Forms\frmRenderOptionsHistory.resx">
       <DependentUpon>frmRenderOptionsHistory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRenderOptionsImage.resx">
+      <DependentUpon>frmRenderOptionsImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmUpdate.resx">
       <DependentUpon>frmUpdate.cs</DependentUpon>
     </EmbeddedResource>

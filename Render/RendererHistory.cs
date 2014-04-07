@@ -227,9 +227,9 @@ namespace RiskyKen.TrayUsage
             aXmlW.WriteEndElement();
         }
 
-        new public void Dispose()
+        public override void Dispose()
         {
-            base.Dispose();
+            if (_backgroundImage != null) { _backgroundImage.Dispose(); }
         }
     }
 }

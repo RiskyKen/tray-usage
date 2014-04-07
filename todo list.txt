@@ -1,5 +1,3 @@
-﻿Option to add preset icons.
-
-Make update progress show in the update form.
+﻿Make update progress show in the update form.
 
 Image renderer.

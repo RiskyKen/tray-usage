@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.labelUpTime = new System.Windows.Forms.Label();
             this.lblLoaded = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkMissingIconFix = new System.Windows.Forms.CheckBox();
@@ -61,12 +62,13 @@
             this.btnMoveIconDown = new System.Windows.Forms.Button();
             this.btnAddPresetIcon = new System.Windows.Forms.Button();
             this.contextMenuPersets = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addCPUItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addRAMIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addDiskSpaceIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addDiskAccessIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addBatteryIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.basicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cPUIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rAMIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.networkIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diskSpaceIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diskAccessIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.batteryIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddIcon = new System.Windows.Forms.Button();
             this.btnRemoveIcon = new System.Windows.Forms.Button();
             this.listIcons = new System.Windows.Forms.ListBox();
@@ -114,6 +116,7 @@
             // 
             // tabGeneral
             // 
+            this.tabGeneral.Controls.Add(this.labelUpTime);
             this.tabGeneral.Controls.Add(this.lblLoaded);
             this.tabGeneral.Controls.Add(this.groupBox4);
             this.tabGeneral.Controls.Add(this.groupBox3);
@@ -125,10 +128,19 @@
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
             // 
+            // labelUpTime
+            // 
+            this.labelUpTime.AutoSize = true;
+            this.labelUpTime.Location = new System.Drawing.Point(3, 343);
+            this.labelUpTime.Name = "labelUpTime";
+            this.labelUpTime.Size = new System.Drawing.Size(92, 13);
+            this.labelUpTime.TabIndex = 3;
+            this.labelUpTime.Text = "Program Up Time:";
+            // 
             // lblLoaded
             // 
             this.lblLoaded.AutoSize = true;
-            this.lblLoaded.Location = new System.Drawing.Point(7, 358);
+            this.lblLoaded.Location = new System.Drawing.Point(3, 356);
             this.lblLoaded.Name = "lblLoaded";
             this.lblLoaded.Size = new System.Drawing.Size(111, 13);
             this.lblLoaded.TabIndex = 3;
@@ -320,7 +332,7 @@
             this.tabData.Location = new System.Drawing.Point(4, 22);
             this.tabData.Name = "tabData";
             this.tabData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabData.Size = new System.Drawing.Size(573, 321);
+            this.tabData.Size = new System.Drawing.Size(573, 323);
             this.tabData.TabIndex = 1;
             this.tabData.Text = "Data";
             this.tabData.UseVisualStyleBackColor = true;
@@ -363,7 +375,7 @@
             this.tabRender.Controls.Add(this.btnRenderOptions);
             this.tabRender.Location = new System.Drawing.Point(4, 22);
             this.tabRender.Name = "tabRender";
-            this.tabRender.Size = new System.Drawing.Size(573, 321);
+            this.tabRender.Size = new System.Drawing.Size(573, 323);
             this.tabRender.TabIndex = 2;
             this.tabRender.Text = "Render";
             this.tabRender.UseVisualStyleBackColor = true;
@@ -460,63 +472,82 @@
             // contextMenuPersets
             // 
             this.contextMenuPersets.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addCPUItemToolStripMenuItem,
-            this.addRAMIconToolStripMenuItem,
-            this.addToolStripMenuItem,
-            this.addDiskSpaceIconToolStripMenuItem,
-            this.addDiskAccessIconToolStripMenuItem,
-            this.addBatteryIconToolStripMenuItem});
+            this.basicToolStripMenuItem});
             this.contextMenuPersets.Name = "contextMenuPersets";
-            this.contextMenuPersets.Size = new System.Drawing.Size(187, 136);
-            this.contextMenuPersets.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuPersets_ItemClicked);
+            this.contextMenuPersets.Size = new System.Drawing.Size(102, 26);
             // 
-            // addCPUItemToolStripMenuItem
+            // basicToolStripMenuItem
             // 
-            this.addCPUItemToolStripMenuItem.Name = "addCPUItemToolStripMenuItem";
-            this.addCPUItemToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.addCPUItemToolStripMenuItem.Tag = "CPU";
-            this.addCPUItemToolStripMenuItem.Text = "Add CPU Icon";
+            this.basicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cPUIconToolStripMenuItem,
+            this.rAMIconToolStripMenuItem,
+            this.networkIconToolStripMenuItem,
+            this.diskSpaceIconToolStripMenuItem,
+            this.diskAccessIconToolStripMenuItem,
+            this.batteryIconToolStripMenuItem});
+            this.basicToolStripMenuItem.Name = "basicToolStripMenuItem";
+            this.basicToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.basicToolStripMenuItem.Text = "Basic";
             // 
-            // addRAMIconToolStripMenuItem
+            // cPUIconToolStripMenuItem
             // 
-            this.addRAMIconToolStripMenuItem.Name = "addRAMIconToolStripMenuItem";
-            this.addRAMIconToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.addRAMIconToolStripMenuItem.Tag = "RAM";
-            this.addRAMIconToolStripMenuItem.Text = "Add RAM Icon";
+            this.cPUIconToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.cPUIconToolStripMenuItem.Name = "cPUIconToolStripMenuItem";
+            this.cPUIconToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.cPUIconToolStripMenuItem.Tag = "CPU";
+            this.cPUIconToolStripMenuItem.Text = "CPU Icon";
+            this.cPUIconToolStripMenuItem.Click += new System.EventHandler(this.cPUIconToolStripMenuItem_Click);
             // 
-            // addToolStripMenuItem
+            // rAMIconToolStripMenuItem
             // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.addToolStripMenuItem.Tag = "Network";
-            this.addToolStripMenuItem.Text = "Add Network Icon";
+            this.rAMIconToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.rAMIconToolStripMenuItem.Name = "rAMIconToolStripMenuItem";
+            this.rAMIconToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.rAMIconToolStripMenuItem.Tag = "RAM";
+            this.rAMIconToolStripMenuItem.Text = "RAM Icon";
+            this.rAMIconToolStripMenuItem.Click += new System.EventHandler(this.rAMIconToolStripMenuItem_Click);
             // 
-            // addDiskSpaceIconToolStripMenuItem
+            // networkIconToolStripMenuItem
             // 
-            this.addDiskSpaceIconToolStripMenuItem.Name = "addDiskSpaceIconToolStripMenuItem";
-            this.addDiskSpaceIconToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.addDiskSpaceIconToolStripMenuItem.Tag = "Disk Space";
-            this.addDiskSpaceIconToolStripMenuItem.Text = "Add Disk Space Icon";
+            this.networkIconToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.networkIconToolStripMenuItem.Name = "networkIconToolStripMenuItem";
+            this.networkIconToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.networkIconToolStripMenuItem.Tag = "Network";
+            this.networkIconToolStripMenuItem.Text = "Network Icon";
+            this.networkIconToolStripMenuItem.Click += new System.EventHandler(this.networkIconToolStripMenuItem_Click);
             // 
-            // addDiskAccessIconToolStripMenuItem
+            // diskSpaceIconToolStripMenuItem
             // 
-            this.addDiskAccessIconToolStripMenuItem.Name = "addDiskAccessIconToolStripMenuItem";
-            this.addDiskAccessIconToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.addDiskAccessIconToolStripMenuItem.Tag = "Disk Access";
-            this.addDiskAccessIconToolStripMenuItem.Text = "Add Disk Access Icon";
+            this.diskSpaceIconToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.diskSpaceIconToolStripMenuItem.Name = "diskSpaceIconToolStripMenuItem";
+            this.diskSpaceIconToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.diskSpaceIconToolStripMenuItem.Tag = "Disk Space";
+            this.diskSpaceIconToolStripMenuItem.Text = "Disk Space Icon";
+            this.diskSpaceIconToolStripMenuItem.Click += new System.EventHandler(this.diskSpaceIconToolStripMenuItem_Click);
             // 
-            // addBatteryIconToolStripMenuItem
+            // diskAccessIconToolStripMenuItem
             // 
-            this.addBatteryIconToolStripMenuItem.Name = "addBatteryIconToolStripMenuItem";
-            this.addBatteryIconToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.addBatteryIconToolStripMenuItem.Tag = "Battery";
-            this.addBatteryIconToolStripMenuItem.Text = "Add Battery Icon";
+            this.diskAccessIconToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.diskAccessIconToolStripMenuItem.Name = "diskAccessIconToolStripMenuItem";
+            this.diskAccessIconToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.diskAccessIconToolStripMenuItem.Tag = "Disk Access";
+            this.diskAccessIconToolStripMenuItem.Text = "Disk Access Icon";
+            this.diskAccessIconToolStripMenuItem.Click += new System.EventHandler(this.diskAccessIconToolStripMenuItem_Click);
+            // 
+            // batteryIconToolStripMenuItem
+            // 
+            this.batteryIconToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.batteryIconToolStripMenuItem.Name = "batteryIconToolStripMenuItem";
+            this.batteryIconToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.batteryIconToolStripMenuItem.Tag = "Battery";
+            this.batteryIconToolStripMenuItem.Text = "Battery Icon";
+            this.batteryIconToolStripMenuItem.Click += new System.EventHandler(this.batteryIconToolStripMenuItem_Click);
             // 
             // btnAddIcon
             // 
             this.btnAddIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.add;
-            this.btnAddIcon.Location = new System.Drawing.Point(96, 345);
+            this.btnAddIcon.Location = new System.Drawing.Point(3, 345);
             this.btnAddIcon.Name = "btnAddIcon";
             this.btnAddIcon.Size = new System.Drawing.Size(25, 25);
             this.btnAddIcon.TabIndex = 2;
@@ -528,7 +559,7 @@
             // 
             this.btnRemoveIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemoveIcon.Image = global::RiskyKen.TrayUsage.Properties.Resources.delete;
-            this.btnRemoveIcon.Location = new System.Drawing.Point(3, 345);
+            this.btnRemoveIcon.Location = new System.Drawing.Point(96, 345);
             this.btnRemoveIcon.Name = "btnRemoveIcon";
             this.btnRemoveIcon.Size = new System.Drawing.Size(25, 25);
             this.btnRemoveIcon.TabIndex = 1;
@@ -764,12 +795,14 @@
         private System.Windows.Forms.TabPage tabRender;
         private System.Windows.Forms.Button btnAddPresetIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenuPersets;
-        private System.Windows.Forms.ToolStripMenuItem addCPUItemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addRAMIconToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addDiskSpaceIconToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addDiskAccessIconToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addBatteryIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem basicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cPUIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rAMIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem networkIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diskSpaceIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diskAccessIconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem batteryIconToolStripMenuItem;
+        private System.Windows.Forms.Label labelUpTime;
 
     }
 }

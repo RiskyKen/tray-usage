@@ -85,7 +85,7 @@ namespace RiskyKen.TrayUsage.Icons
             dataLink[1].DataIndex = 1;
             dataLink[1].DataClassRef = DataManager.GetDataClassRef("Network Interface");
 
-            IconManager.AddIcon("Network", "{iconname}" + Environment.NewLine + Environment.NewLine + "{Network Interface#!0} - {Network Interface*!0}\n{Network Interface#!1} - {Network Interface*!1}", dataLink,
+            IconManager.AddIcon("Network", "{iconname}" + Environment.NewLine + Environment.NewLine + "{Network Interface#!0} - {Network Interface*!0}" + Environment.NewLine + "{Network Interface#!1} - {Network Interface*!1}", dataLink,
                 Globals.colorPresets[2].BackgroundColor, Globals.colorPresets[2].ForegroundColor);
         }
 

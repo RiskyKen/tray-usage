@@ -43,8 +43,6 @@ namespace RiskyKen.TrayUsage
             {
                 listIcons.SelectedIndex = 0;
             }
-
-
         }
 
         private void populateIconsList()
@@ -69,9 +67,49 @@ namespace RiskyKen.TrayUsage
             contextMenuPersets.Show(btnAddPresetIcon, new Point(em.X, em.Y));
         }
 
-        private void contextMenuPersets_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void cPUIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (PresetIconHelper.AddPersetIcon(e.ClickedItem.Tag.ToString()))
+            if (PresetIconHelper.AddPersetIcon("CPU"))
+            {
+                populateIconsList();
+            }
+        }
+
+        private void rAMIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (PresetIconHelper.AddPersetIcon("RAM"))
+            {
+                populateIconsList();
+            }
+        }
+
+        private void networkIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (PresetIconHelper.AddPersetIcon("Network"))
+            {
+                populateIconsList();
+            }
+        }
+
+        private void diskSpaceIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (PresetIconHelper.AddPersetIcon("Disk Space"))
+            {
+                populateIconsList();
+            }
+        }
+
+        private void diskAccessIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (PresetIconHelper.AddPersetIcon("Disk Access"))
+            {
+                populateIconsList();
+            }
+        }
+
+        private void batteryIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (PresetIconHelper.AddPersetIcon("Battery"))
             {
                 populateIconsList();
             }
@@ -177,7 +215,6 @@ namespace RiskyKen.TrayUsage
                     RenderOptionsHistoryForm = null;
                     break;
             }
-
         }
 
         private void txtIconName_KeyPress(object sender, KeyPressEventArgs e)
@@ -251,6 +288,14 @@ namespace RiskyKen.TrayUsage
                 Environment.NewLine + Environment.NewLine + "Max Data Inputs: " +
                 SelectedIcon.renderer.MaxValues.ToString() + Environment.NewLine + 
                 "Render Count:" + SelectedIcon.renderer.RenderCount.ToString();
+            if (typeof(IRenderColorable).IsAssignableFrom(SelectedIcon.renderer.GetType()))
+            {
+                //groupBoxColour.Visible = true;
+            }
+            else
+            {
+                //groupBoxColour.Visible = false;
+            }
         }
     }
 }

@@ -45,6 +45,13 @@ namespace RiskyKen.TrayUsage.Utils
             return thisSize + " " + preFix;
         }
 
+        public static string ConvertMsToString(int msTime)
+        {
+            TimeSpan ts = TimeSpan.FromMilliseconds(msTime);
+            string result = string.Format("{0:D1}d : {1:D2}h : {2:D2}m : {3:D2}s", ts.Days, ts.Hours, ts.Minutes, ts.Seconds);
+            return result;
+        }
+
         public static void SetRunningOnStartup(bool RunOnStartup)
         {
             if (!RunOnStartup)
