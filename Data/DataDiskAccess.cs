@@ -61,12 +61,14 @@ namespace RiskyKen.TrayUsage
         public static string[] GetHardDriveLabels()
         {
             string[] DriveLabels = new PerformanceCounterCategory("PhysicalDisk").GetInstanceNames();
+            Array.Sort<string>(DriveLabels);
             return DriveLabels;
         }
 
         public override void Load()
         {
-            string[] diskLabels = new PerformanceCounterCategory("PhysicalDisk").GetInstanceNames();
+            string[] diskLabels = GetHardDriveLabels();
+            
             for (Int32 i = 0; i <= proCounter.GetUpperBound(0); i++)
             {
                 string thisDataLabel = _dataLabels[i].Remove(_dataLabels[i].Length - 1);
