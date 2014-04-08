@@ -24,6 +24,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using RiskyKen.TrayUsage.Render;
 
 namespace RiskyKen.TrayUsage
 {
@@ -41,6 +42,8 @@ namespace RiskyKen.TrayUsage
             textBoxBgImage.Text = targetRender.BackgroundImagePath;
             textBoxActiveImage.Text = targetRender.ActiveImagePath;
             textBoxFgImage.Text = targetRender.ForegroundImagePath;
+
+            comboBoxDirection.SelectedIndex = (byte)targetRender.RenderDirection - 1;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -91,6 +94,11 @@ namespace RiskyKen.TrayUsage
         private void textBoxFgImage_TextChanged(object sender, EventArgs e)
         {
             targetRender.ForegroundImagePath = textBoxFgImage.Text;
+        }
+
+        private void comboBoxDirection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            targetRender.RenderDirection = (RenderDirections)comboBoxDirection.SelectedIndex + 1;
         }
     }
 }

@@ -89,6 +89,7 @@
     <Compile Include="FullScreenCheck.cs" />
     <Compile Include="Icons\PresetIconHelper.cs" />
     <Compile Include="Render\IRenderColorable.cs" />
+    <Compile Include="Render\IRenderDirection.cs" />
     <Compile Include="Render\RendererHistory.cs" />
     <Compile Include="Render\RendererHistory.Properties.cs" />
     <Compile Include="Render\RenderRegistry.cs" />

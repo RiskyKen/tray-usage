@@ -55,7 +55,7 @@ namespace RiskyKen.TrayUsage
         public static Int32 UpdateCheckTime = 14400000;
 
         //The colour bit depth that the tray icons use.
-        public static PixelFormat colorBitDepth = PixelFormat.Format24bppRgb;
+        public static PixelFormat colorBitDepth = PixelFormat.Format32bppPArgb;
 
         //Auto update?
         public static Boolean AutoUpdate = true;

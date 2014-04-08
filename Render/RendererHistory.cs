@@ -26,9 +26,9 @@ using RiskyKen.TrayUsage.Render;
 
 namespace RiskyKen.TrayUsage
 {
-    partial class RendererHistory : Renderer, IRenderColorable
+    partial class RendererHistory : Renderer, IRenderColorable, IRenderDirection
     {
-        private Boolean _horizontal = false;
+        private RenderDirections _renderDirection = RenderDirections.UP;
 
         private Bitmap _backgroundImage = null;
 
@@ -108,34 +108,77 @@ namespace RiskyKen.TrayUsage
         }
 
         //TODO move into base class.
-        private void RenderBar(Bitmap aBitmap, Brush aBrush, Int32 aWidth, Int32 aValue, Int32 aPos, Boolean aHorizontal)
+        private void RenderBar(Bitmap buffer, Brush brush, Int32 barWidth, Int32 barValue, Int32 barOffset, RenderDirections renderDirection)
         {
-            if (aHorizontal)
+            int xOffset = 0;
+            int yOffset = 0;
+
+            switch (renderDirection)
             {
-                if (!_useAlpha)
-                { Graphics.FromImage(aBitmap).FillRectangle(aBrush, 1, 1 + aPos, aValue, aWidth); }
-                else
-                {
-                    Int32 normalDrawAmount = (Int32)Math.Floor((Double)(aValue / 256));
-                    Int32 alphaDrawAmount = aValue - (normalDrawAmount * 256);
-                    Graphics.FromImage(aBitmap).FillRectangle(aBrush, 1, 1 + aPos, normalDrawAmount, aWidth);
-                    SolidBrush tempBrush = new SolidBrush(Color.FromArgb(alphaDrawAmount, _foregroundColour.R, _foregroundColour.G, _foregroundColour.B));
-                    Graphics.FromImage(aBitmap).FillRectangle(tempBrush, 1 + normalDrawAmount, 1 + aPos, 1, aWidth); tempBrush.Dispose();
-                }
+                case RenderDirections.UP:
+                    yOffset = 1;
+                    break;
+                case RenderDirections.DOWN:
+                    yOffset = 1;
+                    break;
+                case RenderDirections.RIGHT:
+                    xOffset = 1;
+                    break;
+                case RenderDirections.LEFT:
+                    xOffset = 1;
+                    break;
+            }
+
+            int x;
+            int y;
+            int width;
+            int height;
+
+            x = 1 + (barOffset * yOffset);
+            y = 1 + (barOffset * xOffset);
+
+            if (!UseAlpha)
+            {
+                width = (barWidth * yOffset) + (barValue * xOffset);
+                height = (barWidth * xOffset) + (barValue * yOffset);
+
+                if (renderDirection == RenderDirections.UP) { y += 14 - barValue; }
+                if (renderDirection == RenderDirections.RIGHT) { x += 14 - barValue; }
+
+                Graphics.FromImage(buffer).FillRectangle(brush, x, y, width, height);
             }
             else
             {
-                if (!_useAlpha)
-                { Graphics.FromImage(aBitmap).FillRectangle(aBrush, 1 + aPos, 15 - aValue, aWidth, aValue); }
-                else
+                Int32 normalDrawAmount = (Int32)Math.Floor((Double)(barValue / 256));
+                Int32 alphaDrawAmount = barValue - (normalDrawAmount * 256);
+
+                width = (barWidth * yOffset) + (normalDrawAmount * xOffset);
+                height = (barWidth * xOffset) + (normalDrawAmount * yOffset);
+
+                if (renderDirection == RenderDirections.UP) { y += 14 - normalDrawAmount; }
+                if (renderDirection == RenderDirections.RIGHT) { x += 14 - normalDrawAmount; }
+
+                Graphics.FromImage(buffer).FillRectangle(brush, x, y, width, height);
+
+                SolidBrush alphaBrush = new SolidBrush(Color.FromArgb(alphaDrawAmount, ForegroundColour.R, ForegroundColour.G, ForegroundColour.B));
+
+                switch (renderDirection)
                 {
-                    Int32 normalDrawAmount = (Int32)Math.Floor((Double)(aValue / 256));
-                    Int32 alphaDrawAmount = aValue - (normalDrawAmount * 256);
-                    Graphics.FromImage(aBitmap).FillRectangle(aBrush, 1 + aPos, 15 - normalDrawAmount, aWidth, normalDrawAmount);
-                    SolidBrush tempBrush = new SolidBrush(Color.FromArgb(alphaDrawAmount, _foregroundColour.R, _foregroundColour.G, _foregroundColour.B));
-                    Graphics.FromImage(aBitmap).FillRectangle(tempBrush, 1 + aPos, 15 - normalDrawAmount - 1, aWidth, 1);
-                    tempBrush.Dispose();
+                    case RenderDirections.UP:
+                        Graphics.FromImage(buffer).FillRectangle(alphaBrush, x, y - 1, width, 1);
+                        break;
+                    case RenderDirections.DOWN:
+                        Graphics.FromImage(buffer).FillRectangle(alphaBrush, x, y + 1, width, 1);
+                        break;
+                    case RenderDirections.RIGHT:
+                        Graphics.FromImage(buffer).FillRectangle(alphaBrush, x - 1, y, 1, height);
+                        break;
+                    case RenderDirections.LEFT:
+                        Graphics.FromImage(buffer).FillRectangle(alphaBrush, x + 1, y, 1, height);
+                        break;
                 }
+
+                alphaBrush.Dispose();
             }
         }
 
@@ -168,8 +211,8 @@ namespace RiskyKen.TrayUsage
         {
             switch (aName)
             {
-                case "Horizontal":
-                    _horizontal = Boolean.Parse(aValue);
+                case "RenderDirection":
+                    _renderDirection = (RenderDirections)Byte.Parse(aValue);
                     break;
                 case "UseAlpha":
                     _useAlpha = Boolean.Parse(aValue);
@@ -199,7 +242,7 @@ namespace RiskyKen.TrayUsage
                 Int32 thisPlace = _historyIndex - i;
                 if (thisPlace < 0) { thisPlace += _history.GetUpperBound(0) + 1; }
                 if (_history[thisPlace] != -1)
-                { RenderBar(tempBitmap, tempBrush, 1, _history[thisPlace], 13 - i, _horizontal); }
+                { RenderBar(tempBitmap, tempBrush, 1, _history[thisPlace], 13 - i, _renderDirection); }
             }
             tempBrush.Dispose();
             LastValue[0] = aValue[0];
@@ -220,7 +263,7 @@ namespace RiskyKen.TrayUsage
         public override void SaveRenderer(System.Xml.XmlWriter aXmlW)
         {
             aXmlW.WriteStartElement("Renderer" + Name);
-            aXmlW.WriteElementString("Horizontal", _horizontal.ToString());
+            aXmlW.WriteElementString("RenderDirection", ((byte)(_renderDirection)).ToString());
             aXmlW.WriteElementString("UseAlpha", _useAlpha.ToString());
             aXmlW.WriteElementString("BackgroundColour", ColourToString(_backgroundColour));
             aXmlW.WriteElementString("ForegroundColour", ColourToString(_foregroundColour));

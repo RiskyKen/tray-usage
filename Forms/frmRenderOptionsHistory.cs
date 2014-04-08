@@ -24,6 +24,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using RiskyKen.TrayUsage.Render;
 
 namespace RiskyKen.TrayUsage
 {
@@ -45,7 +46,7 @@ namespace RiskyKen.TrayUsage
             _targetIcon = TargetIcon;
             _targetRender = (RendererHistory)TargetIcon.renderer;
             LoadColourPics();
-            chkHorizontal.Checked = _targetRender.Horizontal;
+            comboBoxDirection.SelectedIndex = (byte)_targetRender.RenderDirection - 1;
             chkUseAlpha.Checked = _targetRender.UseAlpha;
         }
 
@@ -74,7 +75,6 @@ namespace RiskyKen.TrayUsage
             LoadColourPics();
         }
 
-
         private Color OpenColourDialog(Color aStartColour)
         {
             ColorDialog ColorForm = new ColorDialog();
@@ -84,11 +84,6 @@ namespace RiskyKen.TrayUsage
             { return ColorForm.Color; }
             else
             { return aStartColour; }
-        }
-
-        private void chkHorizontal_CheckedChanged(object sender, EventArgs e)
-        {
-            _targetRender.Horizontal = chkHorizontal.Checked;
         }
 
         private void chkUseAlpha_CheckedChanged(object sender, EventArgs e)
@@ -103,6 +98,11 @@ namespace RiskyKen.TrayUsage
             _targetRender.BackgroundColour = Globals.colorPresets[colorPer.SelectedIndex].BackgroundColor;
             _targetRender.ForegroundColour = Globals.colorPresets[colorPer.SelectedIndex].ForegroundColor;
             LoadColourPics();
+        }
+
+        private void comboBoxDirection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _targetRender.RenderDirection = (RenderDirections)comboBoxDirection.SelectedIndex + 1;
         }
 
 

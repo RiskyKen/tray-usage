@@ -31,13 +31,14 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.colorPer = new TrayUsage.ColorPresetPicker();
+            this.colorPer = new RiskyKen.TrayUsage.ColorPresetPicker();
             this.picFGColour = new System.Windows.Forms.PictureBox();
             this.picBGColour = new System.Windows.Forms.PictureBox();
             this.btnColourFG = new System.Windows.Forms.Button();
             this.btnColourBG = new System.Windows.Forms.Button();
-            this.chkHorizontal = new System.Windows.Forms.CheckBox();
             this.chkUseAlpha = new System.Windows.Forms.CheckBox();
+            this.comboBoxDirection = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFGColour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBGColour)).BeginInit();
@@ -46,7 +47,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(181, 176);
+            this.btnClose.Location = new System.Drawing.Point(177, 197);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 0;
@@ -126,21 +127,10 @@
             this.btnColourBG.UseVisualStyleBackColor = true;
             this.btnColourBG.Click += new System.EventHandler(this.btnColourBG_Click);
             // 
-            // chkHorizontal
-            // 
-            this.chkHorizontal.AutoSize = true;
-            this.chkHorizontal.Location = new System.Drawing.Point(12, 120);
-            this.chkHorizontal.Name = "chkHorizontal";
-            this.chkHorizontal.Size = new System.Drawing.Size(73, 17);
-            this.chkHorizontal.TabIndex = 12;
-            this.chkHorizontal.Text = "Horizontal";
-            this.chkHorizontal.UseVisualStyleBackColor = true;
-            this.chkHorizontal.CheckedChanged += new System.EventHandler(this.chkHorizontal_CheckedChanged);
-            // 
             // chkUseAlpha
             // 
             this.chkUseAlpha.AutoSize = true;
-            this.chkUseAlpha.Location = new System.Drawing.Point(12, 143);
+            this.chkUseAlpha.Location = new System.Drawing.Point(12, 160);
             this.chkUseAlpha.Name = "chkUseAlpha";
             this.chkUseAlpha.Size = new System.Drawing.Size(75, 17);
             this.chkUseAlpha.TabIndex = 13;
@@ -148,13 +138,38 @@
             this.chkUseAlpha.UseVisualStyleBackColor = true;
             this.chkUseAlpha.CheckedChanged += new System.EventHandler(this.chkUseAlpha_CheckedChanged);
             // 
+            // comboBoxDirection
+            // 
+            this.comboBoxDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDirection.FormattingEnabled = true;
+            this.comboBoxDirection.Items.AddRange(new object[] {
+            "Up",
+            "Down",
+            "Left",
+            "Right"});
+            this.comboBoxDirection.Location = new System.Drawing.Point(12, 133);
+            this.comboBoxDirection.Name = "comboBoxDirection";
+            this.comboBoxDirection.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDirection.TabIndex = 14;
+            this.comboBoxDirection.SelectedIndexChanged += new System.EventHandler(this.comboBoxDirection_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 117);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Direction:";
+            // 
             // frmRenderOptionsBasic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(268, 211);
+            this.ClientSize = new System.Drawing.Size(264, 232);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBoxDirection);
             this.Controls.Add(this.chkUseAlpha);
-            this.Controls.Add(this.chkHorizontal);
             this.Controls.Add(this.GroupBox1);
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -181,9 +196,10 @@
         internal System.Windows.Forms.PictureBox picBGColour;
         internal System.Windows.Forms.Button btnColourFG;
         internal System.Windows.Forms.Button btnColourBG;
-        private System.Windows.Forms.CheckBox chkHorizontal;
         private ColorPresetPicker colorPer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox chkUseAlpha;
+        private System.Windows.Forms.ComboBox comboBoxDirection;
+        private System.Windows.Forms.Label label2;
     }
 }

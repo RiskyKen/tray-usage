@@ -24,6 +24,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using RiskyKen.TrayUsage.Render;
 
 namespace RiskyKen.TrayUsage
 {
@@ -45,7 +46,7 @@ namespace RiskyKen.TrayUsage
             TargetIcon = aTargetIcon;
             TargetRender = (RendererBasic)TargetIcon.renderer;
             LoadColourPics();
-            chkHorizontal.Checked = TargetRender.Horizontal;
+            comboBoxDirection.SelectedIndex = (byte)TargetRender.RenderDirection - 1;
             chkUseAlpha.Checked = TargetRender.UseAlpha;
         }
 
@@ -85,11 +86,6 @@ namespace RiskyKen.TrayUsage
             { return aStartColour; }
         }
 
-        private void chkHorizontal_CheckedChanged(object sender, EventArgs e)
-        {
-            TargetRender.Horizontal = chkHorizontal.Checked;
-        }
-
         private void colorPer_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (TargetRender == null) { return; }
@@ -102,6 +98,11 @@ namespace RiskyKen.TrayUsage
         private void chkUseAlpha_CheckedChanged(object sender, EventArgs e)
         {
             TargetRender.UseAlpha = chkUseAlpha.Checked;
+        }
+
+        private void comboBoxDirection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TargetRender.RenderDirection = (RenderDirections)comboBoxDirection.SelectedIndex + 1;
         }
     }
 }

@@ -23,12 +23,13 @@ using System.Text;
 using System.Drawing;
 using System.Xml;
 using System.IO;
+using RiskyKen.TrayUsage.Render;
 
 namespace RiskyKen.TrayUsage
 {
-    public class RendererImage : Renderer 
+    public class RendererImage : Renderer, IRenderDirection
     {
-        private bool _horizontal = false;
+        private RenderDirections _renderDirection = RenderDirections.UP;
 
         private string _backgroundImagePath = null;
         private string _activeImagePath = null;
@@ -41,12 +42,6 @@ namespace RiskyKen.TrayUsage
         private bool _haveBackgroundImage = false;
         private bool _haveActiveImage = false;
         private bool _haveForegroundImage = false;
-
-        public bool Horizontal
-        {
-            get { return _horizontal; }
-            set { _horizontal = value; }
-        }
 
         public override string Name
         {
@@ -96,6 +91,19 @@ namespace RiskyKen.TrayUsage
             }
         }
 
+        public RenderDirections RenderDirection
+        {
+            get
+            {
+                return _renderDirection;
+            }
+            set
+            {
+                _renderDirection = value;
+                ForceIconRedraw();
+            }
+        }
+
         ///<summary>Constructor</summary>
         public RendererImage()
         {
@@ -117,8 +125,8 @@ namespace RiskyKen.TrayUsage
         {
             switch (aName)
             {
-                case "Horizontal":
-                    _horizontal = Boolean.Parse(aValue);
+                case "RenderDirection":
+                    _renderDirection = (RenderDirections)Byte.Parse(aValue);
                     break;
                 case "BackgroundImagePath":
                     _backgroundImagePath = aValue;
@@ -135,7 +143,7 @@ namespace RiskyKen.TrayUsage
         public override void SaveRenderer(System.Xml.XmlWriter aXmlW)
         {
             aXmlW.WriteStartElement("RendererImage");
-            aXmlW.WriteElementString("Horizontal", _horizontal.ToString());
+            aXmlW.WriteElementString("RenderDirection", ((byte)(_renderDirection)).ToString() );
 
             if (!String.IsNullOrEmpty(_backgroundImagePath))
             { aXmlW.WriteElementString("BackgroundImagePath", _backgroundImagePath); }

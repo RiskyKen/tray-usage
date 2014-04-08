@@ -38,6 +38,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buttonBrowseFgImage = new System.Windows.Forms.Button();
             this.textBoxFgImage = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxDirection = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnClose
@@ -141,11 +143,38 @@
             this.textBoxFgImage.TabIndex = 7;
             this.textBoxFgImage.TextChanged += new System.EventHandler(this.textBoxFgImage_TextChanged);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 175);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Direction:";
+            // 
+            // comboBoxDirection
+            // 
+            this.comboBoxDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDirection.Enabled = false;
+            this.comboBoxDirection.FormattingEnabled = true;
+            this.comboBoxDirection.Items.AddRange(new object[] {
+            "Up",
+            "Down",
+            "Left",
+            "Right"});
+            this.comboBoxDirection.Location = new System.Drawing.Point(12, 191);
+            this.comboBoxDirection.Name = "comboBoxDirection";
+            this.comboBoxDirection.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDirection.TabIndex = 16;
+            this.comboBoxDirection.SelectedIndexChanged += new System.EventHandler(this.comboBoxDirection_SelectedIndexChanged);
+            // 
             // frmRenderOptionsImage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(493, 269);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBoxDirection);
             this.Controls.Add(this.textBoxFgImage);
             this.Controls.Add(this.buttonBrowseFgImage);
             this.Controls.Add(this.label3);
@@ -179,5 +208,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonBrowseFgImage;
         private System.Windows.Forms.TextBox textBoxFgImage;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBoxDirection;
     }
 }

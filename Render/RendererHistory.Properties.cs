@@ -21,15 +21,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using RiskyKen.TrayUsage.Render;
 
 namespace RiskyKen.TrayUsage
 {
     partial class RendererHistory
     {
-        public bool Horizontal
+        public RenderDirections RenderDirection
         {
-            get { return _horizontal; }
-            set { _horizontal = value; }
+            get
+            {
+                return _renderDirection;
+            }
+            set
+            {
+                _renderDirection = value;
+                ForceIconRedraw();
+            }
         }
 
         public Color BackgroundColour
