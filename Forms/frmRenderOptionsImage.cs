@@ -100,5 +100,25 @@ namespace RiskyKen.TrayUsage
         {
             targetRender.RenderDirection = (RenderDirections)comboBoxDirection.SelectedIndex + 1;
         }
+
+        private void numericUpDownTopPadding_ValueChanged(object sender, EventArgs e)
+        {
+            targetRender.PaddingTop = (int)numericUpDownTopPadding.Value;
+        }
+
+        private void numericUpDownLeftPadding_ValueChanged(object sender, EventArgs e)
+        {
+            targetRender.PaddingLeft = (int)numericUpDownLeftPadding.Value;
+        }
+
+        private void numericUpDownRightPadding_ValueChanged(object sender, EventArgs e)
+        {
+            targetRender.PaddingRight = (int)numericUpDownRightPadding.Value;
+        }
+
+        private void numericUpDownBottomPadding_ValueChanged(object sender, EventArgs e)
+        {
+            targetRender.PaddingBottom = (int)numericUpDownBottomPadding.Value;
+        }
     }
 }

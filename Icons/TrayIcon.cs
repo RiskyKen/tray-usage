@@ -39,7 +39,7 @@ namespace RiskyKen.TrayUsage
         private NotifyIcon trayIcon = null;
 
         //The target data class.
-        public DataLink[] TargetData = null;
+        protected DataLink[] _targetData = null;
 
         //The renderer that this icon will use.
         public Renderer renderer = null;
@@ -80,7 +80,7 @@ namespace RiskyKen.TrayUsage
 
         public void RenderIcon(Boolean sleeping)
         {
-            Int32[] iconValues = renderer.ConvertToIconValues(TargetData);
+            Int32[] iconValues = renderer.ConvertToIconValues(_targetData);
             if (renderer.NeedRedraw(iconValues, sleeping))
             {
                 if (!renderer.isSleeping)
@@ -113,17 +113,17 @@ namespace RiskyKen.TrayUsage
         public void AddDataSource(DataLink aDataLink)
         {
             if (aDataLink.DataClassRef == null) { return; }
-            if (TargetData == null)
+            if (_targetData == null)
             {
-                TargetData = new DataLink[1];
+                _targetData = new DataLink[1];
             }
             else
             {
-                Array.Resize(ref TargetData, TargetData.GetUpperBound(0) + 2);
+                Array.Resize(ref _targetData, _targetData.GetUpperBound(0) + 2);
             }
             if (aDataLink.DataClassRef != null)
             {
-                TargetData[TargetData.GetUpperBound(0)] = aDataLink;
+                _targetData[_targetData.GetUpperBound(0)] = aDataLink;
                 aDataLink.DataClassRef.Wake();
                 //UpdateName();
                 renderer.ForceIconRedraw();
@@ -132,56 +132,70 @@ namespace RiskyKen.TrayUsage
 
         public void RemoveDataSource(Int32 aIndex)
         {
-            if (TargetData == null) { return; }
+            if (_targetData == null) { return; }
 
-            TargetData[aIndex].DataClassRef.Sleep();
+            _targetData[aIndex].DataClassRef.Sleep();
 
-            if (TargetData.GetUpperBound(0) == 0)
+            if (_targetData.GetUpperBound(0) == 0)
             {
-                TargetData = null;
+                _targetData = null;
                 return;
             }
 
             DataLink[] tempLink = null;
-            tempLink = new DataLink[TargetData.GetUpperBound(0)];
+            tempLink = new DataLink[_targetData.GetUpperBound(0)];
 
             Int32 j = 0;
 
-            for (Int32 i = 0; i <= TargetData.GetUpperBound(0); i++)
+            for (Int32 i = 0; i <= _targetData.GetUpperBound(0); i++)
             {
                 if (i != aIndex)
                 {
-                    tempLink[j] = TargetData[i];
+                    tempLink[j] = _targetData[i];
                     j++;
                 }
             }
-            TargetData = tempLink;
+            _targetData = tempLink;
             //UpdateName();
             renderer.ForceIconRedraw();
         }
 
         private void RemoveAllDataSources()
         {
-            if (TargetData == null) { return; }
+            if (_targetData == null) { return; }
 
-            for (int i = 0; i <= TargetData.GetUpperBound(0); i++)
+            for (int i = 0; i <= _targetData.GetUpperBound(0); i++)
             {
-                TargetData[i].DataClassRef.Sleep();
+                _targetData[i].DataClassRef.Sleep();
             }
+        }
+
+        public List<string> GetDataSourcesList()
+        {
+            if (_targetData == null) { return null; }
+            List<string> result = new List<string>();
+
+            for (int i = 0; i <= _targetData.GetUpperBound(0); i++)
+            {
+                result.Add(_targetData[i].DataClassRef.DataName + " " +
+                    _targetData[i].DataClassRef.DataLabels[_targetData[i].DataIndex]);
+            }
+
+            return result;
         }
 
         public void MoveDataSourceUp(Int32 index)
         {
-            DataLink tempDataLink = TargetData[index];
-            TargetData[index] = TargetData[index - 1];
-            TargetData[index - 1] = tempDataLink;
+            DataLink tempDataLink = _targetData[index];
+            _targetData[index] = _targetData[index - 1];
+            _targetData[index - 1] = tempDataLink;
         }
 
         public void MoveDataSourceDown(Int32 index)
         {
-            DataLink tempDataLink = TargetData[index];
-            TargetData[index] = TargetData[index + 1];
-            TargetData[index + 1] = tempDataLink;
+            DataLink tempDataLink = _targetData[index];
+            _targetData[index] = _targetData[index + 1];
+            _targetData[index + 1] = tempDataLink;
         }
 
         public void ChangeRenderer(string NewRenderer)

@@ -173,17 +173,17 @@ namespace RiskyKen.TrayUsage
 
         private void SaveDataSourceXml(XmlWriter aW)
         {
-            if (TargetData != null)
+            if (_targetData != null)
             {
                 aW.WriteStartElement("DataSources");
-                for (Int32 i = 0; i <= TargetData.GetUpperBound(0); i++)
+                for (Int32 i = 0; i <= _targetData.GetUpperBound(0); i++)
                 {
                     aW.WriteStartElement("Node");
                     aW.WriteStartElement("Name");
-                    aW.WriteString(TargetData[i].DataClassRef.DataName);
+                    aW.WriteString(_targetData[i].DataClassRef.DataName);
                     aW.WriteEndElement();
                     aW.WriteStartElement("Index");
-                    aW.WriteString(TargetData[i].DataIndex.ToString());
+                    aW.WriteString(_targetData[i].DataIndex.ToString());
                     aW.WriteEndElement();
                     aW.WriteEndElement();
                 }

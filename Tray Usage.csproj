@@ -92,6 +92,7 @@
     <Compile Include="Render\IRenderDirection.cs" />
     <Compile Include="Render\RendererHistory.cs" />
     <Compile Include="Render\RendererHistory.Properties.cs" />
+    <Compile Include="Render\RendererImage.Properties.cs" />
     <Compile Include="Render\RenderRegistry.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Data\Data.cs" />

@@ -163,18 +163,14 @@ namespace RiskyKen.TrayUsage
             txtRollover.Text = SelectedIcon.RolloverText;
             comboRenderType.Text = SelectedIcon.renderer.Name;
             SetRenderInfo();
+
             listData.Items.Clear();
-            if (SelectedIcon.TargetData != null)
+            List<string> dataList = SelectedIcon.GetDataSourcesList();
+            if (dataList != null)
             {
-                for (Int32 i = 0; i <= SelectedIcon.TargetData.GetUpperBound(0); i++)
+                foreach (string dataItem in dataList)
                 {
-                    if (SelectedIcon.TargetData[i].DataIndex >= 0 && SelectedIcon.TargetData[i].DataIndex <= SelectedIcon.TargetData[i].DataClassRef.CurrentValue.Length - 1)
-                    {
-                        listData.Items.Add(SelectedIcon.TargetData[i].DataClassRef.DataName + " " +
-                            SelectedIcon.TargetData[i].DataClassRef.DataLabels[SelectedIcon.TargetData[i].DataIndex]);
-                    }
-                    else
-                    { listData.Items.Add(SelectedIcon.TargetData[i].DataClassRef.DataName + " Out of range"); }
+                    listData.Items.Add(dataItem);
                 }
             }
         }

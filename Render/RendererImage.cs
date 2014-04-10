@@ -27,7 +27,7 @@ using RiskyKen.TrayUsage.Render;
 
 namespace RiskyKen.TrayUsage
 {
-    public class RendererImage : Renderer, IRenderDirection
+    partial class RendererImage : Renderer, IRenderDirection
     {
         private RenderDirections _renderDirection = RenderDirections.UP;
 
@@ -43,6 +43,11 @@ namespace RiskyKen.TrayUsage
         private bool _haveActiveImage = false;
         private bool _haveForegroundImage = false;
 
+        private int _paddingTop = 0;
+        private int _paddingBottom = 0;
+        private int _paddingLeft = 0;
+        private int _paddingRight = 0;
+
         public override string Name
         {
             get { return "Image"; }
@@ -56,52 +61,6 @@ namespace RiskyKen.TrayUsage
         public override Int32 MaxValues
         {
             get { return 1; }
-        }
-
-        public string BackgroundImagePath
-        {
-            get { return _backgroundImagePath; }
-            set
-            {
-                _backgroundImagePath = value;
-                PostInt();
-                ForceIconRedraw();
-            }
-        }
-
-        public string ActiveImagePath
-        {
-            get { return _activeImagePath; }
-            set
-            {
-                _activeImagePath = value;
-                PostInt();
-                ForceIconRedraw();
-            }
-        }
-
-        public string ForegroundImagePath
-        {
-            get { return _foregroundImagePath; }
-            set
-            {
-                _foregroundImagePath = value;
-                PostInt();
-                ForceIconRedraw();
-            }
-        }
-
-        public RenderDirections RenderDirection
-        {
-            get
-            {
-                return _renderDirection;
-            }
-            set
-            {
-                _renderDirection = value;
-                ForceIconRedraw();
-            }
         }
 
         ///<summary>Constructor</summary>
@@ -137,6 +96,18 @@ namespace RiskyKen.TrayUsage
                 case "ForegroundImagePath":
                     _foregroundImagePath = aValue;
                     break;
+                case "PaddingTop":
+                    _paddingTop = int.Parse(aValue);
+                    break;
+                case "PaddingBottom":
+                    _paddingBottom = int.Parse(aValue);
+                    break;
+                case "PaddingLeft":
+                    _paddingLeft = int.Parse(aValue);
+                    break;
+                case "PaddingRight":
+                    _paddingRight = int.Parse(aValue);
+                    break;
             }
         }
 
@@ -153,6 +124,11 @@ namespace RiskyKen.TrayUsage
 
             if (!String.IsNullOrEmpty(_foregroundImagePath))
             { aXmlW.WriteElementString("ForegroundImagePath", _foregroundImagePath); }
+
+            aXmlW.WriteElementString("PaddingTop", _paddingTop.ToString());
+            aXmlW.WriteElementString("PaddingBottom", _paddingBottom.ToString());
+            aXmlW.WriteElementString("PaddingLeft", _paddingLeft.ToString());
+            aXmlW.WriteElementString("PaddingRight", _paddingRight.ToString());
 
             aXmlW.WriteEndElement();
         }
@@ -191,7 +167,15 @@ namespace RiskyKen.TrayUsage
                 tempBitmap.Dispose();
             }
 
-            valueScale = 16;
+            DrawingSize = new Rectangle(_paddingLeft, _paddingTop, 16 - (_paddingLeft + _paddingRight), 16 - (_paddingTop + _paddingBottom));
+            if (RenderDirection == RenderDirections.UP || RenderDirection == RenderDirections.DOWN)
+            {
+                valueScale = DrawingSize.Height;
+            }
+            else if(RenderDirection == RenderDirections.LEFT | RenderDirection == RenderDirections.RIGHT)
+            {
+                valueScale = DrawingSize.Width;
+            }
 
             ForceIconRedraw();
         }
@@ -223,7 +207,10 @@ namespace RiskyKen.TrayUsage
             {
                 if (_haveActiveImage)
                 {
-                    Graphics.FromImage(tempBitmap).DrawImage(_activeImage, new Rectangle(0, 16 - aValue[0], 16, aValue[0]), new Rectangle(0, 16 - aValue[0], 16, aValue[0]), GraphicsUnit.Pixel);
+                    Graphics.FromImage(tempBitmap).DrawImage(_activeImage,
+                        new Rectangle(DrawingSize.X, DrawingSize.Height - aValue[0] + DrawingSize.Y, DrawingSize.Width, aValue[0]),
+                        new Rectangle(DrawingSize.X, DrawingSize.Height - aValue[0] + DrawingSize.Y, DrawingSize.Width, aValue[0]),
+                        GraphicsUnit.Pixel);
                     //Graphics.FromImage(tempBitmap).DrawImage(_activeImage, 0, 0);
                 }
             }

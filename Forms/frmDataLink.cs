@@ -61,18 +61,12 @@ namespace RiskyKen.TrayUsage
         private void PopulateTargetDataList()
         {
             listDataTarget.Items.Clear();
-            if (TargetIcon.TargetData != null)
+            List<string> dataList = TargetIcon.GetDataSourcesList();
+            if (dataList != null)
             {
-                for (Int32 i = 0; i <= TargetIcon.TargetData.GetUpperBound(0); i++)
+                foreach (string dataItem in dataList)
                 {
-                    if (TargetIcon.TargetData[i].DataIndex >= 0 && TargetIcon.TargetData[i].DataIndex <= TargetIcon.TargetData[i].DataClassRef.CurrentValue.Length - 1)
-                    {
-                        
-                        listDataTarget.Items.Add(TargetIcon.TargetData[i].DataClassRef.DataName + " " +
-                            TargetIcon.TargetData[i].DataClassRef.DataLabels[TargetIcon.TargetData[i].DataIndex]);
-                    }
-                    else
-                    { listDataTarget.Items.Add(TargetIcon.TargetData[i].DataClassRef.DataName + " Out of range"); }
+                    listDataTarget.Items.Add(dataItem);
                 }
             }
         }
